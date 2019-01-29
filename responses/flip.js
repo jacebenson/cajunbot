@@ -21,17 +21,21 @@ wordsArr.map(function(word, index){
           'i' : '\u0131', //from pne
           'j' : '\u027E',
           'k' : '\u029E',
-          //l : '\u0283',
+          'l' : 'l',//'\u0283',
           'm' : '\u026F',
           'n' : 'u',
+          'o' : 'o',
           'p' : 'd',
           'q' : 'b',
           'r' : '\u0279',
+          's' : 's',
           't' : '\u0287',
           'u' : 'n',
           'v' : '\u028C',
           'w' : '\u028D',
+          'x' : 'x',
           'y' : '\u028E',
+          'z' : 'z',
           '.' : '\u02D9',
           '[' : ']',
           '(' : ')',
@@ -48,9 +52,9 @@ wordsArr.map(function(word, index){
           '\r' : '\n',
           ' ' : ' '
       };
-      var arrOfThings = msg.content.split('');
+      var arrOfThings = msg.content.replace('!flip','').split('');
       var flipped = arrOfThings.map(function(char){
-          return flipTable[char];
+          return flipTable[char.toLowerCase()];
       });
       var message = flipped.join('');
     bot.createMessage(msg.channel.id, message);
