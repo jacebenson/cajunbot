@@ -1,6 +1,6 @@
 module.exports = {
-    command: function(bot) {
-        var phrase = '!docs';
+    command: function(bot, responses) {
+        var phrase = '!help';
         bot.on('ready', () => { // When the bot is ready
             console.log(phrase + ' Ready!'); // Log "Ready!"
         });
@@ -8,12 +8,14 @@ module.exports = {
             var wordsArr = msg.content.split(' ');
             wordsArr.map(function(word, index) {
                 if (word.toLowerCase() === phrase) {
-                    var term = wordsArr[index + 1];
-                    var message = 'https://docs.servicenow.com/search?q=' + encodeURI(wordsArr.join(' ').replace(word, '').trim());
-                    bot.createMessage(msg.channel.id, message);
+                  var message = ['This is the help'];
+                  for(var thing in responses){
+                    message.push(responses[thing].help);
+                  }
+                    bot.createMessage(msg.channel.id, message.join('\n'));
                 }
             });
         });
     },
-    help: '`!docs string` Searchs the ServiceNow docs for the string provided.'
+    help: '`!help lists all commands'
 };
