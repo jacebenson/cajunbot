@@ -9,7 +9,7 @@ bot.on("messageCreate", function(msg) {
   wordsArr.map(function(word, index){
     if(word.toLowerCase() === phrase){
       var term = wordsArr[index + 1];
-      var message = 'https://docs.servicenow.com/search?q=' + term
+      var message = 'https://docs.servicenow.com/search?q=' + encodeURI(wordsArr.join(' ').replace(word, '').trim());
       bot.createMessage(msg.channel.id, message);
     }
   });
