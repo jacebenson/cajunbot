@@ -9,7 +9,7 @@ bot.on("messageCreate", function(msg) {
   wordsArr.map(function(word, index){
     if(word.toLowerCase() === phrase){
       //var term = wordsArr[index + 1];
-      var message = wordsArr.join(':clap:');
+      var message = wordsArr.join(' :clap: ').replace(word + ' :clap: ','');
       bot.createMessage(msg.channel.id, message);
     }
   });
