@@ -41,6 +41,17 @@ module.exports = {
                         if (groupIndex === 0) {
                             msg.addReaction('💯');
                             var thing = match.replace(/(\+)+|(thanks|thank)/gmi, '').trim();
+                            var thingName = thing;
+                            if(thing.indexOf('<@')>=0){
+                              var userregex = /(\<\@)(\d+)(\>)/gm;
+                              var subst = `$2`;
+                              thingName = thingName.replace(userregex, subst);
+                              msg.mentions.forEach(function(member){
+                                if(thingName == member.id){
+                                  thingName = member.username;
+                                }
+                              });
+                            }
                             console.log(`Found match, group ${groupIndex}: ${match}`);
                             MongoClient.connect(mongoURI, function(err, client) {
                                 console.log('connected to mongo');
@@ -68,6 +79,7 @@ module.exports = {
                                     } else {
                                       var myObj = {
                                         thing: thing,
+                                        name: thingName,
                                         points: 1
                                       };
                                       db.collection('points').insertOne(myObj, function(err, res) {
@@ -88,5 +100,5 @@ module.exports = {
             }
         });
     },
-    help: '` ++ string` Give points away[wip]'
+    help: '` ++ string` Give points away'
 };
