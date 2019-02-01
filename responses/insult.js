@@ -5,7 +5,7 @@ module.exports = {
             console.log(phrase + ' Ready!'); // Log "Ready!"
         });
         bot.on("messageCreate", function(msg) {
-
+if(msg.author.bot === false){
             var wordsArr = msg.content.split(' ');
             wordsArr.map(function(word, index) {
                 if (word.toLowerCase() === phrase) {
@@ -32,6 +32,7 @@ module.exports = {
                     bot.createMessage(msg.channel.id, message);
                 }
             });
+}
         });
     },
     help: '`!insult` Says an SN-related insult.'

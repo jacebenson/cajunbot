@@ -5,6 +5,7 @@ module.exports = {
             console.log(phrase + ' Ready!'); // Log "Ready!"
         });
         bot.on("messageCreate", function(msg) {
+          if(msg.author.bot === false){
             var wordsArr = msg.content.split(' ');
             wordsArr.map(function(word, index) {
                 if (word.toLowerCase() === phrase) {
@@ -203,9 +204,10 @@ module.exports = {
                     bot.createMessage(msg.channel.id, message);
                 }
             });
+          }
         });
     },
-    help: '`!job` Creates a random LinkedIn message that an SN Dev is likely to receive from a recruiter.'
+    help: '`!job` Creates a random message a SN Dev may receive from a recruiter.'
 };
 
 var rand = function(arr) {

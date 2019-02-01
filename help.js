@@ -17,5 +17,5 @@ module.exports = {
             });
         });
     },
-    help: '`!help lists all commands'
+    help: '`!help` lists all commands'
 };

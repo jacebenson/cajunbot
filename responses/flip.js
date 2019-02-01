@@ -5,7 +5,7 @@ module.exports = {
             console.log(phrases + ' Ready!'); // Log "Ready!"
         });
         bot.on("messageCreate", function(msg) {
-
+if(msg.author.bot === false){
             var wordsArr = msg.content.split(' ');
             wordsArr.map(function(word, index) {
                 phrases.map(function(phrase) {
@@ -63,6 +63,7 @@ module.exports = {
 
                 });
             });
+}
         });
     },
     help: '`!flip string` Or !invert, flips the string upside down.'

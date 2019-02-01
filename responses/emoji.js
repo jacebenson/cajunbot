@@ -5,6 +5,7 @@ module.exports = {
       console.log(phrase + ' Ready!'); // Log "Ready!"
     });
     bot.on("messageCreate", function(msg) {
+      if(msg.author.bot === false){
       var translate = require('moji-translate');
       var wordsArr = msg.content.split(' ');
       wordsArr.map(function(word, index){
@@ -14,6 +15,7 @@ module.exports = {
           bot.createMessage(msg.channel.id, message);
         }
       });
+      }
     });
   },
   help: '`!emoji string` makes the sentence fun and hard to read with emojis'
