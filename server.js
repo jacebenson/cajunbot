@@ -16,10 +16,10 @@ bot.on("messageCreate", function(msg) {
         });
         responses['help.js'] = require('./help.js');
         responses['help.js'].command(bot, msg, responses);
-        bot.on('ready', () => { // When the bot is ready
-            console.log('CajonBot' + ' Ready!'); // Log "Ready!"
-        });
     });
+});
+bot.on('ready', () => { // When the bot is ready
+    console.log('CajonBot Ready!'); // Log "Ready!"
 });
 bot.on("presenceUpdate", function(msg) {
   console.log(msg.guild.name + ': ' + msg.username + ': ' + msg.status);

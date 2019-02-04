@@ -11,7 +11,7 @@ var compliments = function(user, points) {
         'Good work! ' + user + ' has ' + points + ' points',
         'Good going! ' + user + ' has ' + points + ' points',
       'Nice work! ' + user+ ' has ' + points + ' points',
-      'Point!' +  + user + ' has ' + points + ' points',
+      'Point!' + user + ' has ' + points + ' points',
         'Way to help out! ' + user + ' has ' + points + ' points',
         'Who has two thumbs and one more point? ' + user + ' does.  ' + user + ' has ' + points + ' points',
       'Do you want a point?  Because that\'s how you get points.  ' + user + ' has ' + points + ' points',
