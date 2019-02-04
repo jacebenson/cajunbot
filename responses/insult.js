@@ -1,10 +1,6 @@
 module.exports = {
-    command: function(bot) {
+    command: function(bot,msg) {
         var phrase = '!insult';
-        bot.on('ready', () => { // When the bot is ready
-            console.log(phrase + ' Ready!'); // Log "Ready!"
-        });
-        bot.on("messageCreate", function(msg) {
 if(msg.author.bot === false){
             var wordsArr = msg.content.split(' ');
             wordsArr.map(function(word, index) {
@@ -33,7 +29,6 @@ if(msg.author.bot === false){
                 }
             });
 }
-        });
     },
     help: '`!insult` Says an SN-related insult.'
 };

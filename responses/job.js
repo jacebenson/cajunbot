@@ -1,10 +1,6 @@
 module.exports = {
-    command: function(bot) {
+    command: function(bot,msg) {
         var phrase = '!job';
-        bot.on('ready', () => { // When the bot is ready
-            console.log(phrase + ' Ready!'); // Log "Ready!"
-        });
-        bot.on("messageCreate", function(msg) {
           if(msg.author.bot === false){
             var wordsArr = msg.content.split(' ');
             wordsArr.map(function(word, index) {
@@ -205,7 +201,6 @@ module.exports = {
                 }
             });
           }
-        });
     },
     help: '`!job` Creates a random message a SN Dev may receive from a recruiter.'
 };

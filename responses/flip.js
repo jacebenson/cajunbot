@@ -1,10 +1,6 @@
 module.exports = {
-    command: function(bot) {
+    command: function(bot,msg) {
         var phrases = ['!flip', '!invert'];
-        bot.on('ready', () => { // When the bot is ready
-            console.log(phrases + ' Ready!'); // Log "Ready!"
-        });
-        bot.on("messageCreate", function(msg) {
 if(msg.author.bot === false){
             var wordsArr = msg.content.split(' ');
             wordsArr.map(function(word, index) {
@@ -64,7 +60,6 @@ if(msg.author.bot === false){
                 });
             });
 }
-        });
     },
     help: '`!flip string` Or !invert, flips the string upside down.'
 };
