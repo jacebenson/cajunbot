@@ -1,6 +1,6 @@
 {
-  "name": "discord-1337-bot",
-  "version": "0.0.1",
+  "name": "discord-cajon-bot",
+  "version": "0.1.0",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"

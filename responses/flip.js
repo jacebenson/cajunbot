@@ -1,7 +1,7 @@
 module.exports = {
-    command: function(bot,msg) {
+    command: function(bot, msg) {
         var phrases = ['!flip', '!invert'];
-if(msg.author.bot === false){
+        if (msg.author.bot === false) {
             var wordsArr = msg.content.split(' ');
             wordsArr.map(function(word, index) {
                 phrases.map(function(phrase) {
@@ -59,7 +59,7 @@ if(msg.author.bot === false){
 
                 });
             });
-}
+        }
     },
     help: '`!flip string` Or !invert, flips the string upside down.'
 };

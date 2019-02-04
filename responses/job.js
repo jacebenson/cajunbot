@@ -1,7 +1,7 @@
 module.exports = {
-    command: function(bot,msg) {
+    command: function(bot, msg) {
         var phrase = '!job';
-          if(msg.author.bot === false){
+        if (msg.author.bot === false) {
             var wordsArr = msg.content.split(' ');
             wordsArr.map(function(word, index) {
                 if (word.toLowerCase() === phrase) {
@@ -200,7 +200,7 @@ module.exports = {
                     bot.createMessage(msg.channel.id, message);
                 }
             });
-          }
+        }
     },
     help: '`!job` Creates a random message a SN Dev may receive from a recruiter.'
 };

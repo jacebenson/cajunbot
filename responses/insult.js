@@ -1,7 +1,7 @@
 module.exports = {
-    command: function(bot,msg) {
+    command: function(bot, msg) {
         var phrase = '!insult';
-if(msg.author.bot === false){
+        if (msg.author.bot === false) {
             var wordsArr = msg.content.split(' ');
             wordsArr.map(function(word, index) {
                 if (word.toLowerCase() === phrase) {
@@ -28,7 +28,7 @@ if(msg.author.bot === false){
                     bot.createMessage(msg.channel.id, message);
                 }
             });
-}
+        }
     },
     help: '`!insult` Says an SN-related insult.'
 };

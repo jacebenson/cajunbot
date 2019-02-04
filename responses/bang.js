@@ -1,7 +1,7 @@
 module.exports = {
-    command: function(bot,msg) {
+    command: function(bot, msg) {
         var phrase = '!bang';
-          if(msg.author.bot === false){
+        if (msg.author.bot === false) {
             var wordsArr = msg.content.split(' ');
             wordsArr.map(function(word, index) {
                 if (word.toLowerCase() === phrase) {
@@ -10,7 +10,7 @@ module.exports = {
                     bot.createMessage(msg.channel.id, message);
                 }
             });
-          }
+        }
     },
     help: '`!bang @person` Supportive text for an overworked employee.'
 };

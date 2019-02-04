@@ -1,26 +1,50 @@
-# Discord 1337 Bot 🤖
+# CajonBot
 
-A simple Discord bot that replies "damn it" whenever anyone says "1337"
+> Simple bot for handling messages
 
-![](https://cdn.glitch.com/f1b80a31-0733-40fb-a0dd-44c8c80c155d%2Fscreenshot.png?1506425519756)
+I wanted to replicate some code used in a Slack channel, this is that replication in the works.
 
-## Prerequisites
+## Usage
 
-You'll need:
- - A [Discord account](https://discordapp.com/register)
- - Permission to add accounts to a server, or your own server
+```
+!help
+```
 
-## Steps to set up:
+outputs
 
-1. Create an App here: [https://discordapp.com/developers/applications/me](https://discordapp.com/developers/applications/me)
-2. Create an App Bot User for your App by clicking "Create a Bot User"
-3. Add the App Bot User to your Discord server using this link: `https://discordapp.com/oauth2/authorize?&client_id=<CLIENT ID>&scope=bot&permissions=0` replacing `<CLIENT_ID>` with the Client ID found on the page of your App
-4. Set the `DISCORD_BOT_ID` value in `.env` using the A[[ Bot User token ("click to reveal" in the App page under the bot username)
+```
+This is the help
+!bang @person Supportive text for an overworked employee.
+!clap some sentence Caps lock and clap backs.
+!docs string Searchs the ServiceNow docs for the string provided.
+!emoji string makes the sentence fun and hard to read with emojis
+!flip string Or !invert, flips the string upside down.
+!insult Says an SN-related insult.
+!jace string Searchs jaces blog for the string provided.
+!job Creates a random message a SN Dev may receive from a recruiter.
+!lmgtfy string let me google that for you.
+!ping test ....
+++ string Give points away
+!snprotips or !prof or !tips string Searchs snprotips blog for the string provided.
+!help lists all commands
+```
 
-## The code
+## Contributing
 
-Check out `server.js` to see how it works ✨
+1. Fork it (https://github.com/jacebenson/cajonbot/fork)
+1. Create your feature branch (git checkout -b feature/fooBar)
+1. Commit your changes (git commit -am 'Add some fooBar')
+1. Push to the branch (git push origin feature/fooBar)
+1. Create a new Pull Request
 
-We're using the [Eris](https://npm.im/eris) library to interact with the Discord API.
+### To add your new commands
+I'd copy `./responses/snprotips.js` if you need multiple phrases to look for, otherwise, I'd copy `./responses/docs.js`
 
-If it's working you should see "Ready!" in the logs.
+In those you'll have a `modules.exports` that has a `command`, and `help`.  Those are all that's needed to make this work.  You have access to all the Eris things via the `bot` variable and all the message things via the `msg` variable.
+
+## Acknowledgments
+
+Thanks [@earlduque](https://github.com/earlduque) for the inspiring repo for you're slacker bot (now private)
+
+## See Also
+- [`abalabahaha/eris`](https://github.com/abalabahaha/eris)
