@@ -22,7 +22,7 @@ function dynamicSort(property) {
           "<tr>"+
           "  <td>" + (index + 1) +
           "  </td>" + 
-          "  <td>" + thing.name +
+          "  <td>" + thing.display +
           "  </td>"+
           "  <td>" + thing.points +
           "  </td>" +
