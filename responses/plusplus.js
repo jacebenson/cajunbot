@@ -27,12 +27,8 @@ var compliments = function(user, points) {
     return responses;
 }
 module.exports = {
-    command: function(bot) {
+    command: function(bot,msg) {
         var phrase = '++';
-        bot.on('ready', () => { // When the bot is ready
-            console.log(phrase + ' Ready!'); // Log "Ready!"
-        });
-        bot.on("messageCreate", function(msg) {
             if (msg.author.bot === false) {
                 //console.log(msg)
                 console.log(msg.channel.guild.name + '#' + msg.channel.name + ': ' + msg.author.username + ': ' + msg.content);
@@ -113,7 +109,6 @@ module.exports = {
                     });
                 }
             }
-        });
     },
     help: '` ++ string` Give points away'
 };
