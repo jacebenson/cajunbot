@@ -10,10 +10,19 @@ var compliments = function(user, points) {
         'Congrats ' + user + ' you now have ' + points + ' points',
         'Good work ' + user + ' you now have ' + points + ' points',
         'Good going ' + user + ' you now have ' + points + ' points',
-        'Way to help out ' + user + ' you now have ' + points + ' points',
+        'Way to help out ' + user + ', you now have ' + points + ' points',
         'Give a hear-hear for ' + user + ' you now have ' + points + ' points',
-        'Who has two thumbs and one more point? ' + user + ' does.  You now have ' + points + ' points',
-        'https://xkcd.com/1543/'
+        'Who has two thumbs and one more point? ' + user + ' does.  ' + user + 'now has ' + points + ' points',
+        'https://memegen.link/ants/do_you_want_points~q/because_that\'s_how_'+user+'_get_points.jpg',
+        'https://memegen.link/api/templates/oprah/you_get_a_point/and_you_get_a_point',
+        'https://memegen.link/api/templates/buzz/points/points_everywhere'
+      /*
+      'I\'m just gonna sneak right up here and give this to ya, ' + user,
+      'Nice work ' + user,
+      'Do you want a point?  Because that\'s how you get points.  ' + user + ' has ' + points + ' points',
+      'Point!'
+      
+      */
     ];
     return responses;
 }
@@ -29,7 +38,7 @@ module.exports = {
                 console.log(msg.channel.guild.name + '#' + msg.channel.name + ': ' + msg.author.username + ': ' + msg.content);
                 //bot.createMessage(msg.channel.id, msg);
                 //var regex = /((([^\s])+|([^\s])+(\s)+)(\+){2})/gm;
-                var regex = /((([^\s])+|([^\s])+(\s)+)((\+){2})|(thanks|thank)\s([^\s]+))/gmi;
+                var regex = /((([^\s])+|([^\s])+(\s)+)((\+){2})|(thanks|thank you)\s([^\s]+))/gmi;
                 var m;
                 while ((m = regex.exec(msg.content)) !== null) {
                     // This is necessary to avoid infinite loops with zero-width matches
@@ -40,19 +49,35 @@ module.exports = {
                     m.forEach(function(match, groupIndex) {
                         if (groupIndex === 0) {
                             msg.addReaction('💯');
-                            var thing = match.replace(/(\+)+|(thanks|thank)/gmi, '').trim();
+                            var thing = match.replace(/(\+)+|(thanks|thank you)/gmi, '').trim();
+                            var thingName = thing;
+                            if(thing.indexOf('<@')>=0){
+                              var userregex = /(\<\@)(\d+)(\>)/gm;
+                              var subst = `$2`;
+                              thingName = thingName.replace(userregex, subst);
+                              msg.mentions.forEach(function(member){
+                                if(thingName == member.id){
+                                  thingName = member.username;
+                                }
+                              });
+                            }
                             console.log(`Found match, group ${groupIndex}: ${match}`);
                             MongoClient.connect(mongoURI, function(err, client) {
                                 console.log('connected to mongo');
                                 if (err) console.log(err);
                                 var db = client.db('cajonbot');
                                 // look for user in db
-                              var queryObj = {'thing': thing};
+                              //var queryObj = {'thing': thing};
+                              //{$or:[{"groupA":data},{"groupB":data}]}
+                              var queryObj = {$or:[{"thing":thing},{"name":thing.toLowerCase()}]}
+                              
                                 db.collection('points').findOne(queryObj, function(err, result) {
                                     if(result){
                                     console.log(result);
                                     console.log(result.thing + ': ' + result.points);
                                     result.points = parseInt(result.points, 10) + 1;
+                                    result.name = thingName.toLowerCase();
+                                    result.display = thingName;
                                     console.log(result.thing + ': ' + result.points);
                                     db.collection('points').updateOne(queryObj, { $set: result },
                                         function(err, writeResult) {
@@ -68,6 +93,8 @@ module.exports = {
                                     } else {
                                       var myObj = {
                                         thing: thing,
+                                        name: thingName.toLowerCase(),
+                                        display: thingName,
                                         points: 1
                                       };
                                       db.collection('points').insertOne(myObj, function(err, res) {
@@ -88,5 +115,5 @@ module.exports = {
             }
         });
     },
-    help: '` ++ string` Give points away[wip]'
+    help: '` ++ string` Give points away'
 };
