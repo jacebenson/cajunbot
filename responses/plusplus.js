@@ -38,10 +38,10 @@ module.exports = {
         var phrase = '++';
         if (msg.author.bot === false) {
             //console.log(msg)
-            console.log(msg.channel.guild.name + '#' + msg.channel.name + ': ' + msg.author.username + ': ' + msg.content);
             //bot.createMessage(msg.channel.id, msg);
             //var regex = /((([^\s])+|([^\s])+(\s)+)(\+){2})/gm;
-            var regex = /((([^\s])+|([^\s])+(\s)+)((\+){2})|(thanks|thank you)\s([^\s]+))/gmi;
+            //var regex = /((([^\s])+|([^\s])+(\s)+)((\+){2})|(thanks|thank you)\s([^\s]+))/gmi;
+            var regex = /(([^\s])+|([^\s])+(\s)+)((\+){2})/gmi;
             var m;
             while ((m = regex.exec(msg.content)) !== null) {
                 // This is necessary to avoid infinite loops with zero-width matches
@@ -51,7 +51,7 @@ module.exports = {
                 // The result can be accessed through the `m`-variable.
                 m.forEach(function(match, groupIndex) {
                     if (groupIndex === 0) {
-                        var thing = match.replace(/(\+)+|(thanks|thank you)/gmi, '').trim();
+                        var thing = match.replace(/(\+)+/gmi, '').trim();
                         var thingName = thing;
                         if (thing.indexOf('<@') >= 0) {
                             var userregex = /(\<\@)(\d+)(\>)/gm;
@@ -119,7 +119,7 @@ module.exports = {
                                         if (err) {
                                             console.log(err);
                                         }
-                                        console.log('Insreting points: ' + thing);
+                                        console.log('Inserting points: ' + thing);
                                         var message = rand(compliments(thing, 1));
                                         bot.createMessage(msg.channel.id, message);
                                         msg.addReaction('💯');
