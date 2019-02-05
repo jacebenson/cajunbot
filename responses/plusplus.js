@@ -10,11 +10,11 @@ var compliments = function(user, points) {
         'Congrats! ' + user + '  has ' + points + ' points',
         'Good work! ' + user + ' has ' + points + ' points',
         'Good going! ' + user + ' has ' + points + ' points',
-      'Nice work! ' + user+ ' has ' + points + ' points',
-      'Point!' +  + user + ' has ' + points + ' points',
+        'Nice work! ' + user + ' has ' + points + ' points',
+        'Point!' + user + ' has ' + points + ' points',
         'Way to help out! ' + user + ' has ' + points + ' points',
         'Who has two thumbs and one more point? ' + user + ' does.  ' + user + ' has ' + points + ' points',
-      'Do you want a point?  Because that\'s how you get points.  ' + user + ' has ' + points + ' points',
+        'Do you want a point?  Because that\'s how you get points.  ' + user + ' has ' + points + ' points',
         //'https://memegen.link/ants/do_you_want_points~q/because_that\'s_how_' + user + '_get_points.jpg',
         //'https://memegen.link/api/templates/oprah/you_get_a_point/and_you_get_a_point',
         //'https://memegen.link/api/templates/buzz/points/points_everywhere'
@@ -64,7 +64,9 @@ module.exports = {
                             });
                         }
                         console.log(`Found match, group ${groupIndex}: ${match}`);
-                        MongoClient.connect(mongoURI, {useNewUrlParser: true}, function(err, client) {
+                        MongoClient.connect(mongoURI, {
+                            useNewUrlParser: true
+                        }, function(err, client) {
                             //console.log('connected to mongo');
                             if (err) console.log(err);
                             var db = client.db('cajonbot');
@@ -74,7 +76,7 @@ module.exports = {
                             var queryObj = {
                                 $or: [{
                                     "thing": thing
-                                  }, {
+                                }, {
                                     "name": thing.toLowerCase()
                                 }]
                             }
@@ -83,29 +85,29 @@ module.exports = {
                                 if (result) {
                                     //console.log(result);
                                     //console.log(result.thing + ': ' + result.points);
-                                  if(result.thing != '<@'+msg.author.id+'>'){
-                                    result.points = parseInt(result.points, 10) + 1;
-                                    result.name = thingName.toLowerCase();
-                                    result.display = thingName;
-                                    console.log(result.thing + ': ' + result.points);
-                                    db.collection('points').updateOne(queryObj, {
-                                            $set: result
-                                        },
-                                        function(err, writeResult) {
-                                            if (err) {
-                                                console.log(err);
-                                            }
-                                            client.close();
-                                            console.log('Updating points: ' + thing);
-                                            var message = rand(compliments(thing, result.points));
-                                            console.log(message);
-                                            bot.createMessage(msg.channel.id, message);
-                                            msg.addReaction('💯');
-                                        });
-                                  } else {
-                                    var message = 'You cant give points to yourself';
-                                    bot.createMessage(msg.channel.id, message);
-                                  }
+                                    if (result.thing != '<@' + msg.author.id + '>') {
+                                        result.points = parseInt(result.points, 10) + 1;
+                                        result.name = thingName.toLowerCase();
+                                        result.display = thingName;
+                                        console.log(result.thing + ': ' + result.points);
+                                        db.collection('points').updateOne(queryObj, {
+                                                $set: result
+                                            },
+                                            function(err, writeResult) {
+                                                if (err) {
+                                                    console.log(err);
+                                                }
+                                                client.close();
+                                                console.log('Updating points: ' + thing);
+                                                var message = rand(compliments(thing, result.points));
+                                                console.log(message);
+                                                bot.createMessage(msg.channel.id, message);
+                                                msg.addReaction('💯');
+                                            });
+                                    } else {
+                                        var message = 'You cant give points to yourself';
+                                        bot.createMessage(msg.channel.id, message);
+                                    }
                                 } else {
                                     var myObj = {
                                         thing: thing,
@@ -121,8 +123,8 @@ module.exports = {
                                         var message = rand(compliments(thing, 1));
                                         bot.createMessage(msg.channel.id, message);
                                         msg.addReaction('💯');
-                               
-                          client.close();         
+
+                                        client.close();
                                     });
                                 }
                             });
