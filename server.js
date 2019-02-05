@@ -12,10 +12,18 @@ fs.readdir(testFolder, function(err, files) {
   } catch (e) {
     console.log(e);
   }
-  responses['help.js'] = require('./help.js');
   });
 });
 bot.on("messageCreate", function(msg) {
+  try{
+    if(msg.channel.name){
+      console.log(msg.channel.guild.name + '#' + msg.channel.name + ': ' + msg.author.username + ': ' + msg.content);
+    } else {
+      console.log('PM#: ' + msg.author.username + ': ' + msg.content);
+    }
+  }catch(error){
+    console.log(error);
+  }
   for(var response in responses){
     responses[response].command(bot, msg, responses);
   }
