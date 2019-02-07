@@ -4,7 +4,11 @@ module.exports = {
         var wordsArr = msg.content.split(' ');
         wordsArr.map(function(word, index) {
             if (word.toLowerCase() === phrase) {
-                var message = ['This is the help'];
+                var message = [
+                  'This is the help',
+                  'Contribute here: https://github.com/jacebenson/cajonbot',
+                  'View leaderboard here: https://discord-cajon-bot.glitch.me/'
+                ];
                 for (var thing in responses) {
                     message.push(responses[thing].help);
                 }
