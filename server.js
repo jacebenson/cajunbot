@@ -17,7 +17,7 @@ fs.readdir(testFolder, function(err, files) {
 bot.on("messageCreate", function(msg) {
   try{
     if(msg.channel.name){
-      console.log(msg.channel.guild.name + '#' + msg.channel.name + ': ' + msg.author.username + ': ' + msg.content);
+      console.log(msg.channel.guild.name + '#' + msg.channel.name + '['+msg.channel.id+']: ' + msg.author.username + ': ' + msg.content);
     } else {
       console.log('PM#: ' + msg.author.username + ': ' + msg.content);
     }

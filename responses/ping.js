@@ -15,7 +15,6 @@ module.exports = {
                     });
                     bot.deleteMessage(msg.channel.id, msg.id, 'Test Delete Content');
                     */
-                  
                 }
             });
         }
