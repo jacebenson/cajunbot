@@ -1,4 +1,5 @@
 module.exports = (function () {
+  var translate = require('moji-translate');
   var MongoClient = require('mongodb').MongoClient;
   var mongoURI = process.env.MONGOLAB_URI; // || require('./.env').uri;
   var express = require("express");
@@ -9,6 +10,12 @@ module.exports = (function () {
   });
   app.get("/install", function (request, response) {
     response.redirect('https://discordapp.com/oauth2/authorize?&client_id=' + process.env.DISCORD_CLIENT_ID + '&scope=bot&permissions=0');
+  });
+  app.get("/emoji", function (request, response) {
+    console.log(request.query.text);
+    response.set('Content-Type', 'application/json');
+    response.send(JSON.stringify({text:translate.translate(request.query.text)}));
+    //response.redirect('https://discordapp.com/oauth2/authorize?&client_id=' + process.env.DISCORD_CLIENT_ID + '&scope=bot&permissions=0');
   });
   app.get("/scores", function (request, response) {
     MongoClient.connect(mongoURI, function (err, client) {

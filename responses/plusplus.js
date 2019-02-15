@@ -63,7 +63,7 @@ module.exports = {
                                 }
                             });
                         }
-                        console.log(`Found match, group ${groupIndex}: ${match}`);
+                        // console.log(`Found match, group ${groupIndex}: ${match}`);
                         MongoClient.connect(mongoURI, {
                             useNewUrlParser: true
                         }, function(err, client) {
@@ -98,9 +98,9 @@ module.exports = {
                                                     console.log(err);
                                                 }
                                                 client.close();
-                                                console.log('Updating points: ' + thing);
+                                                // console.log('Updating points: ' + thing);
                                                 var message = rand(compliments(thing, result.points));
-                                                console.log(message);
+                                                // console.log(message);
                                                 bot.createMessage(msg.channel.id, message);
                                                 msg.addReaction('💯');
                                             });
@@ -119,7 +119,7 @@ module.exports = {
                                         if (err) {
                                             console.log(err);
                                         }
-                                        console.log('Inserting points: ' + thing);
+                                        // console.log('Inserting points: ' + thing);
                                         var message = rand(compliments(thing, 1));
                                         bot.createMessage(msg.channel.id, message);
                                         msg.addReaction('💯');

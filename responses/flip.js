@@ -53,7 +53,7 @@ module.exports = {
                         var flipped = arrOfThings.map(function(char) {
                             return flipTable[char.toLowerCase()];
                         });
-                        var message = flipped.join('');
+                        var message = '(╯°□°）╯︵ ' + flipped.reverse().join('');
                         bot.createMessage(msg.channel.id, message);
                     }
 
