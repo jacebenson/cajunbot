@@ -2,7 +2,7 @@ require('dotenv').config();
 var fs = require('fs');
 var Eris = require('eris');
 require('./site.js');
-//require('./integrations/sndevs.slack').connect();
+require('./integrations/sndevs.slack').connect();
 var bot = new Eris(process.env.DISCORD_BOT_TOKEN);
 var responses = {};
 var testFolder = './responses/';
@@ -35,7 +35,7 @@ bot.on('ready', () => { // When the bot is ready
     console.log('CajonBot Ready!'); // Log "Ready!"
 });
 bot.on("presenceUpdate", function(msg) {
-  console.log(msg.guild.name + ': ' + msg.username + ': ' + msg.status);
+  //console.log(msg.guild.name + ': ' + msg.username + ': ' + msg.status);
 });
 bot.connect(); // Get the bot to connect to Discord
 
