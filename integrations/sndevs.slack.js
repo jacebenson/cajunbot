@@ -68,7 +68,7 @@ function registerEvents(slackBot) {
     });
     discordBot.on("messageCreate", function (msg) {
         try {
-            console.log(msg);
+            // console.log(msg);
             if (global.channels.knowledge19.discord === msg.channel.id && !msg.author.bot) {
                 var messageString = msg.author.username + ': ' + msg.content;
                 //console.log(msg.channel.guild.name + '#' + msg.channel.name + '[' + msg.channel.id + ']: ' + msg.author.username + ': ' + msg.content);
@@ -92,7 +92,7 @@ function registerEvents(slackBot) {
 
 module.exports = {
     connect: function () {
-        console.log(process.env.SLACK_TOKEN);
+        // console.log(process.env.SLACK_TOKEN);
         var bot = new SlackBot(process.env.SLACK_TOKEN, true, "SNDEVS", {
             customCommandHandling: true
         });
