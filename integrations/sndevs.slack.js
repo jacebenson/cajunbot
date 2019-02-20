@@ -79,7 +79,7 @@ function registerEvents(slackBot) {
                         as_user: true
                     };
                 slackBot.api.methods.chat.postMessage(messageObj).then(function(response){
-                    //console.log(response);
+                    console.log(response);
                 });
             }
         } catch (error) {
