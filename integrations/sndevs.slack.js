@@ -68,9 +68,10 @@ function registerEvents(slackBot) {
     });
     discordBot.on("messageCreate", function (msg) {
         try {
-            // console.log(msg);
+          // console.log(msg);
+          var user = msg.member.nick || msg.author.username;
             if (global.channels.knowledge19.discord === msg.channel.id && !msg.author.bot) {
-                var messageString = msg.author.username + ': ' + msg.content;
+                var messageString = user + ': ' + msg.content;
                 //console.log(msg.channel.guild.name + '#' + msg.channel.name + '[' + msg.channel.id + ']: ' + msg.author.username + ': ' + msg.content);
                   var messageObj = {
                       //channel: 'knowledge19', 
