@@ -2,7 +2,7 @@ require('dotenv').config();
 var fs = require('fs');
 var Eris = require('eris');
 require('./site.js');
-require('./integrations/sndevs.slack').connect();
+//require('./integrations/sndevs.slack').connect();//disabled after token was revoked
 var bot = new Eris(process.env.DISCORD_BOT_TOKEN);
 var responses = {};
 var testFolder = './responses/';
