@@ -1,5 +1,6 @@
 var MongoClient = require('mongodb').MongoClient;
 var mongoURI = process.env.MONGOLAB_URI; // || require('./.env').uri;
+//var mongoURI = process.env.MONGODB_URI;
 var rand = function (arr) {
     //console.log('in random.');
     var random_choice = Math.floor(Math.random() * arr.length);
@@ -215,14 +216,9 @@ module.exports = {
     command: function (bot, msg) {
         var phrase = '++';
         if (msg.author.bot === false) {
-            //console.log(msg)
-            //bot.createMessage(msg.channel.id, msg);
-            //var regex = /((([^\s])+|([^\s])+(\s)+)(\+){2})/gm;
-            //var regex = /((([^\s])+|([^\s])+(\s)+)((\+){2})|(thanks|thank you)\s([^\s]+))/gmi;
             var regex = /(([^\s])+|([^\s])+(\s)+)((\+){2})/gmi;
             var m;
             while ((m = regex.exec(msg.content)) !== null) {
-
                 if (msg.channel.name) {
                     // This is necessary to avoid infinite loops with zero-width matches
                     if (m.index === regex.lastIndex) {
@@ -244,7 +240,8 @@ module.exports = {
                                 });
                             }
                             // console.log(`Found match, group ${groupIndex}: ${match}`);
-                            MongoClient.connect(mongoURI, {
+                            
+                          MongoClient.connect(mongoURI, {
                                 useNewUrlParser: true
                             }, function (err, client) {
                                 //console.log('connected to mongo');
