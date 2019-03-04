@@ -1,7 +1,7 @@
 module.exports = (function () {
   var translate = require('moji-translate');
   var MongoClient = require('mongodb').MongoClient;
-  var mongoURI = process.env.MONGOLAB_URI; // || require('./.env').uri;
+  var mongoURI = process.env.MONGODB_URI; // || require('./.env').uri;
   var express = require("express");
   var app = express();
   app.use(express.static('public')); //use static files in ROOT/public folder

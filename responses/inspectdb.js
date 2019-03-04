@@ -1,5 +1,4 @@
 var MongoClient = require('mongodb').MongoClient;
-//var mongoURI = process.env.MONGOLAB_URI; // || require('./.env').uri;
 var mongoURI = process.env.MONGODB_URI;
 
 function upsertPoint(term, bot, msg) {
@@ -77,52 +76,3 @@ module.exports = {
     },
     help: '`!db` TEST DB styff'
 };
-
-/*
-  MongoClient.connect(mongoURI, {
-                useNewUrlParser: true
-            }, function(err, client) {
-                //console.log('connected to mongo');
-                if (err) console.log(err);
-              console.log(client);
-                var db = client.db('cajonbot');
-                // look for user in db
-                //var queryObj = {'thing': thing};
-                //{$or:[{"groupA":data},{"groupB":data}]}
-                var queryObj = {};
-                db.collection('points').findOne(queryObj, function(err, result) {
-                    if (result) {
-                        db.collection('points').updateOne(queryObj, {
-                            $set: result
-                        }, function(err, writeResult) {
-                            if (err) {
-                                console.log(err);
-                            }
-                            client.close();
-                            // console.log('Updating points: ' + thing);
-                            var message = '...';
-                            // console.log(message);
-                            bot.createMessage(msg.channel.id, message);
-                            msg.addReaction('💯');
-                        });
-                    } else {
-                        var myObj = {
-                            thing: '...',
-                            name: '...'.toLowerCase(),
-                            display: '...',
-                            points: 1
-                        };
-                        db.collection('points').insertOne(myObj, function(err, res) {
-                            if (err) {
-                                console.log(err);
-                            }
-                            // console.log('Inserting points: ' + thing);
-                            var message = '...added it...';
-                            bot.createMessage(msg.channel.id, message);
-                            msg.addReaction('💯');
-                            client.close();
-                        });
-                    }
-                });
-            });
-  */

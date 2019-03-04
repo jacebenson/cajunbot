@@ -1,6 +1,5 @@
 var MongoClient = require('mongodb').MongoClient;
-var mongoURI = process.env.MONGOLAB_URI; // || require('./.env').uri;
-//var mongoURI = process.env.MONGODB_URI;
+var mongoURI = process.env.MONGODB_URI;
 var rand = function (arr) {
     //console.log('in random.');
     var random_choice = Math.floor(Math.random() * arr.length);
