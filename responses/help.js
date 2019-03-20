@@ -7,7 +7,7 @@ module.exports = {
                 var message = [
                   'This is the help',
                   'Contribute here: https://github.com/jacebenson/cajonbot',
-                  'View leaderboard here: https://discord-cajon-bot.glitch.me/'
+                  'View leaderboard here: https://server.jace.pro:8000/'
                 ];
                 for (var thing in responses) {
                     message.push(responses[thing].help);
