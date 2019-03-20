@@ -1,4 +1,5 @@
 module.exports = (function () {
+  var port = process.env.PORT || 8000;
   var translate = require('moji-translate');
   var MongoClient = require('mongodb').MongoClient;
   var mongoURI = process.env.MONGODB_URI; // || require('./.env').uri;
@@ -28,7 +29,7 @@ module.exports = (function () {
       });
     });
   });
-  var listener = app.listen(process.env.PORT, function () {
+  var listener = app.listen(port, function () {
     console.log('Your app is listening on port ' + listener.address().port);
   });
 })();
