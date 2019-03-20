@@ -1,6 +1,6 @@
-# CajonBot
+# CajonBot 
 
-> Simple bot for handling messages
+> A Discord bot for handling messages
 
 I wanted to replicate some code used in a Slack channel, this is that replication in the works.
 
