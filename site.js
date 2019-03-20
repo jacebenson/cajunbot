@@ -6,7 +6,7 @@ module.exports = (function () {
   var express = require("express");
   var app = express();
   app.use(express.static('public')); //use static files in ROOT/public folder
-  app.get("/discord/leaderboard", function (request, response) {
+  app.get("/discord", function (request, response) {
     response.sendFile(__dirname + '/public/index.html');
   });
   app.get("/discord/install", function (request, response) {
