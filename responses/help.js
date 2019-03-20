@@ -6,8 +6,8 @@ module.exports = {
             if (word.toLowerCase() === phrase) {
                 var message = [
                   'This is the help',
-                  'Contribute here: https://github.com/jacebenson/cajonbot',
-                  'View leaderboard here: https://server.jace.pro:8000/'
+                  'View leaderboard here: http://server.jace.pro/discord',
+                  'Contribute here: https://github.com/jacebenson/cajonbot'
                 ];
                 for (var thing in responses) {
                     message.push(responses[thing].help);
