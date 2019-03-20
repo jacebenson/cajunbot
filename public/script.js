@@ -12,7 +12,7 @@ $(function() {
     }
   }
   $.getJSON(
-    "./scores",
+    "./discord/scores",
     function(data) {
       data = data.sort(dynamicSort("-points"))
       console.log(data);
