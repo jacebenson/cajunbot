@@ -1,7 +1,7 @@
 require('dotenv').config();
 var fs = require('fs');
 var Eris = require('eris');
-require('greenlock-express').create({
+/*require('greenlock-express').create({
   email: 'jace.benson@protonmail.com'     // The email address of the ACME user / hosting provider
 , agreeTos: true                    // You must accept the ToS as the host which handles the certs
 , configDir: '~/.config/acme/'      // Writable directory where certs will be saved
@@ -14,7 +14,8 @@ require('greenlock-express').create({
 
 //, debug: true
 }).listen(80, 443);
-//require('./site.js')
+*/
+require('./site.js')
 //require('./integrations/sndevs.slack').connect();//disabled after token was revoked
 var bot = new Eris(process.env.DISCORD_BOT_TOKEN);
 var responses = {};
