@@ -18,7 +18,7 @@ module.exports = {
         if (msg.author.bot === false) {
             var wordsArr = msg.content.split(' ');
             wordsArr.map(function(word, index) {
-                if(typeof phrases[word.toLowerCase()]!=undefined){
+                if(typeof phrases[word.toLowerCase()]!="undefined"){
                     console.log('phrases['+word.toLowerCase()+']:' + phrases[word.toLowerCase()])
                     var message = rand(phrases[word.toLowerCase()]);
                     bot.createMessage(msg.channel.id, message);
