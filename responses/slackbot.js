@@ -17,7 +17,7 @@ module.exports = {
         };
         if (msg.author.bot === false) {
             for(var phrase in phrases){
-                if(msg.content.indexOf(phrase)>-1){
+                if(msg.content.toLowerCase().indexOf(phrase)>-1){
                     var message = rand(phrases[phrase]);
                     bot.createMessage(msg.channel.id, message);
                 }
