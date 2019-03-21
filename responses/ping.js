@@ -31,6 +31,7 @@ module.exports = {
                         // The whole response has been received. Print out the result.
                         resp.on('end', () => {
                             console.log(JSON.parse(data).explanation);
+                            bot.createMessage(msg.channel.id, resp.statusCode);
                         });
 
                     }).on("error", (err) => {
