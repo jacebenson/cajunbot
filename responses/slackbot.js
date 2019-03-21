@@ -1,17 +1,19 @@
 module.exports = {
     command: function (bot, msg) {
         try{
+        var disappointed = ["(－‸ლ)","ಠ_ಠ"];
         var phrases = {
-            'dom manipulation':     ["(－‸ლ)","ಠ_ಠ"],
-            'global business rule': ["(－‸ლ)","ಠ_ಠ"],
-            'global br':            ["(－‸ლ)","ಠ_ಠ"],
-            'current.update':       ["(－‸ლ)","ಠ_ಠ"],
-            'global ui script':     ["(－‸ლ)","ಠ_ಠ"],
-            'window.':              ["ಠ_ಠ"],
-            'top.':                 ["ಠ_ಠ"],
-            'document.':            ["ಠ_ಠ"],
+            'dom manipulation':     disappointed,
+            'global business rule': disappointed,
+            'global br':            disappointed,
+            'current.update':       disappointed,
+            'global ui script':     disappointed,
+            'window.':              disappointed,
+            'top.':                 disappointed,
+            'document.':            disappointed,
             'facepalm':             ["(－‸ლ)"],
             '(╯°□°）╯︵ ┻━┻':        ["┬─┬ ノ( ゜-゜ノ)"],
+            ':open_mouth:':         ["https://i.kym-cdn.com/entries/icons/original/000/027/475/Screen_Shot_2018-10-25_at_11.02.15_AM.png","https://i.imgflip.com/2w241p.jpg"],
             '!xplore':              ["https://github.com/thewhitespace/Xplore/tree/master/dist"],
             'well it works':        ["http://i.imgur.com/vSaxB.jpg"],
         };
