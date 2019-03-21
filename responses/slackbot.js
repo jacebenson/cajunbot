@@ -16,14 +16,12 @@ module.exports = {
             '!xplore':["https://github.com/thewhitespace/Xplore/tree/master/dist"],
         };
         if (msg.author.bot === false) {
-            var wordsArr = msg.content.split(' ');
-            wordsArr.map(function(word, index) {
-                if(typeof phrases[word.toLowerCase()]!="undefined"){
-                    console.log('phrases['+word.toLowerCase()+']:' + phrases[word.toLowerCase()])
-                    var message = rand(phrases[word.toLowerCase()]);
+            for(var phrase in phrases){
+                if(msg.content.indexOf(phrase)>-1){
+                    var message = rand(phrases[phrase]);
                     bot.createMessage(msg.channel.id, message);
                 }
-            });
+            }
         }
     }catch(e){
         console.log(e);
