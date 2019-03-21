@@ -1,5 +1,6 @@
 module.exports = {
     command: function (bot, msg) {
+        try{
         var phrases = [
             {'dom manipulation':["(－‸ლ)","ಠ_ಠ"]},
             {'global business rule':["(－‸ლ)","ಠ_ಠ"]},
@@ -25,6 +26,9 @@ module.exports = {
                 });
             });
         }
+    }catch(e){
+        console.log(e);
+    }
     },
     help: 'Some strings have custom responses (see slackbot.js)'
 };
