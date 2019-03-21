@@ -2,18 +2,18 @@ module.exports = {
     command: function (bot, msg) {
         try{
         var phrases = {
-            'dom manipulation':["(－‸ლ)","ಠ_ಠ"],
-            'global business rule':["(－‸ლ)","ಠ_ಠ"],
-            'global br':["(－‸ლ)","ಠ_ಠ"],
-            'window.':["ಠ_ಠ"],
-            'top.':["ಠ_ಠ"],
-            'document.':["ಠ_ಠ"],
-            'facepalm':["(－‸ლ)"],
-            '(╯°□°）╯︵ ┻━┻':["┬──┬ ノ( ゜-゜ノ)"],
-            'well it works':["http://i.imgur.com/vSaxB.jpg"],
-            'current.update':["(－‸ლ)","ಠ_ಠ"],
-            'global ui script':["(－‸ლ)","ಠ_ಠ"],
-            '!xplore':["https://github.com/thewhitespace/Xplore/tree/master/dist"],
+            'dom manipulation':     ["(－‸ლ)","ಠ_ಠ"],
+            'global business rule': ["(－‸ლ)","ಠ_ಠ"],
+            'global br':            ["(－‸ლ)","ಠ_ಠ"],
+            'current.update':       ["(－‸ლ)","ಠ_ಠ"],
+            'global ui script':     ["(－‸ლ)","ಠ_ಠ"],
+            'window.':              ["ಠ_ಠ"],
+            'top.':                 ["ಠ_ಠ"],
+            'document.':            ["ಠ_ಠ"],
+            'facepalm':             ["(－‸ლ)"],
+            '(╯°□°）╯︵ ┻━┻':   ["┬──┬ ノ( ゜-゜ノ)"],
+            '!xplore':              ["https://github.com/thewhitespace/Xplore/tree/master/dist"],
+            'well it works':        ["http://i.imgur.com/vSaxB.jpg"],
         };
         if (msg.author.bot === false) {
             for(var phrase in phrases){
