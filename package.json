@@ -21,12 +21,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jacebenson/CajonBot.git"
+    "url": "git+https://github.com/jacebenson/cajunbot.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jacebenson/CajonBot/issues"
+    "url": "https://github.com/jacebenson/cajunbot/issues"
   },
-  "homepage": "https://github.com/jacebenson/CajonBot#readme"
+  "homepage": "https://github.com/jacebenson/cajunbot#readme"
 }
