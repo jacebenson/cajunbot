@@ -20,6 +20,7 @@ module.exports = {
             wordsArr.map(function(word, index) {
                 phrases.map(function(phrase) {
                     if(typeof phrase[word.toLowerCase()]){
+                        console.log('phrase['+word.toLowerCase()+']:' + phrase[word.toLowerCase()])
                         var message = rand(phrase[word.toLowerCase()]);
                         bot.createMessage(msg.channel.id, message);
                     }
