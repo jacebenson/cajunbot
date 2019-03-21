@@ -12,7 +12,6 @@ module.exports = {
                     }
                     https.get(url, (resp) => {
                         var data = '';
-                        // A chunk of data has been recieved.
                         resp.on('data', (chunk) => {
                             data += chunk;
                         });
