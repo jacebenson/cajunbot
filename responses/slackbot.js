@@ -27,7 +27,7 @@ module.exports = {
         console.log(e);
     }
     },
-    help: 'Some strings have custom responses (see slackbot.js)'
+    help: 'Some strings have custom responses (try `facepalm`)'
 };
 
 var rand = function(arr) {
