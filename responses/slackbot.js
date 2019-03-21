@@ -14,6 +14,7 @@ module.exports = {
             'facepalm':             ["(－‸ლ)"],
             '(╯°□°）╯︵ ┻━┻':        ["┬─┬ ノ( ゜-゜ノ)"],
             ':open_mouth:':         ["https://i.kym-cdn.com/entries/icons/original/000/027/475/Screen_Shot_2018-10-25_at_11.02.15_AM.png","https://i.imgflip.com/2w241p.jpg"],
+            '😮':                   ["https://i.kym-cdn.com/entries/icons/original/000/027/475/Screen_Shot_2018-10-25_at_11.02.15_AM.png","https://i.imgflip.com/2w241p.jpg"],
             '!xplore':              ["https://github.com/thewhitespace/Xplore/tree/master/dist"],
             'well it works':        ["http://i.imgur.com/vSaxB.jpg"],
         };
