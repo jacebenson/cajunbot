@@ -11,7 +11,7 @@ module.exports = {
             'top.':                 ["ಠ_ಠ"],
             'document.':            ["ಠ_ಠ"],
             'facepalm':             ["(－‸ლ)"],
-            '(╯°□°）╯︵ ┻━┻':   ["┬──┬ ノ( ゜-゜ノ)"],
+            '(╯°□°）╯︵ ┻━┻':        ["┬─┬ ノ( ゜-゜ノ)"],
             '!xplore':              ["https://github.com/thewhitespace/Xplore/tree/master/dist"],
             'well it works':        ["http://i.imgur.com/vSaxB.jpg"],
         };
