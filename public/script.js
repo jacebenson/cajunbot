@@ -11,6 +11,8 @@ $(function() {
         return result * sortOrder;
     }
   }
+  var position 0;
+  var scores = [];
   $.getJSON(
     "./discord/scores",
     function(data) {
@@ -31,10 +33,32 @@ $(function() {
           '<small>' + thing.points + '</small>',
           '</li>'
         ];
-      $("#list").append(html.join('\n'));
+        var obj = {};
+        obj.name = thing.display;
+        obj.points = thing.points;
+        scores.push(obj);
+      //$("#list").append(html.join('\n'));
       });
     }
   );
+  function getNext5(arr){
+    var returnArr = arr.slice(position, position+5);
+    position = position + 5;
+    return returnArr;
+  }
+  (function(){
+    var html = [];
+    var shownArr = getNext5(scores);
+    shownArr.forEach(function(row){
+      html.push('<li>');
+      html.push('<mark>' + thing.display + '</mark>');
+      html.push('<small>' + thing.points + '</small>');
+      html.push('</li>');
+      ];
+    })
+    $("#list").html(html.join('\n'));
+    );
+  })();
   var backgrounds = [
     'https://media.giphy.com/media/vvbGMpbhZMcHSsD50w/giphy.gif',//napoleon dynomite
     'https://media.giphy.com/media/mp1JYId8n0t3y/giphy.gif',//the office
