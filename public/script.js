@@ -11,7 +11,7 @@ $(function() {
         return result * sortOrder;
     }
   }
-  var position 0;
+  var position = 0;
   var scores = [];
   $.getJSON(
     "./discord/scores",
