@@ -54,7 +54,6 @@ $(function() {
       html.push('<mark>' + thing.display + '</mark>');
       html.push('<small>' + thing.points + '</small>');
       html.push('</li>');
-      ];
     })
     $("#list").html(html.join('\n'));
     );
