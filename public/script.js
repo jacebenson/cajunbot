@@ -12,53 +12,38 @@ $(function () {
       return result * sortOrder;
     }
   }
-  var position = 0;
-  var scores = [];
-  $.getJSON(
-    "./discord/scores",
-    function (data) {
-      data = data.sort(dynamicSort("-points"))
-      console.log(data);
-      data.forEach(function (thing, index) {
-
-        /*
-    <li>
-<mark>Jerry Wood</mark>
-<small>315</small>
-</li>
-
-*/
-        var html = [
-          '<li>',
-          '<mark>' + thing.display + '</mark>',
-          '<small>' + thing.points + '</small>',
-          '</li>'
-        ];
-        var obj = {};
-        obj.name = thing.display;
-        obj.points = thing.points;
-        scores.push(obj);
-        //$("#list").append(html.join('\n'));
-      });
-    }
-  );
-
-  function getNext5(arr) {
-    var returnArr = arr.slice(position, position + 5);
-    position = position + 5;
-    return returnArr;
+  window.page = 0;
+  window.scores = [];
+  window.getScores = function(){
+    window.html = [];
+  
+    $.getJSON(
+      "./discord/scores",
+      function (data) {
+        data = data.sort(dynamicSort("-points"))
+        window.scores = data;
+        console.log(data);
+        var pagesize = 5;
+        data.forEach(function (thing, index) {
+          //console.log(index + '/' + pagesize);
+          if(parseInt(index+pagesize,10)<parseInt(window.page,10)){
+          window.html.push('<li>');
+          window.html.push('<mark>' + thing.display + '</mark>');
+          window.html.push('<small>' + thing.points + '</small>');
+          window.html.push('</li>');
+        }
+        if(index === pagesize ){
+          window.html.push('<button onclick="window.getScores()" >next</button>')
+        }
+        });
+      }
+    ).then(function(){
+      window.page += 5;
+      $("#list").html(window.html.join('\n'));
+    });
   }
-  (function () {
-    var html = [];
-    var shownArr = getNext5(scores);
-    shownArr.forEach(function (row) {
-      html.push('<li>');
-      html.push('<mark>' + thing.display + '</mark>');
-      html.push('<small>' + thing.points + '</small>');
-      html.push('</li>');
-    })
-    $("#list").html(html.join('\n'));
-  });
+  
+  window.getScores(page);
   var backgrounds = [
     'https://media.giphy.com/media/vvbGMpbhZMcHSsD50w/giphy.gif', //napoleon dynomite
     'https://media.giphy.com/media/mp1JYId8n0t3y/giphy.gif', //the office
