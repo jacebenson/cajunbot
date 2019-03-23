@@ -13,11 +13,13 @@ module.exports = {
                         https = require('http');        
                     } else {
                         https = require('https');
-                        //url = 'https://' + url;                        
+                        url = 'https://' + url;
                     }
+                    var url = new URL(url);
                     var options = {
                         timeout: 3000,
-                        host: url
+                        host: url.host,
+                        path: url.pathname
                     }
                     https.get(options, (resp) => {
                         var data = '';
