@@ -32,6 +32,9 @@ module.exports = {
                             bot.createMessage(msg.channel.id, message);
                         });
                     }).on("error", function(err) {
+                        if(err.code==="ECONNRESET"){
+                            bot.createMessage(msg.channel.id, "No Response from " + url +".");
+                        }
                         console.log("Error: " + err.message);
                     });
                 }
