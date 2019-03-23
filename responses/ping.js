@@ -9,7 +9,7 @@ module.exports = {
                     var https;
                     if(url.indexOf('https')>=0){
                         https = require('https');
-                    } elseif(url.indexOf('http')>=0{
+                    } elseif(url.indexOf('http')>=0){
                         https = require('http');        
                     } else {
                         https = require('https');
