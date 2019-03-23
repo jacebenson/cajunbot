@@ -40,5 +40,5 @@ module.exports = {
             });
         }
     },
-    help: '`!ping` test ....'
+    help: '`!ping` `dev69973.service-now.com`'
 };
