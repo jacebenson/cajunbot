@@ -7,26 +7,16 @@ module.exports = {
                 if (word.toLowerCase() === phrase) {
                     var https = require('https');
                     var url = msg.content.replace(phrase, '').trim();
-                    //var port = 80;
-                    //if(url.indexOf('http')==-1){
-                        //url = 'https://' + url;
-                        //port = 443;
-                    //}
-                    console.log('going to: ' + url);
-                    var options = {
-                        host: url, // server uses this
-                        //port: port, // server uses this
-                        //method: 'GET', // client uses this
-                        //path: '/', // client uses this
-                        timeout: 3000
-                    };
-                    https.get(options, function(resp) {
+                    if(url.indexOf('http')==-1){
+                        url = 'https://' + url;
+                    }
+                    https.get(url, (resp) => {
                         var data = '';
-                        resp.on('data', function(chunk) {
+                        resp.on('data', (chunk) => {
                             data += chunk;
                         });
                         // The whole response has been received. Print out the result.
-                        resp.on('end', function() {
+                        resp.on('end', () => {
                             //console.log(JSON.parse(data).explanation);
                             var message = "`" + url + "` has a status of " + resp.statusCode;
                             if(resp.statusCode === 200){
@@ -34,12 +24,12 @@ module.exports = {
                             }
                             bot.createMessage(msg.channel.id, message);
                         });
-                    }).on("error", function(err) {
-                        bot.createMessage(msg.channel.id, "Error: " + err.message);
+                    }).on("error", (err) => {
+                        bot.createMessage(msg.channel.id, "Error: " err.message);
                     });
                 }
             });
         }
     },
-    help: '`!ping` twitter.com'
+    help: '`!ping` test ....'
 };
