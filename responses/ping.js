@@ -9,7 +9,7 @@ module.exports = {
                     var url = msg.content.replace(phrase, '').trim();
                     var port = 80;
                     if(url.indexOf('http')==-1){
-                        url = 'https://' + url;
+                        //url = 'https://' + url;
                         port = 443;
                     }
                     console.log('going to: ' + url);
