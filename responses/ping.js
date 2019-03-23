@@ -15,6 +15,7 @@ module.exports = {
                         https = require('https');
                         url = 'https://' + url;
                     }
+                    var URL = require('url');
                     var url = new URL(url);
                     var options = {
                         timeout: 3000,
