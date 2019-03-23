@@ -7,13 +7,15 @@ module.exports = {
                 if (word.toLowerCase() === phrase) {
                     var https = require('https');
                     var url = msg.content.replace(phrase, '').trim();
+                    var port = 80;
                     if(url.indexOf('http')==-1){
                         url = 'https://' + url;
+                        port = 443;
                     }
                     console.log('going to: ' + url);
                     var options = {
                         host: url, // server uses this
-                        port: 3000, // server uses this
+                        port: port, // server uses this
                         method: 'GET', // client uses this
                         path: '/', // client uses this
                     };
