@@ -5,10 +5,13 @@ module.exports = {
             var wordsArr = msg.content.split(' ');
             wordsArr.map(function(word, index) {
                 if (word.toLowerCase() === phrase) {
-                    var https = require('https');
                     var url = msg.content.replace(phrase, '').trim();
-                    if(url.indexOf('http')==-1){
+                    var https;
+                    if(url.indexOf('https')==-1){
+                        https = require('https');
                         url = 'https://' + url;
+                    } else {
+                        https = require('http');        
                     }
                     https.get(url, (resp) => {
                         var data = '';
