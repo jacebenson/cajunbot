@@ -15,7 +15,7 @@ module.exports = {
                     console.log('going to: ' + url);
                     var options = {
                         host: url, // server uses this
-                        port: port, // server uses this
+                        //port: port, // server uses this
                         method: 'GET', // client uses this
                         path: '/', // client uses this
                         timeout: 3000
