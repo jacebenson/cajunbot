@@ -44,5 +44,5 @@ module.exports = {
             });
         }
     },
-    help: '`!ping` `dev69973.service-now.com`'
+    help: '`!ping` `community.servicenow.com`'
 };
