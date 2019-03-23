@@ -15,8 +15,9 @@ module.exports = {
                         https = require('https');
                         url = 'https://' + url;
                     }
-                    var URL = require('url');
-                    var url = URL.parse(url);
+                    var URL = require('url').URL;
+                    //var myURL = new URL('http://www.example.com/foo?bar=1#main');
+                    var url = new URL(url);
                     var options = {
                         timeout: 3000,
                         host: url.host,
