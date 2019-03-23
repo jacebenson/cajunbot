@@ -44,5 +44,5 @@ module.exports = {
             });
         }
     },
-    help: '`!ping` `community.servicenow.com`'
+    help: '`!ping` `google.com`'
 };
