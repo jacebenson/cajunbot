@@ -18,8 +18,9 @@ module.exports = {
                         //port: port, // server uses this
                         method: 'GET', // client uses this
                         path: '/', // client uses this
+                        timeout: 3000
                     };
-                    https.request(options, function(resp) {
+                    https.get(options, function(resp) {
                         var data = '';
                         resp.on('data', function(chunk) {
                             data += chunk;
