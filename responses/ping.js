@@ -10,6 +10,7 @@ module.exports = {
                     if(url.indexOf('http')==-1){
                         url = 'https://' + url;
                     }
+                    console.log('going to: ' + url);
                     https.get(url, (resp) => {
                         var data = '';
                         resp.on('data', (chunk) => {
