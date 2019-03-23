@@ -16,7 +16,7 @@ module.exports = {
                         url = 'https://' + url;
                     }
                     var URL = require('url');
-                    var url = new URL(url);
+                    var url = URL.parse(url);
                     var options = {
                         timeout: 3000,
                         host: url.host,
