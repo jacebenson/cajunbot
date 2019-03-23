@@ -11,13 +11,19 @@ module.exports = {
                         url = 'https://' + url;
                     }
                     console.log('going to: ' + url);
-                    https.get(url, (resp) => {
+                    var options = {
+                        host: url, // server uses this
+                        port: 3000, // server uses this
+                        method: 'GET', // client uses this
+                        path: '/', // client uses this
+                    };
+                    https.request(options, function(resp) {
                         var data = '';
-                        resp.on('data', (chunk) => {
+                        resp.on('data', function(chunk) {
                             data += chunk;
                         });
                         // The whole response has been received. Print out the result.
-                        resp.on('end', () => {
+                        resp.on('end', function() {
                             //console.log(JSON.parse(data).explanation);
                             var message = "`" + url + "` has a status of " + resp.statusCode;
                             if(resp.statusCode === 200){
@@ -25,12 +31,12 @@ module.exports = {
                             }
                             bot.createMessage(msg.channel.id, message);
                         });
-                    }).on("error", (err) => {
+                    }).on("error", function(err) {
                         console.log("Error: " + err.message);
                     });
                 }
             });
         }
     },
-    help: '`!ping` test ....'
+    help: '`!ping` twitter.com'
 };
