@@ -7,17 +7,17 @@ module.exports = {
                 if (word.toLowerCase() === phrase) {
                     var https = require('https');
                     var url = msg.content.replace(phrase, '').trim();
-                    var port = 80;
-                    if(url.indexOf('http')==-1){
+                    //var port = 80;
+                    //if(url.indexOf('http')==-1){
                         //url = 'https://' + url;
-                        port = 443;
-                    }
+                        //port = 443;
+                    //}
                     console.log('going to: ' + url);
                     var options = {
                         host: url, // server uses this
                         //port: port, // server uses this
-                        method: 'GET', // client uses this
-                        path: '/', // client uses this
+                        //method: 'GET', // client uses this
+                        //path: '/', // client uses this
                         timeout: 3000
                     };
                     https.get(options, function(resp) {
@@ -35,10 +35,7 @@ module.exports = {
                             bot.createMessage(msg.channel.id, message);
                         });
                     }).on("error", function(err) {
-                        if(err.code==="ECONNRESET"){
-                            bot.createMessage(msg.channel.id, "No Response from " + url +".");
-                        }
-                        console.log("Error: " + err.message);
+                        bot.createMessage(msg.channel.id, "Error: " + err.message);
                     });
                 }
             });
