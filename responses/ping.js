@@ -13,9 +13,13 @@ module.exports = {
                         https = require('http');        
                     } else {
                         https = require('https');
-                        url = 'https://' + url;                        
+                        //url = 'https://' + url;                        
                     }
-                    https.get(url, (resp) => {
+                    var options = {
+                        timeout: 3000,
+                        host: url
+                    }
+                    https.get(options, (resp) => {
                         var data = '';
                         resp.on('data', (chunk) => {
                             data += chunk;
