@@ -30,7 +30,7 @@ module.exports = {
                             bot.createMessage(msg.channel.id, message);
                         });
                     }).on("error", (err) => {
-                        bot.createMessage(msg.channel.id, "Error: " + err.message);
+                        bot.createMessage(msg.channel.id, "Error: `" + err.message + "`");
                     });
                 }
             });
