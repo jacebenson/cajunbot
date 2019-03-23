@@ -7,11 +7,13 @@ module.exports = {
                 if (word.toLowerCase() === phrase) {
                     var url = msg.content.replace(phrase, '').trim();
                     var https;
-                    if(url.indexOf('https')==-1){
+                    if(url.indexOf('https')>=0){
                         https = require('https');
-                        url = 'https://' + url;
-                    } else {
+                    } elseif(url.indexOf('http')>=0{
                         https = require('http');        
+                    } else {
+                        https = require('https');
+                        url = 'https://' + url;                        
                     }
                     https.get(url, (resp) => {
                         var data = '';
