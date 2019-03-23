@@ -26,6 +26,7 @@ module.exports = (function () {
       // look for user in db
       db.collection('points').find({}).toArray(function (err, result) {
         response.send(result);
+        client.close();
       });
     });
   });
