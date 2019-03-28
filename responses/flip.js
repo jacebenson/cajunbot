@@ -50,7 +50,6 @@ module.exports = {
                             '\r': '\n',
                             '\n': '\r',
                             ' ': ' ',
-                            '```js`','```js',
                             '`': '`',
                         };
                         var arrOfThings = msg.content.replace('!flip', '').split('');
