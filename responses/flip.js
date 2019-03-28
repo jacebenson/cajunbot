@@ -55,7 +55,11 @@ module.exports = {
                             return flipTable[char.toLowerCase()];
                         });
                         var flipper = ['┗[© ♒ ©]┛', '(╯°□°)╯','(ノ ゜Д゜)ノ','(╯°□°）╯'];
-                        var message = rand(flipper) + '︵ ' + flipped.reverse().join('');
+                        var flippedText = flipped.reverse().join('');
+                        if(flippedText.length===0){
+                            flippedText = '┻━┻';
+                        }
+                        var message = rand(flipper) + '︵ ' + ;
                         bot.createMessage(msg.channel.id, message);
                     }
 
