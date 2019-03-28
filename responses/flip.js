@@ -34,6 +34,32 @@ module.exports = {
                             'x': 'x',
                             'y': 'ʎ',//'\u028E',
                             'z': 'z',
+                            '':'∀',//
+                            'B': '2',
+                            'C': 'Ↄ',
+                            'D', '◖',
+                            'E', 'Ǝ',
+                            'F': 'Ⅎ',
+                            'G': '⅁',
+                            'H': 'H',
+                            'I': 'I',
+                            'J': 'ſ',
+                            'K': '⋊',
+                            'L', '⅂',
+                            'M', 'W',
+                            'N', 'ᴎ',
+                            'O', 'O',
+                            'P', 'Ԁ',
+                            'Q', 'Ό',
+                            'R', 'ᴚ',
+                            'S', 'S'
+                            'T','⊥',
+                            'U', '∩',
+                            'V': '',
+                            'W': '',
+                            'X': 'X',
+                            'Y: '⅄',
+                            'Z', 'Z',
                             '.': '˙',//'\u02D9',
                             '[': ']',
                             '(': ')',
@@ -54,7 +80,7 @@ module.exports = {
                         };
                         var arrOfThings = msg.content.replace('!flip', '').split('');
                         var flipped = arrOfThings.map(function(char) {
-                            return flipTable[char.toLowerCase()];
+                            return flipTable[char/*.toLowerCase()*/];
                         });
                         var flipper = ['┗[© ♒ ©]┛', '(╯°□°)╯','(ノ ゜Д゜)ノ','(╯°□°）╯'];
                         var flippedText = flipped.reverse().join('');
