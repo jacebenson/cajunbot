@@ -10,7 +10,7 @@ module.exports = {
                         var flipTable = {
                             'a': 'ɐ',//'\u0250',
                             'b': 'q',
-                            'c': 'ɔ'//'\u0254', //open o -- from pne
+                            'c': 'ɔ',//'\u0254', //open o -- from pne
                             'd': 'p',
                             'e': 'ǝ',//'\u01DD',
                             'f': 'ɟ',//'\u025F', //from pne
