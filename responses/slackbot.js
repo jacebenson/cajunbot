@@ -1,7 +1,7 @@
 module.exports = {
     command: function (bot, msg) {
         try{
-        var disappointed = ["(－‸ლ)","ಠ_ಠ","┌∩┐(◣_◢)┌∩┐","(╥﹏╥)","(◞‸◟；)", "ლ(ಠ益ಠლ)","òó", "┗[© ♒ ©]┛ ︵ ┻━┻"];
+        var disappointed = ["(－‸ლ)","ಠ_ಠ","(╥﹏╥)","(◞‸◟；)", "òó", "┗[© ♒ ©]┛ ︵ ┻━┻"];
         var phrases = {
             'dom manipulation':     disappointed,
             'global business rule': disappointed,
