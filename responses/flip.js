@@ -54,8 +54,8 @@ module.exports = {
                         var flipped = arrOfThings.map(function(char) {
                             return flipTable[char.toLowerCase()];
                         });
-                        var flipper = ['┗[© ♒ ©]┛', '(╯°□°)╯','(ノ ゜Д゜)ノ',];
-                        var message = '(╯°□°）╯︵ ' + flipped.reverse().join('');
+                        var flipper = ['┗[© ♒ ©]┛', '(╯°□°)╯','(ノ ゜Д゜)ノ','(╯°□°）╯'];
+                        var message = rand(flipper) + '︵ ' + flipped.reverse().join('');
                         bot.createMessage(msg.channel.id, message);
                     }
 
@@ -65,3 +65,9 @@ module.exports = {
     },
     help: '`!flip string` Or !invert, flips the string upside down.'
 };
+
+var rand = function(arr) {
+    //console.log('in random.');
+    var random_choice = Math.floor(Math.random() * arr.length);
+    return arr[random_choice];
+}
