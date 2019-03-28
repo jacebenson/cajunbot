@@ -7,7 +7,7 @@ module.exports = (function () {
   var app = express();
   app.use(express.static('public')); //use static files in ROOT/public folder
   app.get("/discord", function (request, response) {
-    response.sendFile(__dirname + '/public/index.html');
+    response.sendFile(__dirname + '/public/discord/index.html');
   });
   app.get("/discord/install", function (request, response) {
     response.redirect('https://discordapp.com/oauth2/authorize?&client_id=' + process.env.DISCORD_CLIENT_ID + '&scope=bot&permissions=0');
