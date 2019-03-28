@@ -48,6 +48,7 @@ module.exports = {
                             '\u2045': '\u2046',
                             '\u2234': '\u2235',
                             '\r': '\n',
+                            '\n': '\r',
                             ' ': ' '
                         };
                         var arrOfThings = msg.content.replace('!flip', '').split('');
