@@ -49,7 +49,8 @@ module.exports = {
                             '\u2234': '\u2235',
                             '\r': '\n',
                             '\n': '\r',
-                            ' ': ' '
+                            ' ': ' ',
+                            '`': '`'
                         };
                         var arrOfThings = msg.content.replace('!flip', '').split('');
                         var flipped = arrOfThings.map(function(char) {
