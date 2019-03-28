@@ -59,7 +59,7 @@ module.exports = {
                         if(flippedText.length===0){
                             flippedText = '┻━┻';
                         }
-                        var message = rand(flipper) + '︵ ' + ;
+                        var message = rand(flipper) + '︵ ' + flippedText;
                         bot.createMessage(msg.channel.id, message);
                     }
 
