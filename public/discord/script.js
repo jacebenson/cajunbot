@@ -18,7 +18,7 @@ $(function () {
     window.html = [];
   
     $.getJSON(
-      "./discord/scores",
+      "./scores",
       function (data) {
         data = data.sort(dynamicSort("-points"))
         window.scores = data;
