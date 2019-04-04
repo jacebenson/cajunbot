@@ -42,6 +42,10 @@ I'd copy `./responses/snprotips.js` if you need multiple phrases to look for, ot
 
 In those you'll have a `modules.exports` that has a `command`, and `help`.  Those are all that's needed to make this work.  You have access to all the Eris things via the `bot` variable and all the message things via the `msg` variable.
 
+## Installing on a Discord server;
+
+Use [this](https://discordapp.com/oauth2/authorize?&client_id=490235035627028511&scope=bot&permissions=0) link to install this on your workspace.
+
 ## Acknowledgments
 
 Thanks [@earlduque](https://github.com/earlduque) for the inspiring repo for you're slacker bot (now private)
