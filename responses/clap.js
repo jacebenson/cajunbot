@@ -5,7 +5,7 @@ module.exports = {
             var wordsArr = msg.content.split(' ');
             wordsArr.map(function(word, index) {
                 if (word.toLowerCase() === phrase) {
-                    if(wordsArr.length>1){
+                    if(wordsArr.length>2){
                         var message = wordsArr.join(' :clap: ').replace(word + ' :clap: ', '');
                         message = message.replace(phrase, '');
                         bot.createMessage(msg.channel.id, message);
