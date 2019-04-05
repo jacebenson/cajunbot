@@ -3,27 +3,23 @@ var fs = require('fs');
 var Eris = require('eris');
 require('greenlock-express').create({
   email: 'jace.benson@protonmail.com',     // The email address of the ACME user / hosting provider
-  agreeTos: true,                    // You must accept the ToS as the host which handles the certs
-  configDir: '~/.config/acme/',      // Writable directory where certs will be saved
-  communityMember: true,             // Join the community to get notified of important updates
-  telemetry: true,                   // Contribute telemetry data to the project
-  // Using your express app:
-  // simply export it as-is, then include it here
-  app: require('./site.js')
+  agreeTos: true,                          // You must accept the ToS as the host which handles the certs
+  configDir: '~/.config/acme/',            // Writable directory where certs will be saved
+  communityMember: true,                   // Join the community to get notified of important updates
+  telemetry: true,                         // Contribute telemetry data to the project
+  app: require('./site.js')                // Include sites you want to run here
   //, debug: true
 }).listen(80, 443);
 
-//require('./site.js')
 //require('./integrations/sndevs.slack').connect();//disabled after token was revoked
 var bot = new Eris(process.env.DISCORD_BOT_TOKEN);
 var responses = {};
-var testFolder = './responses/';
+var responsesDirectory = './responses/';
 
-fs.readdir(testFolder, function(err, files) {
+fs.readdir(responsesDirectory, function(err, files) {
   files.forEach(function(file) {
-  //console.log(file);//
   try {
-    responses[file] = require(testFolder + file);
+    responses[file] = require(responsesDirectory + file);
   } catch (e) {
     console.log(e);
   }
@@ -32,11 +28,25 @@ fs.readdir(testFolder, function(err, files) {
 bot.on("messageCreate", function(msg) {
   try{
     var now = new Date().toLocaleString();
+    var messageLog = [];
     if(msg.channel.name){
-      console.log(msg.channel.guild.name + ' #' + msg.channel.name + '['+msg.channel.id+']: ' + now + ' ' + msg.author.username + ': ' + msg.content);
+      messageLog = [
+        msg.channel.guild.name,
+        ' #' + msg.channel.name,
+        '[' + msg.channel.id + ']:',
+        now,
+        msg.author.username + ': ',
+        msg.content
+      ];
     } else {
-      console.log('PM#: ' + now + ' ' + msg.author.username + ': ' + msg.content);
+      messageLog = [
+        'PM#: ',
+        now,
+        msg.author.username + ': ',
+        msg.content
+      ];
     }
+    console.log(messageLog.join(' '));
   }catch(error){
     console.log(error);
   }
