@@ -33,10 +33,11 @@ fs.readdir(testFolder, function(err, files) {
 });
 bot.on("messageCreate", function(msg) {
   try{
+    var now = new Date().toLocaleString();
     if(msg.channel.name){
-      console.log(msg.channel.guild.name + '#' + msg.channel.name + '['+msg.channel.id+']: ' + msg.author.username + ': ' + msg.content);
+      console.log(msg.channel.guild.name + ' #' + msg.channel.name + '['+msg.channel.id+']: ' + now + ' ' msg.author.username + ': ' + msg.content);
     } else {
-      console.log('PM#: ' + msg.author.username + ': ' + msg.content);
+      console.log(msg.channel.guild.name + ' PM#: ' + now + ' ' + msg.author.username + ': ' + msg.content);
     }
   }catch(error){
     console.log(error);
