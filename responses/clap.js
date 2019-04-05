@@ -9,7 +9,7 @@ module.exports = {
                         var upperCaseArr = wordsArr.map(function(upperWord){
                             return upperWord.toUpperCase();
                         });
-                        var message = upperCaseArr.join(' :clap: ').replace(word + ' :clap: ', '');
+                        var message = upperCaseArr.join(' :clap: ').replace(word.toUpperCase() + ' :clap: ', '');
                         message = message.replace(phrase, '');
                         bot.createMessage(msg.channel.id, message);
                     } else {
