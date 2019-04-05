@@ -6,8 +6,10 @@ module.exports = {
             wordsArr.map(function(word, index) {
                 if (word.toLowerCase() === phrase) {
                     if(wordsArr.length>2){
-                        word = word.toUpperCase();
-                        var message = wordsArr.join(' :clap: ').replace(word + ' :clap: ', '');
+                        var upperCaseArr = wordsArr.map(function(upperWord){
+                            return upperWord.toUpperCase();
+                        });
+                        var message = upperCaseArr.join(' :clap: ').replace(word + ' :clap: ', '');
                         message = message.replace(phrase, '');
                         bot.createMessage(msg.channel.id, message);
                     } else {
