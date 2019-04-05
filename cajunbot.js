@@ -37,7 +37,7 @@ bot.on("messageCreate", function(msg) {
     if(msg.channel.name){
       console.log(msg.channel.guild.name + ' #' + msg.channel.name + '['+msg.channel.id+']: ' + now + ' ' + msg.author.username + ': ' + msg.content);
     } else {
-      console.log(msg.channel.guild.name + ' PM#: ' + now + ' ' + msg.author.username + ': ' + msg.content);
+      console.log('PM#: ' + now + ' ' + msg.author.username + ': ' + msg.content);
     }
   }catch(error){
     console.log(error);
