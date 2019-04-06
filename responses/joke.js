@@ -18,9 +18,14 @@ module.exports = {
                             'http://api.icndb.com/jokes/random?limitTo=[nerdy]'
                         ]);
                         console.log(url);
+                        url = new URL(url);
                         var options = {
                             timeout: 3000,
-                            url: url,
+                            host: url.host,
+                            path: url.pathname,
+                            query: {
+                                limitTo: '[nerdy]'
+                            },
                             headers: {
                                 'Accept': 'application/json'
                             }
