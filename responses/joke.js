@@ -15,10 +15,14 @@ module.exports = {
                             'https://official-joke-api.appspot.com/random_joke',
                             'https://icanhazdadjoke.com/'
                         ]);
+                        var url = new URL(url);
                         var options = {
                             timeout: 3000,
                             host: url.host,
-                            path: url.pathname
+                            path: url.pathname,
+                            headers: {
+                                'Accept': 'application/json'
+                            }
                         }
                         https.get(options, (resp) => {
                             var data = '';
