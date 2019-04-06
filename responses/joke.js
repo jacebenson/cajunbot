@@ -40,6 +40,7 @@ module.exports = {
                                 //console.log(JSON.parse(data).explanation);
                                 var message;
                                 var obj = JSON.parse(data);
+                                console.log(JSON.stringify(obj));
                                 if(obj.joke){
                                     message = obj.joke;
                                 } else if (obj.value.joke) {
