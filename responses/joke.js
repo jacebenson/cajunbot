@@ -1,0 +1,48 @@
+module.exports = {
+    command: function(bot, msg) {
+        var phrases = ['!joke', '!laugh', '!funny'];
+        if (msg.author.bot === false) {
+            var wordsArr = msg.content.split(' ');
+            wordsArr.map(function(word, index) {
+                phrases.map(function(phrase) {
+                    if (word.toLowerCase() === phrase) {
+                        // curl -H "Accept: application/json" https://icanhazdadjoke.com/
+                        // {"joke": "..."}//look for ? if it exists, wrap with spoiler
+                        // https://official-joke-api.appspot.com/random_joke
+                        // {"setup":"...", "punchline": "..."}
+                        var url = rand([
+                            'https://official-joke-api.appspot.com/random_joke',
+                            'https://icanhazdadjoke.com/'
+                        ]);
+                        var options = {
+                            timeout: 3000,
+                            host: url.host,
+                            path: url.pathname
+                        }
+                        https.get(options, (resp) => {
+                            var data = '';
+                            resp.on('data', (chunk) => {
+                                data += chunk;
+                            });
+                            // The whole response has been received. Print out the result.
+                            resp.on('end', () => {
+                                //console.log(JSON.parse(data).explanation);
+                                var message;
+                                var obj = JSON.parse(data);
+                                if(obj.joke){
+                                    message = obj.joke;
+                                } else {
+                                    message = obj.setup + ' || ' + obj.punchline + '||';
+                                }
+                                bot.createMessage(msg.channel.id, message);
+                            });
+                        }).on("error", (err) => {
+                            bot.createMessage(msg.channel.id, "Error: `" + err.message + "`");
+                        });
+                    }
+                });
+            });
+        }
+    },
+    help: '`!snprotips or !prof or !tips string` Searchs snprotips blog for the string provided.'
+};
