@@ -1,4 +1,4 @@
-var https = require('http');
+var https = require('https');
 var URL = require('url').URL;
 module.exports = {
     command: function(bot, msg) {
@@ -9,7 +9,7 @@ module.exports = {
                 phrases.map(function(phrase) {
                     if (word.toLowerCase() === phrase) {
                         var search = wordsArr.join('').replace(word, '');
-                        var url = 'http://api.urbandictionary.com/v0/define?term=' + search;
+                        var url = 'https://api.urbandictionary.com/v0/define?term=' + search;
                         console.log(url);
                         url = new URL(url);
                         var options = {
