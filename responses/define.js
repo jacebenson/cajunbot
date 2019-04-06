@@ -1,12 +1,12 @@
 var https = require('http');
 var URL = require('url').URL;
 module.exports = {
-    command: function(bot, msg) {
+    command: function (bot, msg) {
         var phrases = ['!define', '!def'];
         if (msg.author.bot === false) {
             var wordsArr = msg.content.split(' ');
-            wordsArr.map(function(word, index) {
-                phrases.map(function(phrase) {
+            wordsArr.map(function (word, index) {
+                phrases.map(function (phrase) {
                     if (word.toLowerCase() === phrase) {
                         var search = wordsArr.join('').replace(word, '');
                         var url = 'http://api.urbandictionary.com/v0/define?term=' + search;
@@ -25,11 +25,20 @@ module.exports = {
                             resp.on('end', () => {
                                 //console.log(JSON.parse(data).explanation);
                                 var message;
-                                var obj = JSON.parse(data);
-                                try{
-                                console.log(JSON.stringify(obj));
-                                message = obj.list[0].definition;
-                                bot.createMessage(msg.channel.id, message);
+                                try {
+                                    var obj = JSON.parse(data);
+                                    var obj;
+
+                                    try {
+                                        obj = JSON.parse(data);
+                                    } catch (e) {
+                                        obj = JSON.parse(JSON.stringify(data));
+                                    }
+
+                                    obj = obj;
+                                    console.log(JSON.stringify(obj));
+                                    message = obj.list[0].definition;
+                                    bot.createMessage(msg.channel.id, message);
                                 } catch (e) {
                                     console.log(e);
                                 }
@@ -45,7 +54,7 @@ module.exports = {
     help: '`!joke` Will get a joke from one of two apis.'
 };
 
-var rand = function(arr) {
+var rand = function (arr) {
     //console.log('in random.');
     var random_choice = Math.floor(Math.random() * arr.length);
     return arr[random_choice];
