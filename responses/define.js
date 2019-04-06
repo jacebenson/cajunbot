@@ -10,11 +10,11 @@ module.exports = {
                         var search = wordsArr.join('').replace(word, '');
                         ud.term(search).then((result) => {
                             var entries = result.entries
+                            var o = rand([1,2,3,4,5,6,7,8,9,0]);
                             if(entries.length>0){
-                            var winner = rand(entries);
                             //console.log(entries[0].word)
                             //console.log(winner[0].definition)
-                            bot.createMessage(msg.channel.id, winner.definition);    
+                            bot.createMessage(msg.channel.id, entries[o].definition);    
                             //console.log(entries[0].example)
                             } else {
                                 bot.createMessage(msg.channel.id, "Define it: " + 'https://www.urbandictionary.com/add.php?word=' + search);
