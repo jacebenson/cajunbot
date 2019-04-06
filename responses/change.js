@@ -21,8 +21,8 @@ module.exports = {
                         var num = parseInt(dice[0]);
                         if (isNaN(num) === false) {
                             if (allowedDice[dice[1]]) {
+                                var message = chance.rpg(word);
                                 msg.channel.send(message);
-                                chance.rpg(word);
                             }
                         }
                     }
