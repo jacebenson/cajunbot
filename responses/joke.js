@@ -15,7 +15,8 @@ module.exports = {
                             'https://official-joke-api.appspot.com/random_joke',
                             'https://icanhazdadjoke.com/'
                         ]);
-                        var url = new URL(url);
+                        console.log(url);
+                        url = new URL(url);
                         var options = {
                             timeout: 3000,
                             host: url.host,
