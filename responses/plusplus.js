@@ -233,6 +233,7 @@ module.exports = {
                                 var subst = `$2`;
                                 thingName = thingName.replace(userregex, subst);
                                 msg.mentions.members.forEach(function (member) {
+                                    console.log('member', member)
                                     if (thingName == member.id) {
                                         thingName = member.username;
                                     }
