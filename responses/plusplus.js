@@ -234,8 +234,8 @@ module.exports = {
                                 thingName = thingName.replace(userregex, subst);
                                 msg.mentions.members.forEach(function (member) {
                                     console.log('member', member.user.username)
-                                    if (thingName == member.id) {
-                                        thingName = member.username;
+                                    if (thingName == member.user.id) {
+                                        thingName = member.user.username;
                                     }
                                 });
                             }
