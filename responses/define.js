@@ -16,9 +16,9 @@ module.exports = {
                             timeout: 3000,
                             host: url.host,
                             path: url.pathname,
-                            headers: {
+                            /*headers: {
                                 'Accept': 'application/json'
-                            }
+                            }*/
                         }
                         https.get(options, (resp) => {
                             var data = '';
