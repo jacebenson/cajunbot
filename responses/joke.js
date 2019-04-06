@@ -41,12 +41,16 @@ module.exports = {
                                 var message;
                                 var obj = JSON.parse(data);
                                 console.log(JSON.stringify(obj));
+                                try{
                                 if(obj.joke){
                                     message = obj.joke;
                                 } else if (obj.value.joke) {
                                     message = obj.value.joke;
                                 } else if (obj.setup && obj.punchline){
                                     message = obj.setup + ' || ' + obj.punchline + '||';
+                                }
+                                }catch(e){
+                                    console.error(e);
                                 }
                                 bot.createMessage(msg.channel.id, message);
                             });
