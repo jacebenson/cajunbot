@@ -46,3 +46,9 @@ module.exports = {
     },
     help: '`!snprotips or !prof or !tips string` Searchs snprotips blog for the string provided.'
 };
+
+var rand = function(arr) {
+    //console.log('in random.');
+    var random_choice = Math.floor(Math.random() * arr.length);
+    return arr[random_choice];
+}
