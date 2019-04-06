@@ -232,7 +232,7 @@ module.exports = {
                                 var userregex = /(\<\@)(\d+)(\>)/gm;
                                 var subst = `$2`;
                                 thingName = thingName.replace(userregex, subst);
-                                msg.mentions.forEach(function (member) {
+                                msg.mentions.members.forEach(function (member) {
                                     if (thingName == member.id) {
                                         thingName = member.username;
                                     }
