@@ -51,7 +51,7 @@ module.exports = {
             });
         }
     },
-    help: '`!joke` `google.com`'
+    help: '`!joke` Will get a joke from one of two apis.'
 };
 
 var rand = function(arr) {
