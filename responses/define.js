@@ -11,7 +11,7 @@ module.exports = {
                         var search = wordsArr.join('').replace(word, '');
                         var url = 'http://api.urbandictionary.com/v0/define?term=' + search;
                         console.log(url);
-                        url = new URL(url);
+                        //url = new URL(url);
                         var options = {
                             timeout: 3000,
                             url: url
