@@ -61,10 +61,10 @@ bot.on("message", function(msg) {
 bot.on('ready', () => { // When the bot is ready
     console.log('CajonBot Ready!'); // Log "Ready!"
 });
-bot.on("presenceUpdate", function(msg) {
+//bot.on("presenceUpdate", function(msg) {
   //console.log(msg.guild.name + ': ' + msg.username + ': ' + msg.status);
-});
-bot.connect(); // Get the bot to connect to Discord
+//});
+//bot.connect(); // Get the bot to connect to Discord
 
 process.on('unhandledRejection', console.error);
 
