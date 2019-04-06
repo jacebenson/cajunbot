@@ -11,6 +11,8 @@ module.exports = {
                         ud.term(search).then((result) => {
                             var entries = result.entries
                             var o = rand([1,2,3,4,5,6,7,8,9,0]);
+                            console.log('going to use: ' + o);
+                            console.log('should get: ' + entries[o].word);
                             if(entries.length>0){
                             //console.log(entries[0].word)
                             //console.log(winner[0].definition)
