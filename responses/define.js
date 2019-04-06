@@ -1,5 +1,4 @@
-var https = require('http');
-var URL = require('url').URL;
+var ud = require('urban-dictionary')
 module.exports = {
     command: function (bot, msg) {
         var phrases = ['!define', '!def'];
@@ -9,43 +8,15 @@ module.exports = {
                 phrases.map(function (phrase) {
                     if (word.toLowerCase() === phrase) {
                         var search = wordsArr.join('').replace(word, '');
-                        var url = 'http://api.urbandictionary.com/v0/define?term=' + search;
-                        console.log(url);
-                        //url = new URL(url);
-                        var options = {
-                            timeout: 3000,
-                            url: url
-                        }
-                        https.get(options, (resp) => {
-                            var data = '';
-                            resp.on('data', (chunk) => {
-                                data += chunk;
-                            });
-                            // The whole response has been received. Print out the result.
-                            resp.on('end', () => {
-                                //console.log(JSON.parse(data).explanation);
-                                var message;
-                                try {
-                                    var obj = JSON.parse(data);
-                                    var obj;
-
-                                    try {
-                                        obj = JSON.parse(data);
-                                    } catch (e) {
-                                        obj = JSON.parse(JSON.stringify(data));
-                                    }
-
-                                    obj = obj;
-                                    console.log(JSON.stringify(obj));
-                                    message = obj.list[0].definition;
-                                    bot.createMessage(msg.channel.id, message);
-                                } catch (e) {
-                                    console.log(e);
-                                }
-                            });
-                        }).on("error", (err) => {
-                            bot.createMessage(msg.channel.id, "Error: `" + err.message + "`");
-                        });
+                        ud.term(search).then((result) => {
+                            var entries = result.entries
+                            console.log(entries[0].word)
+                            console.log(entries[0].definition)
+                            bot.createMessage(msg.channel.id, entries[0].definition);    
+                            console.log(entries[0].example)
+                          }).catch((error) => {
+                            console.error(error.message)
+                          })
                     }
                 });
             });
