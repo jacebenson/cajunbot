@@ -32,7 +32,7 @@ module.exports = {
                                 var obj = JSON.parse(data);
                                 try{
                                 console.log(JSON.stringify(obj));
-                                message = obj[0].definition;
+                                message = obj.list[0].definition;
                                 bot.createMessage(msg.channel.id, message);
                                 } catch (e) {
                                     console.log(e);
