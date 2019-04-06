@@ -277,12 +277,12 @@ module.exports = {
                                                     // console.log('Updating points: ' + thing);
                                                     var message = rand(compliments(thing, result.points));
                                                     // console.log(message);
-                                                    bot.reply(message);
+                                                    msg.channel.send(message);
                                                     msg.react('💯');
                                                 });
                                         } else {
                                             var message = 'You cant give points to yourself';
-                                            bot.reply(message);
+                                            msg.channel.send(message);
                                         }
                                     } else {
                                         var myObj = {
@@ -297,7 +297,7 @@ module.exports = {
                                             }
                                             // console.log('Inserting points: ' + thing);
                                             var message = rand(compliments(thing, 1));
-                                            bot.reply(message);
+                                            msg.channel.send(message);
                                             msg.react('💯');
                                             client.close();
                                         });
@@ -308,7 +308,7 @@ module.exports = {
                     });
                 }
                 if (!msg.channel.name) {
-                    bot.reply('I can\'t give points in PMs');
+                    msg.channel.send('I can\'t give points in PMs');
                 }
             }
         }

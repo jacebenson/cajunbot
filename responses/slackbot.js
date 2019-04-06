@@ -23,7 +23,7 @@ module.exports = {
             for(var phrase in phrases){
                 if(msg.content.toLowerCase().indexOf(phrase)>-1){
                     var message = rand(phrases[phrase]);
-                    bot.reply(message);
+                    msg.channel.send(message);
                 }
             }
         }

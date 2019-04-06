@@ -12,7 +12,7 @@ module.exports = {
                             var entries = result.entries
                             console.log(entries[0].word)
                             console.log(entries[0].definition)
-                            bot.reply(entries[0].definition);    
+                            msg.channel.send(entries[0].definition);    
                             console.log(entries[0].example)
                           }).catch((error) => {
                             console.error(error.message)

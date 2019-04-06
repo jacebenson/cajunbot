@@ -7,7 +7,7 @@ module.exports = {
                 phrases.map(function(phrase) {
                     if (word.toLowerCase() === phrase) {
                         var message = 'https://snprotips.com/search?q=' + encodeURI(wordsArr.join(' ').replace(word, '').trim());
-                        bot.reply(message);
+                        msg.channel.send(message);
                     }
                 });
             });

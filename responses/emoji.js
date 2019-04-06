@@ -8,7 +8,7 @@ module.exports = {
                 if (word.toLowerCase() === '!emoji') { //this.phrase){
                     var term = wordsArr[index + 1];
                     var message = translate.translate(wordsArr.join(' ').replace(word, '').trim());
-                    bot.reply(message);
+                    msg.channel.send(message);
                 }
             });
         }

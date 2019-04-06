@@ -25,7 +25,7 @@ module.exports = {
                     ];
                     var random = Math.floor(Math.random() * insults.length);
                     var message = insults[random];
-                    bot.reply(message);
+                    msg.channel.send(message);
                 }
             });
         }

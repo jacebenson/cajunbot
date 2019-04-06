@@ -197,7 +197,7 @@ module.exports = {
                     message.push(rand(parts.clown.signature) + '\n');
                     message.push(rand(parts.clown.name));
                     var message = message.join(' ');
-                    bot.reply(message);
+                    msg.channel.send(message);
                 }
             });
         }

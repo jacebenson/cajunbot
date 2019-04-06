@@ -11,7 +11,7 @@ module.exports = {
                         });
                         var message = upperCaseArr.join(' :clap: ').replace(word.toUpperCase() + ' :clap: ', '');
                         message = message.replace(phrase, '');
-                        bot.reply(message);
+                        msg.channel.send(message);
                     } else {
                         msg.react('👏');
                     }

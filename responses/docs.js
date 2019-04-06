@@ -7,7 +7,7 @@ module.exports = {
                 if (word.toLowerCase() === phrase) {
                     var term = wordsArr[index + 1];
                     var message = 'https://docs.servicenow.com/search?q=' + encodeURI(wordsArr.join(' ').replace(word, '').trim());
-                    bot.reply(message);
+                    msg.channel.send(message);
                 }
             });
         }
