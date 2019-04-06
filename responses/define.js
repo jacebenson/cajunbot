@@ -8,7 +8,8 @@ module.exports = {
             wordsArr.map(function(word, index) {
                 phrases.map(function(phrase) {
                     if (word.toLowerCase() === phrase) {
-                        var url = 'https://api.urbandictionary.com/v0/define?term=' + wordsArr.toString().replace(phrase, '');
+                        var search = wordsArr.join('').replace(word, '');
+                        var url = 'https://api.urbandictionary.com/v0/define?term=' + search;
                         console.log(url);
                         url = new URL(url);
                         var options = {
