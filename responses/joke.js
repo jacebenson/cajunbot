@@ -51,7 +51,7 @@ module.exports = {
             });
         }
     },
-    help: '`!snprotips or !prof or !tips string` Searchs snprotips blog for the string provided.'
+    help: '`!joke gets a joke'
 };
 
 var rand = function(arr) {
