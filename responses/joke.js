@@ -1,3 +1,4 @@
+var https = require('https');
 module.exports = {
     command: function(bot, msg) {
         var phrases = ['!joke', '!laugh', '!funny'];
