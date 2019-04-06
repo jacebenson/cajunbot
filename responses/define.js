@@ -30,9 +30,7 @@ module.exports = {
                                 //console.log(JSON.parse(data).explanation);
                                 var message;
                                 var obj = JSON.parse(data);
-                                if(obj.joke){
                                     message = obj[0].definition;
-                                }
                                 bot.createMessage(msg.channel.id, message);
                             });
                         }).on("error", (err) => {
