@@ -14,14 +14,13 @@ module.exports = {
                         // {"setup":"...", "punchline": "..."}
                         var url = rand([
                             'https://official-joke-api.appspot.com/random_joke',
-                            'https://icanhazdadjoke.com/'
+                            'https://icanhazdadjoke.com/',
+                            'http://api.icndb.com/jokes/random?limitTo=[nerdy]'
                         ]);
                         console.log(url);
-                        url = new URL(url);
                         var options = {
                             timeout: 3000,
-                            host: url.host,
-                            path: url.pathname,
+                            url: url,
                             headers: {
                                 'Accept': 'application/json'
                             }
@@ -38,7 +37,9 @@ module.exports = {
                                 var obj = JSON.parse(data);
                                 if(obj.joke){
                                     message = obj.joke;
-                                } else {
+                                } else if (obj.value.joke) {
+                                    message = obj.value.joke;
+                                } else{
                                     message = obj.setup + ' || ' + obj.punchline + '||';
                                 }
                                 bot.createMessage(msg.channel.id, message);
