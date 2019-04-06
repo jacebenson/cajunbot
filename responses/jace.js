@@ -7,7 +7,7 @@ module.exports = {
                 if (word.toLowerCase() === phrase) {
                     var term = wordsArr[index + 1];
                     var message = 'https://blog.jacebenson.com/' + encodeURI(wordsArr.join(' ').replace(word, '').trim());
-                    bot.createMessage(msg.channel.id, message);
+                    bot.reply(message);
                 }
             });
         }

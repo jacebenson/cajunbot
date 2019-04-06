@@ -12,7 +12,7 @@ module.exports = {
                 for (var thing in responses) {
                     message.push(responses[thing].help);
                 }
-                bot.createMessage(msg.channel.id, message.join('\n'));
+                bot.reply(message.join('\n'));
             }
         });
     },

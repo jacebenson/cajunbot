@@ -35,10 +35,10 @@ module.exports = {
                             if(resp.statusCode === 200){
                                 message = "`" + url + "` is up with a status of " + resp.statusCode;
                             }
-                            bot.createMessage(msg.channel.id, message);
+                            bot.reply(msg.channel.id, message);
                         });
                     }).on("error", (err) => {
-                        bot.createMessage(msg.channel.id, "Error: `" + err.message + "`");
+                        bot.reply(msg.channel.id, "Error: `" + err.message + "`");
                     });
                 }
             });

@@ -1,6 +1,11 @@
 require('dotenv').config();
 var fs = require('fs');
-var Eris = require('eris');
+//var Eris = require('eris');
+//var bot = new Eris(process.env.DISCORD_BOT_TOKEN);
+var Discord = require('discord.js');
+var bot = new Discord.Client();
+var token = process.env.DISCORD_BOT_TOKEN
+bot.login(token);
 require('greenlock-express').create({
   email: 'jace.benson@protonmail.com',     // The email address of the ACME user / hosting provider
   agreeTos: true,                          // You must accept the ToS as the host which handles the certs
@@ -12,7 +17,6 @@ require('greenlock-express').create({
 }).listen(80, 443);
 
 //require('./integrations/sndevs.slack').connect();//disabled after token was revoked
-var bot = new Eris(process.env.DISCORD_BOT_TOKEN);
 var responses = {};
 var responsesDirectory = './responses/';
 
@@ -25,7 +29,7 @@ fs.readdir(responsesDirectory, function(err, files) {
   }
   });
 });
-bot.on("messageCreate", function(msg) {
+bot.on("message", function(msg) {
   try{
     var now = new Date().toLocaleString();
     var messageLog = [];

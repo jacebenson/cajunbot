@@ -277,12 +277,12 @@ module.exports = {
                                                     // console.log('Updating points: ' + thing);
                                                     var message = rand(compliments(thing, result.points));
                                                     // console.log(message);
-                                                    bot.createMessage(msg.channel.id, message);
-                                                    msg.addReaction('💯');
+                                                    bot.reply(message);
+                                                    msg.react('💯');
                                                 });
                                         } else {
                                             var message = 'You cant give points to yourself';
-                                            bot.createMessage(msg.channel.id, message);
+                                            bot.reply(message);
                                         }
                                     } else {
                                         var myObj = {
@@ -297,8 +297,8 @@ module.exports = {
                                             }
                                             // console.log('Inserting points: ' + thing);
                                             var message = rand(compliments(thing, 1));
-                                            bot.createMessage(msg.channel.id, message);
-                                            msg.addReaction('💯');
+                                            bot.reply(message);
+                                            msg.react('💯');
                                             client.close();
                                         });
                                     }
@@ -308,7 +308,7 @@ module.exports = {
                     });
                 }
                 if (!msg.channel.name) {
-                    bot.createMessage(msg.channel.id, 'I can\'t give points in PMs');
+                    bot.reply('I can\'t give points in PMs');
                 }
             }
         }

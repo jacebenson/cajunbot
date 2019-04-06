@@ -7,7 +7,7 @@ module.exports = {
                 if (word.toLowerCase() === phrase) {
                     var term = wordsArr[index + 1];
                     var message = 'Hey ' + term + ', you\'ve had a bang-up past couple of months. Hope people start respecting you and your hard work.';
-                    bot.createMessage(msg.channel.id, message);
+                    bot.reply(message);
                 }
             });
         }

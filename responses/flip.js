@@ -88,7 +88,7 @@ module.exports = {
                             flippedText = '┻━┻';
                         }
                         var message = rand(flipper) + '︵ ' + flippedText;
-                        bot.createMessage(msg.channel.id, message);
+                        bot.reply(message);
                     }
 
                 });

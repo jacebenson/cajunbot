@@ -6,7 +6,7 @@ module.exports = {
             wordsArr.map(function(word, index) {
                 if (word.toLowerCase() === phrase) {
                     var message = 'http://lmgtfy.com/?s=d&q=' + encodeURI(wordsArr.join(' ').replace(word, '').trim());
-                    bot.createMessage(msg.channel.id, message);
+                    bot.reply(message);
                 }
             });
         }

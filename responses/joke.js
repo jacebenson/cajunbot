@@ -41,10 +41,10 @@ module.exports = {
                                 } else {
                                     message = obj.setup + ' || ' + obj.punchline + '||';
                                 }
-                                bot.createMessage(msg.channel.id, message);
+                                bot.reply(message);
                             });
                         }).on("error", (err) => {
-                            bot.createMessage(msg.channel.id, "Error: `" + err.message + "`");
+                            bot.reply("Error: `" + err.message + "`");
                         });
                     }
                 });

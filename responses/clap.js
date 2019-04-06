@@ -11,9 +11,9 @@ module.exports = {
                         });
                         var message = upperCaseArr.join(' :clap: ').replace(word.toUpperCase() + ' :clap: ', '');
                         message = message.replace(phrase, '');
-                        bot.createMessage(msg.channel.id, message);
+                        bot.reply(message);
                     } else {
-                        msg.addReaction('👏');
+                        msg.react('👏');
                     }
                 }
             });
