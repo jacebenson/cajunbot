@@ -10,14 +10,18 @@ module.exports = {
                         var search = wordsArr.join('').replace(word, '');
                         ud.term(search).then((result) => {
                             var entries = result.entries
+                            if(entries.length>0){
                             var winner = rand(entries);
-                            console.log(entries[0].word)
-                            console.log(winner[0].definition)
-                            bot.createMessage(msg.channel.id, entries[0].definition);    
-                            console.log(entries[0].example)
+                            //console.log(entries[0].word)
+                            //console.log(winner[0].definition)
+                            bot.createMessage(msg.channel.id, winner.definition);    
+                            //console.log(entries[0].example)
+                            } else {
+                                bot.createMessage(msg.channel.id, "Define it: " + 'https://www.urbandictionary.com/add.php?word=' + search);
+                            }
                           }).catch((error) => {
                             console.error(error.message)
-                          })
+                          });
                     }
                 });
             });
