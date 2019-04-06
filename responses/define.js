@@ -30,8 +30,13 @@ module.exports = {
                                 //console.log(JSON.parse(data).explanation);
                                 var message;
                                 var obj = JSON.parse(data);
-                                    message = obj[0].definition;
+                                try{
+                                message = obj[0].definition;
+                                console.log(JSON.stringify(obj));
                                 bot.createMessage(msg.channel.id, message);
+                                } catch (e) {
+                                    console.log(e);
+                                }
                             });
                         }).on("error", (err) => {
                             bot.createMessage(msg.channel.id, "Error: `" + err.message + "`");
