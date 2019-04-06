@@ -10,8 +10,9 @@ module.exports = {
                         var search = wordsArr.join('').replace(word, '');
                         ud.term(search).then((result) => {
                             var entries = result.entries
+                            var winner = rand(entries);
                             console.log(entries[0].word)
-                            console.log(entries[0].definition)
+                            console.log(winner[0].definition)
                             bot.createMessage(msg.channel.id, entries[0].definition);    
                             console.log(entries[0].example)
                           }).catch((error) => {
@@ -22,7 +23,7 @@ module.exports = {
             });
         }
     },
-    help: '`!joke` Will get a joke from one of two apis.'
+    help: '`!define` word'
 };
 
 var rand = function (arr) {
