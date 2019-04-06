@@ -45,7 +45,7 @@ module.exports = {
                                     message = obj.joke;
                                 } else if (obj.value.joke) {
                                     message = obj.value.joke;
-                                } else{
+                                } else if (obj.setup && obj.punchline){
                                     message = obj.setup + ' || ' + obj.punchline + '||';
                                 }
                                 bot.createMessage(msg.channel.id, message);
