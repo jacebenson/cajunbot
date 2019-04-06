@@ -51,7 +51,7 @@ module.exports = {
             });
         }
     },
-    help: '`!joke gets a joke'
+    help: '`!joke` `google.com`'
 };
 
 var rand = function(arr) {
