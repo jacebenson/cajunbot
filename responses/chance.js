@@ -24,9 +24,15 @@ module.exports = {
                         var dice = word.split('d');
                         var num = parseInt(dice[0]);
                         if (isNaN(num) === false) {
-                            if (allowedDice[dice[1]]) {
-                                var message = chance.rpg(word);
+                            var message;
+                            if(num>10){
+                                message = 'Come on, I can\'t roll that many dice at once.';
                                 msg.channel.send(message);
+                            } else {
+                                if (allowedDice[dice[1]]) {
+                                    message = chance.rpg(word);
+                                    msg.channel.send(message);
+                                }
                             }
                         }
                     }
