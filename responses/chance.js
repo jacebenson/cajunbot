@@ -42,5 +42,5 @@ module.exports = {
             console.log(e);
         }
     },
-    help: '#d4,6,8,10,12,20,30,100 roll dice'
+    help: '`#d4,6,8,10,12,20,30,100` rolls dice'
 };
