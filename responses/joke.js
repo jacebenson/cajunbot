@@ -13,8 +13,9 @@ module.exports = {
                         // https://official-joke-api.appspot.com/random_joke
                         // {"setup":"...", "punchline": "..."}
                         var url = rand([
-                            'https://official-joke-api.appspot.com/random_joke',
-                            'https://icanhazdadjoke.com/'
+                            //'https://official-joke-api.appspot.com/random_joke',
+                            //'https://icanhazdadjoke.com/',
+                            'https://wizardly-wing-66188a.netlify.com/.netlify/functions/server'
                         ]);
                         console.log(url);
                         url = new URL(url);
