@@ -37,11 +37,9 @@ module.exports = {
                                 //console.log(JSON.parse(data).explanation);
                                 var message;
                                 var obj = JSON.parse(data);
-                                if(obj.joke){
-                                    message = obj.joke;
-                                } else {
-                                    message = obj.setup + ' || ' + obj.punchline + '||';
-                                }
+                                if(obj.joke && obj.punchline){
+                                    message = obj.joke + ' || ' + obj.punchline + ' || ';
+                                } 
                                 msg.channel.send(message);
                             });
                         }).on("error", (err) => {
