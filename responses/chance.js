@@ -6,15 +6,7 @@ module.exports = {
         try {
             if (msg.author.bot === false) {
                 var allowedDice = {
-                    "4": true,
-                    "6": true,
-                    "8": true,
-                    "10": true,
-                    "12": true,
-                    "20": true,
-                    "30": true,
-                    "100": true,
-                    "3": true
+                    
                 };
                 wordsArr = msg.content.toLowerCase().split(' ');
                 wordsArr.forEach(function (word) {
@@ -28,7 +20,6 @@ module.exports = {
                                 message = 'Come on, I can\'t roll that many dice at once.';
                                 msg.channel.send(message);
                             } else {
-                                if (true) {
                                     var diceArr = chance.rpg(word);
                                     console.log(typeof diceArr, diceArr);
                                     console.log(diceArr.toString());
@@ -42,15 +33,8 @@ module.exports = {
                                     message += '\nAvg: ' + avg;
                                     message += '\nMax: ' + max;
                                     message += '\nMin: ' + min;
-                                    var sum = diceArr.reduce(function(accumulator, a){
-                                        return accumulator + a;
-                                    });
-                                    message += ' Sum: ' + sum;
                                     msg.channel.send(message);
-                                } else {
-                                    message = 'You can only roll 4, 6, 8, 10, 12, 20, 30, and 100 sided dice';
-                                    msg.channel.send(message);
-                                }
+                                
                             }
                         }
                     }
