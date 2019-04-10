@@ -32,6 +32,8 @@ module.exports = {
                                 if (allowedDice[dice[1]]) {
                                     var diceArr = chance.rpg(word);
                                     console.log(typeof diceArr, diceArr);
+                                    console.log(diceArr.toString());
+                                    console.log(diceArr.join(','));
                                     message = diceArr;
                                     msg.channel.send(message);
                                 }
