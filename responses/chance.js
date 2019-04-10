@@ -15,7 +15,8 @@ module.exports = {
                     "12": true,
                     "20": true,
                     "30": true,
-                    "100": true
+                    "100": true,
+                    "3": true
                 };
                 wordsArr = msg.content.toLowerCase().split(' ');
                 wordsArr.forEach(function (word) {
@@ -31,14 +32,15 @@ module.exports = {
                             } else {
                                 if (allowedDice[dice[1]]) {
                                     var diceArr = chance.rpg(word);
-                                    console.log(typeof diceArr, diceArr);
-                                    console.log(diceArr.toString());
-                                    console.log(diceArr.join(','));
                                     message = diceArr.join(', ');
-                                    var sum = diceArr.reduce(function(accumulator, a){
-                                        return accumulator + a;
-                                    });
-                                    message += ' Sum: ' + sum;
+                                    var sum = diceArr.reduce(function(a, b) { return a + b; });
+                                    var avg = sum / diceArr.length;
+                                    var max = Math.max.apply(Math, diceArr);
+                                    var min = Math.min.apply(Math, diceArr);
+                                    message += '\nSum: ' + sum;
+                                    message += '\nAvg: ' + avg;
+                                    message += '\nMax: ' + max;
+                                    message += '\nMin: ' + min;
                                     msg.channel.send(message);
                                 } else {
                                     message = 'You can only roll 4, 6, 8, 10, 12, 20, 30, and 100 sided dice';
