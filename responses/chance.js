@@ -25,25 +25,23 @@ module.exports = {
                         var num = parseInt(dice[0]);
                         if (isNaN(num) === false) {
                             var message;
-                            /*
-                            if(num>10){
+                            if(num>100){
                                 message = 'Come on, I can\'t roll that many dice at once.';
                                 msg.channel.send(message);
                             } else {
-                            */
-                            if (allowedDice[dice[1]]) {
-                                var diceArr = chance.rpg(word);
-                                console.log(typeof diceArr, diceArr);
-                                console.log(diceArr.toString());
-                                console.log(diceArr.join(','));
-                                message = diceArr.join(', ');
-                                var sum = diceArr.reduce(function(accumulator, a){
-                                    return accumulator + a;
-                                });
-                                message += ' Sum: ' + sum;
-                                msg.channel.send(message);
+                                if (allowedDice[dice[1]]) {
+                                    var diceArr = chance.rpg(word);
+                                    console.log(typeof diceArr, diceArr);
+                                    console.log(diceArr.toString());
+                                    console.log(diceArr.join(','));
+                                    message = diceArr.join(', ');
+                                    var sum = diceArr.reduce(function(accumulator, a){
+                                        return accumulator + a;
+                                    });
+                                    message += ' Sum: ' + sum;
+                                    msg.channel.send(message);
+                                }
                             }
-                            //}
                         }
                     }
                 });
