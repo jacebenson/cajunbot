@@ -34,7 +34,7 @@ module.exports = {
                                     console.log(typeof diceArr, diceArr);
                                     console.log(diceArr.toString());
                                     console.log(diceArr.join(','));
-                                    message = diceArr;
+                                    message = diceArr.join(', ');
                                     msg.channel.send(message);
                                 }
                             }
