@@ -15,7 +15,6 @@ module.exports = {
                     "30": true,
                     "100": true,
                     "3": true
-                    "100": true
                 };
                 wordsArr = msg.content.toLowerCase().split(' ');
                 wordsArr.forEach(function (word) {
