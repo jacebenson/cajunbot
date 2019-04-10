@@ -40,6 +40,9 @@ module.exports = {
                                     });
                                     message += ' Sum: ' + sum;
                                     msg.channel.send(message);
+                                } else {
+                                    message = 'You can only roll 4, 6, 8, 10, 12, 20, 30, and 100 sided dice';
+                                    msg.channel.send(message);
                                 }
                             }
                         }
