@@ -5,7 +5,6 @@ var chance = new Chance();
 
 module.exports = {
     command: function (bot, msg) {
-        try {
             if (msg.author.bot === false) {
                 wordsArr = msg.content.toLowerCase().split(' ');
                 wordsArr.forEach(function (word) {
@@ -19,6 +18,8 @@ module.exports = {
                                 message = 'Come on, I can\'t roll that many dice at once.';
                                 msg.channel.send(message);
                             } else {
+                                
+        try {
                                     var diceArr = chance.rpg(word);
                                     message = diceArr.join(', ');
                                     var sum = diceArr.reduce(function(a, b) { return a + b; });
@@ -30,15 +31,16 @@ module.exports = {
                                     message += '\nMax: ' + max;
                                     message += '\nMin: ' + min;
                                     msg.channel.send(message);
+            
+        } catch (e) {
+            console.log(e);
+        }
                                 }
                             }
                         }
                     }
                 });
             }
-        } catch (e) {
-            console.log(e);
-        }
     },
     help: '`#d4,6,8,10,12,20,30,100` rolls dice'
 };
