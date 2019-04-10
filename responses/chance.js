@@ -30,7 +30,8 @@ module.exports = {
                                 msg.channel.send(message);
                             } else {
                                 if (allowedDice[dice[1]]) {
-                                    message = chance.rpg(word);
+                                    var diceArr = chance.rpg(word).replace(/\n/g, ",").split(',');
+                                    message = diceArr;
                                     msg.channel.send(message);
                                 }
                             }
