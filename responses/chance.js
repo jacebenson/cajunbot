@@ -5,9 +5,6 @@ module.exports = {
     command: function (bot, msg) {
         try {
             if (msg.author.bot === false) {
-                var allowedDice = {
-                    
-                };
                 wordsArr = msg.content.toLowerCase().split(' ');
                 wordsArr.forEach(function (word) {
                     if (word.indexOf('d') > -1) {
@@ -20,21 +17,22 @@ module.exports = {
                                 message = 'Come on, I can\'t roll that many dice at once.';
                                 msg.channel.send(message);
                             } else {
-                                    var diceArr = chance.rpg(word);
-                                    console.log(typeof diceArr, diceArr);
-                                    console.log(diceArr.toString());
-                                    console.log(diceArr.join(','));
-                                    message = diceArr.join(', ');
-                                    var sum = diceArr.reduce(function(a, b) { return a + b; });
-                                    var avg = sum / diceArr.length;
-                                    var max = Math.max.apply(Math, diceArr);
-                                    var min = Math.min.apply(Math, diceArr);
+                                var diceArr = chance.rpg(word);
+                                console.log(typeof diceArr, diceArr);
+                                console.log(diceArr.toString());
+                                console.log(diceArr.join(','));
+                                message = diceArr.join(', ');
+                                var sum = diceArr.reduce(function(a, b) { return a + b; });
+                                var avg = sum / diceArr.length;
+                                var max = Math.max.apply(Math, diceArr);
+                                var min = Math.min.apply(Math, diceArr);
+                                if(diceArr.length>1){
                                     message += '\nSum: ' + sum;
                                     message += '\nAvg: ' + avg;
-                                    message += '\nMax: ' + max;
                                     message += '\nMin: ' + min;
-                                    msg.channel.send(message);
-                                
+                                    message += '\nMax: ' + max;
+                                }
+                                msg.channel.send(message);
                             }
                         }
                     }
