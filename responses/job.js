@@ -3,6 +3,7 @@ var Chance = require('chance');
 var chance = new Chance();
 module.exports = {
     command: function(bot, msg) {
+        try{
         var phrase = '!job';
         if (msg.author.bot === false) {
             var wordsArr = msg.content.split(' ');
@@ -202,6 +203,9 @@ module.exports = {
                     msg.channel.send(message);
                 }
             });
+        }
+        } catch(e){
+        console.log(e);
         }
     },
     help: '`!job` Creates a random message a SN Dev may receive from a recruiter.'
