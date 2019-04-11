@@ -143,12 +143,7 @@ module.exports = {
                         'Square',
                         'Garbage'
                     ]);
-                    parts.intro.company_suffix = chance.pickone([
-                        'Box',
-                        'Cube',
-                        '.ai',
-                        'able'
-                    ]);
+                    parts.intro.company_suffix = chance.syllable();
                     parts.intro.funds = chance.pickone([
                         'millions',
                         '$600k on KickStarter',
@@ -208,7 +203,7 @@ module.exports = {
                     message.push(parts.signature + '\n');
                     //message.push(chance.first({ nationality: 'us' }));
                     message.push(chance.first());
-                    var message = message.join(' ');
+                    var message = message.join(' ').replace(\\n\s/gm','\n');
                     msg.channel.send(message);
                 }
             });
