@@ -198,7 +198,7 @@ module.exports = {
                     message.push(parts.dip.day);
                     message.push(chance.weekday({weekday_only: true}) + '?\n\n');
                     message.push(parts.clown.signature + '\n');
-                    message.push(chance.first({ nationality: 'us' }));
+                    //message.push(chance.first({ nationality: 'us' }));
                     var message = message.join(' ');
                     msg.channel.send(message);
                 }
@@ -210,9 +210,3 @@ module.exports = {
     },
     help: '`!job` Creates a random message a SN Dev may receive from a recruiter.'
 };
-
-var rand = function(arr) {
-    //console.log('in random.');
-    var random_choice = Math.floor(Math.random() * arr.length);
-    return arr[random_choice];
-}
