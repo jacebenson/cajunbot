@@ -18,10 +18,8 @@ module.exports = {
                                 msg.channel.send(message);
                             } else {
                                 var diceArr = chance.rpg(word);
-                                console.log(typeof diceArr, diceArr);
-                                console.log(diceArr.toString());
-                                console.log(diceArr.join(','));
                                 message = diceArr.join(', ');
+                                /*
                                 var sum = diceArr.reduce(function(a, b) { return a + b; });
                                 var avg = sum / diceArr.length;
                                 var max = Math.max.apply(Math, diceArr);
@@ -32,6 +30,7 @@ module.exports = {
                                     message += '\nMin: ' + min;
                                     message += '\nMax: ' + max;
                                 }
+                                */
                                 msg.channel.send(message);
                             }
                         }
