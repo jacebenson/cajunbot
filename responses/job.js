@@ -12,7 +12,6 @@ module.exports = {
 
                     var message = [];
                     var parts = {};
-                    parts.clown = {};
                     parts.dip = {};
                     parts.dip.day = chance.pickone([
                         'hows',
@@ -172,6 +171,16 @@ module.exports = {
                         'human resources',
                         'using memes in the workplace'
                     ]);
+                    parts.signature = chance.pickone([
+                        'Regards,\n',
+                        'Thanks! I look forward to hearing from you.\n',
+                        'Let me know what you think, Thanks ' + msg.author,
+                        'If interested, please reply back with an updated resume, and the best time for us to speak – I look forward to your reply!',
+                        'I look forward to hearing from you. Have a great day!',
+                        'Any help would be greatly appreciated. Have a great day!',
+                        'Thanks so much!',
+                        'Kind regards,'
+                    ]);
 
                     if (Math.random() > 0.5) {
                         message.push('Hope you\'re having');
@@ -196,7 +205,7 @@ module.exports = {
                     message.push(parts.dip.to_chat + '—');
                     message.push(parts.dip.day);
                     message.push(chance.weekday({weekday_only: true}) + '?\n\n');
-                    message.push(parts.clown.signature + '\n');
+                    message.push(parts.signature + '\n');
                     //message.push(chance.first({ nationality: 'us' }));
                     message.push(chance.first());
                     var message = message.join(' ');
