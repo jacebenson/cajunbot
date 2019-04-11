@@ -203,7 +203,7 @@ module.exports = {
                     message.push(parts.signature + '\n');
                     //message.push(chance.first({ nationality: 'us' }));
                     message.push(chance.first());
-                    var message = message.join(' ').replace(/\n\s/gm,'\n');
+                    var message = message.join(' ').replace(/\n\s+/gm,'\n');
                     msg.channel.send(message);
                 }
             });
