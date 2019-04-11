@@ -188,10 +188,9 @@ module.exports = {
                     message.push(parts.intro.change);
                     message.push(parts.intro.impact + '.\n\n');
                     message.push(parts.flatter.start);
-                    message.push(parts.flatter.skills.join(' and '));
-                    message.push(parts.flatter.skill_two + ',');
+                    message.push(parts.flatter.skills.join(' and ') + ', ');
                     message.push(parts.flatter.suggest);
-                    message.push(parts.flatter.role + '.');
+                    message.push(parts.flatter.role + '.  ');
                     message.push(parts.dip.suggest);
                     message.push(parts.dip.way);
                     message.push(parts.dip.to_chat + '—');
@@ -199,6 +198,7 @@ module.exports = {
                     message.push(chance.weekday({weekday_only: true}) + '?\n\n');
                     message.push(parts.clown.signature + '\n');
                     //message.push(chance.first({ nationality: 'us' }));
+                    message.push(chance.first());
                     var message = message.join(' ');
                     msg.channel.send(message);
                 }
