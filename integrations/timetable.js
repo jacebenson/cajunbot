@@ -19,7 +19,7 @@ var cronString = {
 var postToDB = function (content) {
     var timeTableObj = {
         user: "jace",
-        date: 0,
+        date: new Date().toISOString(),
         comment: content.replace(/,/gm, '\n')
     };
     MongoClient.connect(mongoURI, {
@@ -46,7 +46,7 @@ var postToDB = function (content) {
 var jace = '190324801821212672';
 module.exports = {
     start: function (bot) {
-        schedule.scheduleJob(cronString.prod, function () {
+        schedule.scheduleJob(cronString.dev, function () {
             var d = new Date();
             console.log(d.toISOString());
             bot.fetchUser(jace).then(function (user) {
