@@ -19,7 +19,7 @@ var cronString = {
 var postToDB = function (content) {
     var timeTableObj = {
         user: "jace",
-        date: new Date().toISOString(),
+        date: new Date(),
         comment: content.replace(/,/gm, '\n')
     };
     MongoClient.connect(mongoURI, {
