@@ -24,7 +24,7 @@ var postToDB = function (content) {
     var timeTableObj = {
         user: "jace",
         date: now,
-        lodaldate: now.toLocaleString()
+        lodaldate: now.toLocaleString(),
         comment: content.replace(/,/gm, '\n')
     };
     MongoClient.connect(mongoURI, {
