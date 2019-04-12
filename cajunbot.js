@@ -16,7 +16,6 @@ require('greenlock-express').create({
   //, debug: true
 }).listen(80, 443);
 
-//require('./integrations/sndevs.slack').connect();//disabled after token was revoked
 var responses = {};
 var responsesDirectory = './responses/';
 
@@ -58,8 +57,10 @@ bot.on("message", function(msg) {
     responses[response].command(bot, msg, responses);
   }
 });
+
 bot.on('ready', () => { // When the bot is ready
     console.log('CajonBot Ready!'); // Log "Ready!"
+    require('./integrations/timetable').start(bot);//disabled after token was revoked
 });
 //bot.on("presenceUpdate", function(msg) {
   //console.log(msg.guild.name + ': ' + msg.username + ': ' + msg.status);
