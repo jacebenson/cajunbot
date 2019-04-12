@@ -12,17 +12,15 @@ var schedule = require('node-schedule');
  * “At every minute on every day-of-week from Monday through Friday.” 
  */
 var props = {
-    
-}
-var cronString = {
-    prod: "0 7-16 * * 1-5",
-    dev: "* * * * 1-5"
+    minutesToWait: 5,
+    cronString:"0 7-16 * * 1-5",
+    devCronString: "* * * * 1-5"
 }
 
-var postToDB = function (content) {
+var postToDB = function (content, user) {
     var now = new Date();
     var timeTableObj = {
-        user: "jace",
+        user: user,
         date: now,
         lodaldate: now.toLocaleString(),
         comment: content.replace(/,/gm, '\n')
@@ -58,7 +56,7 @@ module.exports = {
                 var d = new Date();
                 user.send('What\'s up?').then(function (message) {
                     //collection = new bot.MessageCollector(message.channel,function(){},{max:1});
-                    var collector = message.channel.createMessageCollector(function () { return true }, { time: 1 * 20 * 1000 });
+                    var collector = message.channel.createMessageCollector(function () { return true }, { time: 5 * 20 * 1000 });
                     collector.on('collect', m => {
                         console.log(`Collected ${m.content}`);
                     });
