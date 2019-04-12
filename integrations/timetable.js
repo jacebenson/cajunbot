@@ -46,7 +46,7 @@ var postToDB = function (content) {
 var jace = '190324801821212672';
 module.exports = {
     start: function (bot) {
-        schedule.scheduleJob(cronString.dev, function () {
+        schedule.scheduleJob(cronString.prod, function () {
             var d = new Date();
             console.log(d.toISOString());
             bot.fetchUser(jace).then(function (user) {
@@ -64,11 +64,13 @@ module.exports = {
                         var messages = collected.map(function (message) {
                             return message.content;
                         });
-                        console.log(messages.toString());
-                        /**
-                         * Make connection to DB and post.
-                         */
-                        postToDB(messages.toString());
+                        if(messages.length>0){
+                            console.log(messages.toString());
+                            /**
+                             * Make connection to DB and post.
+                             */
+                            postToDB(messages.toString());
+                        }
                     });
                 });
             });
