@@ -11,15 +11,20 @@ var schedule = require('node-schedule');
  * "* * * * 1-5"
  * “At every minute on every day-of-week from Monday through Friday.” 
  */
+var props = {
+    
+}
 var cronString = {
     prod: "0 7-16 * * 1-5",
     dev: "* * * * 1-5"
 }
 
 var postToDB = function (content) {
+    var now = new Date();
     var timeTableObj = {
         user: "jace",
-        date: new Date(),
+        date: now,
+        lodaldate: now.toLocaleString()
         comment: content.replace(/,/gm, '\n')
     };
     MongoClient.connect(mongoURI, {
