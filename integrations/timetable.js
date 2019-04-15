@@ -56,9 +56,12 @@ module.exports = {
                 var d = new Date();
                 user.send('What\'s up?').then(function (message) {
                     //collection = new bot.MessageCollector(message.channel,function(){},{max:1});
-                    var collector = message.channel.createMessageCollector(function () { return true }, { time: 5 * 20 * 1000 });
+                    var collector = message.channel.createMessageCollector(function () { return true }, { time: 50 * 20 * 1000 });
                     collector.on('collect', m => {
-                        console.log(`Collected ${m.content}`);
+                        if (m.author.id === jace) { 
+			    console.log(`Collected ${m.content}`);
+				collector.stop();
+			}
                     });
 
                     collector.on('end', collected => {
