@@ -49,7 +49,7 @@ var postToDB = function (content, user) {
 var jace = '190324801821212672';
 module.exports = {
     start: function (bot) {
-        schedule.scheduleJob(props.devCronString, function () {
+        schedule.scheduleJob(props.cronString, function () {
             var d = new Date();
             console.log(d.toISOString());
             bot.fetchUser(jace).then(function (user) {
