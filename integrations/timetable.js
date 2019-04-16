@@ -76,7 +76,8 @@ module.exports = {
                              * Make connection to DB and post.
                              */
                             postToDB(messages.toString());
-                        }
+			}
+		    user.send("Awesome, logged.");
                     });
                 });
             });
