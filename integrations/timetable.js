@@ -114,13 +114,12 @@ module.exports = {
                     tw:         new Date(now.setDate(now.getDate()-7)),
                 }
                 var phrases = {
-                    '!today':       {date:  {"$gt": date.today}},
-                    '!t':           {date:  {"$gt": date.t}},
-                    '!yesterday':   { "$and": [{"date": {"$gt": date.yesterday}},{"date": {"$lt": date.today}}]},
-                    '!y':           { "$and": [{"date": {"$gt": date.yesterday}},{"date": {"$lt": date.today}}]},
-                    '!y2':          { "date": {"$gt": date.yesterday, "$lt": date.today}},
-                    '!thisweek':    { "$and": [{"date": {"$gt": date.thisweek}},{"date": {"$lt": date.today}}]},
-                    '!tw':          { "$and": [{"date": {"$gt": date.thisweek}},{"date": {"$lt": date.today}}]},
+                    '!today':       {date: {"$gt": date.today}},
+                    '!t':           {date: {"$gt": date.t}},
+                    '!yesterday':   {date: {"$gt": date.yesterday, "$lt": date.today}},
+                    '!y':           {date: {"$gt": date.yesterday, "$lt": date.today}},
+                    '!thisweek':    {date: {"$gt": date.thisweek, "$lt": date.today}},
+                    '!tw':          {date: {"$gt": date.thisweek, "$lt": date.today}},
                     '!all':         {}
                 };
                 if (msg.author.bot === false) {
