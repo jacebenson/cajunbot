@@ -13,7 +13,7 @@ var schedule = require('node-schedule');
  */
 var props = {
     minutesToWait: 5,
-    cronString:"0 7-16 * * 1-5",
+    cronString: "0 7-16 * * 1-5",
     devCronString: "* * * * 1-5"
 }
 
@@ -45,10 +45,63 @@ var postToDB = function (content, user) {
         });
     });
 }
+var getFromDB = function (filter) {
+    MongoClient.connect(mongoURI, {
+        useNewUrlParser: true
+    }, function (err, client) {
+        if (err) console.log(err);
+        var db = client.db('cajonbot');
+
+        db.collection('timetable').findOne(queryObj, function (err, result) {
+            if (result) {
+                //console.log(result);
+            }
+        });
+    });
+};
+/**
+ * command: function(bot, msg) {
+        var phrase = '!jace';
+        if (msg.author.bot === false) {
+            var wordsArr = msg.content.split(' ');
+            wordsArr.map(function(word, index) {
+                if (word.toLowerCase() === phrase) {
+                    var term = wordsArr[index + 1];
+                    var message = 'https://blog.jacebenson.com/' + encodeURI(wordsArr.join(' ').replace(word, '').trim());
+                    msg.channel.send(message);
+                }
+            });
+        }
+    },
+    help: '`!jace string` Searchs jaces blog for the string provided.'
+ */
 
 var jace = '190324801821212672';
 module.exports = {
     start: function (bot) {
+        bot.on("message", function(msg) {
+            if(msg.author.id === jace){
+                var phrases = {
+                    '!today':       {today:     "1"},
+                    '!t':           {t:         "2"},
+                    '!yesterday':   {yesterday: "3"},
+                    '!y':           {y:         "4"},
+                    '!thisweek':    {thisweek:  "5"},
+                    '!tw':          {tw:        "6"}
+                };
+                if (msg.author.bot === false) {
+                    var wordsArr = msg.content.split(' ');
+                    wordsArr.map(function(word, index) {
+                        for(var phrase in phrases){
+                            if (word.toLowerCase() === phrase) {
+                                var message = JSON.stringify(phrases[phrase]);
+                                msg.channel.send(message);
+                            }
+                        }
+                    });
+                }
+            }
+        });
         schedule.scheduleJob(props.cronString, function () {
             var d = new Date();
             console.log(d.toISOString());
@@ -58,10 +111,10 @@ module.exports = {
                     //collection = new bot.MessageCollector(message.channel,function(){},{max:1});
                     var collector = message.channel.createMessageCollector(function () { return true }, { time: 50 * 20 * 1000 });
                     collector.on('collect', m => {
-                        if (m.author.id === jace) { 
-			    console.log(`Collected ${m.content}`);
-				collector.stop();
-			}
+                        if (m.author.id === jace) {
+                            console.log(`Collected ${m.content}`);
+                            collector.stop();
+                        }
                     });
 
                     collector.on('end', collected => {
@@ -70,14 +123,14 @@ module.exports = {
                         var messages = collected.map(function (message) {
                             return message.content;
                         });
-                        if(messages.length>0){
+                        if (messages.length > 0) {
                             console.log(messages.toString());
                             /**
                              * Make connection to DB and post.
                              */
                             postToDB(messages.toString());
-			}
-		    user.send("Awesome, logged.");
+                        }
+                        user.send("Awesome, logged.");
                     });
                 });
             });
