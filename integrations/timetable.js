@@ -118,6 +118,7 @@ module.exports = {
                     '!t':           {date:  {"$gt": date.t}},
                     '!yesterday':   { "$and": [{"date": {"$gt": date.yesterday}},{"date": {"$lt": date.today}}]},
                     '!y':           { "$and": [{"date": {"$gt": date.yesterday}},{"date": {"$lt": date.today}}]},
+                    '!y2':          { "date": {"$gt": date.yesterday, "$lt": date.today}},
                     '!thisweek':    { "$and": [{"date": {"$gt": date.thisweek}},{"date": {"$lt": date.today}}]},
                     '!tw':          { "$and": [{"date": {"$gt": date.thisweek}},{"date": {"$lt": date.today}}]},
                     '!all':         {}
