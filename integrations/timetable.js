@@ -116,7 +116,7 @@ module.exports = {
                 var phrases = {
                     '!today':       {date:  {"$gt": date.today}},
                     '!t':           {date:  {"$gt": date.t}},
-                    '!yesterday':   {date:  { "$all": [{"$gt": date.yesterday},{"$lt": date.today}]},
+                    '!yesterday':   {date:  { "$all": [{"$gt": date.yesterday},{"$lt": date.today}]}},
                     '!y':           {date:  {"$gt": date.y}},
                     '!thisweek':    {date:  {"$gt": date.thisweek}},
                     '!tw':          {date:  {"$gt": date.tw}},
