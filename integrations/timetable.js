@@ -75,10 +75,10 @@ var getFromDB = function (filter, msg) {
                     var m = entry.comment;
                     if(m.indexOf('\n') > 0){
                         m.split('\n').forEach(function(line){
-                            msg.channel.send(line);
+                            msg.channel.send('  ' + line);
                         });
                     } else {
-                        msg.channel.send(m);
+                        msg.channel.send('  ' + m);
                     }
                    // return d + ': ' + m + '\n';
                 });
