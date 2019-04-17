@@ -51,7 +51,7 @@ var getFromDB = function (filter, msg) {
     }, function (err, client) {
         if (err) console.log(err);
         var db = client.db('cajonbot');
-        db.collection('timetable').find(filter, function (err, result) {
+        db.collection('timetable').find(filter).toArray(function (err, result) {
             var message = "false";
             if (err) {
                 message = JSON.stringify(err);
@@ -62,8 +62,6 @@ var getFromDB = function (filter, msg) {
             }
             msg.channel.send(message);
             client.close();
-        }).toArray(function(err, docs){
-            msg.cannel.send(JSON.stringify(docs));
         });
     });
 };
