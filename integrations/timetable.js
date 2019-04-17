@@ -51,16 +51,19 @@ var getFromDB = function (filter, msg) {
     }, function (err, client) {
         if (err) console.log(err);
         var db = client.db('cajonbot');
-        db.collection('timetable').findOne(filter, function (err, result) {
+        db.collection('timetable').find(filter, function (err, result) {
             var message = "false";
             if (err) {
                 message = JSON.stringify(err);
             }
             if (result) {
+                var justMsgs = result
                 message = JSON.stringify(result);
             }
             msg.channel.send(message);
             client.close();
+        }).toArray(function(err, docs){
+            msg.cannel.send(JSON.stringify(docs));
         });
     });
 };
@@ -88,12 +91,12 @@ module.exports = {
             if(msg.author.id === jace){
                 var now = new Date();
                 var date = {
-                    today: now,
-                    t: now,
-                    yesterday: new Date(now.setDate(now.getDate()-1)),
-                    y: now.setDate(now.getDate()-1),
-                    thisweek: now.setDate(now.getDate()-7),
-                    tw: now.setDate(now.getDate()-7),
+                    today:      now,
+                    t:          now,
+                    yesterday:  new Date(now.setDate(now.getDate()-1)),
+                    y:          new Date(now.setDate(now.getDate()-1)),
+                    thisweek:   new Date(now.setDate(now.getDate()-7)),
+                    tw:         new Date(now.setDate(now.getDate()-7)),
                 }
                 var phrases = {
                     '!today':       {date:  {"$gt": date.today}},
