@@ -86,8 +86,9 @@ module.exports = {
     start: function (bot) {
         bot.on("message", function(msg) {
             if(msg.author.id === jace){
+                var today = new Date();
                 var phrases = {
-                    '!today':       {today:     "1"},
+                    '!today':       {"$gt":     today.setDate(today.getDate()-1)},
                     '!t':           {t:         "2"},
                     '!yesterday':   {yesterday: "3"},
                     '!y':           {y:         "4"},
