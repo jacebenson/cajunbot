@@ -78,7 +78,9 @@ var getFromDB = function (filter, msg) {
                             msg.channel.send(line);
                         });
                     } else {
+                        if(m!='What\'s up?'){
                         msg.channel.send(m);
+                        }
                     }
                    // return d + ': ' + m + '\n';
                 });
