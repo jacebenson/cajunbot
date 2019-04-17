@@ -86,14 +86,22 @@ module.exports = {
     start: function (bot) {
         bot.on("message", function(msg) {
             if(msg.author.id === jace){
-                var today = new Date();
+                var now = new Date();
+                var date = {
+                    today: now.toISOString(),
+                    t: now.toISOString(),
+                    yesterday: now.setDate(now.getDate()-1).toISOString(),
+                    y: now.setDate(now.getDate()-1).toISOString(),
+                    thisweek: now.setDate(now.getDate()-7).toISOString(),
+                    tw: now.setDate(now.getDate()-7).toISOString(),
+                }
                 var phrases = {
-                    '!today':       {date: {"$gt":     today.setDate(today.getDate()-1).toISOString()}},
-                    '!t':           {t:         "2"},
-                    '!yesterday':   {yesterday: "3"},
-                    '!y':           {y:         "4"},
-                    '!thisweek':    {thisweek:  "5"},
-                    '!tw':          {tw:        "6"},
+                    '!today':       {date:      {"$gt": date.today}},
+                    '!t':           {t:         {"$gt": date.t}},
+                    '!yesterday':   {yesterday: {"$gt": date.yesterday}},
+                    '!y':           {y:         {"$gt": date.y}},
+                    '!thisweek':    {thisweek:  {"$gt": date.thisweek}},
+                    '!tw':          {tw:        {"$gt": date.tw}},
                     '!all':         {}
                 };
                 if (msg.author.bot === false) {
