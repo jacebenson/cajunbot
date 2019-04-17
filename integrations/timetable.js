@@ -96,12 +96,12 @@ module.exports = {
                     tw: now.setDate(now.getDate()-7),
                 }
                 var phrases = {
-                    '!today':       {date:      {"$gt": date.today}},
-                    '!t':           {t:         {"$gt": date.t}},
-                    '!yesterday':   {yesterday: {"$gt": date.yesterday}},
-                    '!y':           {y:         {"$gt": date.y}},
-                    '!thisweek':    {thisweek:  {"$gt": date.thisweek}},
-                    '!tw':          {tw:        {"$gt": date.tw}},
+                    '!today':       {date:  {"$gt": date.today}},
+                    '!t':           {date:  {"$gt": date.t}},
+                    '!yesterday':   {date:  {"$gt": date.yesterday}},
+                    '!y':           {date:  {"$gt": date.y}},
+                    '!thisweek':    {date:  {"$gt": date.thisweek}},
+                    '!tw':          {date:  {"$gt": date.tw}},
                     '!all':         {}
                 };
                 if (msg.author.bot === false) {
