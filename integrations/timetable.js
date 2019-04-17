@@ -88,7 +88,7 @@ module.exports = {
             if(msg.author.id === jace){
                 var today = new Date();
                 var phrases = {
-                    '!today':       {date: {"$gt":     today.setDate(today.getDate()-1).toISOString()},
+                    '!today':       {date: {"$gt":     today.setDate(today.getDate()-1).toISOString()}},
                     '!t':           {t:         "2"},
                     '!yesterday':   {yesterday: "3"},
                     '!y':           {y:         "4"},
