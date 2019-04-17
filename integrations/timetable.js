@@ -90,7 +90,7 @@ module.exports = {
                 var date = {
                     today: now,
                     t: now,
-                    yesterday: now.setDate(now.getDate()-1),
+                    yesterday: new Date(now.setDate(now.getDate()-1)),
                     y: now.setDate(now.getDate()-1),
                     thisweek: now.setDate(now.getDate()-7),
                     tw: now.setDate(now.getDate()-7),
