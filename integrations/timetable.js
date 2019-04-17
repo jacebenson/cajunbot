@@ -45,17 +45,22 @@ var postToDB = function (content, user) {
         });
     });
 }
-var getFromDB = function (filter) {
+var getFromDB = function (filter, msg) {
     MongoClient.connect(mongoURI, {
         useNewUrlParser: true
     }, function (err, client) {
         if (err) console.log(err);
         var db = client.db('cajonbot');
-
-        db.collection('timetable').findOne(queryObj, function (err, result) {
-            if (result) {
-                //console.log(result);
+        db.collection('timetable').findOne(filter, function (err, result) {
+            var message;
+            if (err) {
+                message = JSON.stringify(err);
             }
+            if (result) {
+                message = JSON.stringify(result);
+            }
+            msg.channel.send(message);
+            client.close();
         });
     });
 };
@@ -87,7 +92,8 @@ module.exports = {
                     '!yesterday':   {yesterday: "3"},
                     '!y':           {y:         "4"},
                     '!thisweek':    {thisweek:  "5"},
-                    '!tw':          {tw:        "6"}
+                    '!tw':          {tw:        "6"},
+                    '!all':         {}
                 };
                 if (msg.author.bot === false) {
                     var wordsArr = msg.content.split(' ');
@@ -96,6 +102,7 @@ module.exports = {
                             if (word.toLowerCase() === phrase) {
                                 var message = JSON.stringify(phrases[phrase]);
                                 msg.channel.send(message);
+                                getFromDB(phrases[phrase], msg);
                             }
                         }
                     });
