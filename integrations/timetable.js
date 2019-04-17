@@ -57,7 +57,12 @@ var getFromDB = function (filter, msg) {
                 message = JSON.stringify(err);
             }
             if (result) {
-                message = JSON.stringify(result).substring(0,100);
+                var messages = result.map(function(entry){
+                    var d = new Date(entry.date).toLocaleString();
+                    var m = entry.comment;
+                    return d + ': ' + m + '\n';
+                });
+                message = JSON.stringify(messages);//.substring(0,100);
             }
             msg.channel.send(message);
             client.close();
