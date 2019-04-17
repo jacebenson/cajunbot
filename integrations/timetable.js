@@ -57,17 +57,17 @@ var getFromDB = function (filter, msg) {
                 message = JSON.stringify(err);
             }
             if (result) {
-                var messages = result.forEach(function(entry){
+                result.forEach(function(entry){
                     var days = {
-                        "0": "Sunday",
-                        "1": "Sunday",
-                        "2": "Sunday",
-                        "3": "Sunday",
-                        "4": "Sunday",
-                        "5": "Sunday",
-                        "6": "Saturday", 
+                        "0": "Sun",
+                        "1": "Mon",
+                        "2": "Tue",
+                        "3": "Wed",
+                        "4": "Thur",
+                        "5": "Fri",
+                        "6": "Sat", 
                     };
-                    var day = days[new Date(entry.date).getDay()];
+                    var day = days[new Date(entry.date).getDay()+''];
                     var d = day + ' ' + new Date(entry.date).toLocaleString();
                     var m = entry.comment;
                     
