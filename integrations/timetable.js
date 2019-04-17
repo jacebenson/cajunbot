@@ -135,8 +135,8 @@ module.exports = {
                     wordsArr.map(function(word, index) {
                         for(var phrase in phrases){
                             if (word.toLowerCase() === phrase) {
-                                var message = JSON.stringify(phrases[phrase]);
-                                msg.channel.send(message);
+                                //var message = JSON.stringify(phrases[phrase]);
+                                //msg.channel.send(message);
                                 getFromDB(phrases[phrase], msg);
                             }
                         }
