@@ -57,21 +57,29 @@ var getFromDB = function (filter, msg) {
                 message = JSON.stringify(err);
             }
             if (result) {
-                result.forEach(function(entry){
-                    var days = {
-                        "0": "Sun",
-                        "1": "Mon",
-                        "2": "Tue",
-                        "3": "Wed",
-                        "4": "Thur",
-                        "5": "Fri",
-                        "6": "Sat", 
-                    };
+                var days = {
+                    "0": "Sun",
+                    "1": "Mon",
+                    "2": "Tue",
+                    "3": "Wed",
+                    "4": "Thur",
+                    "5": "Fri",
+                    "6": "Sat", 
+                };
+                result.forEach(function(entry, index){
                     var day = days[new Date(entry.date).getDay()+''];
-                    var d = day + ' ' + new Date(entry.date).toLocaleString();
+                    var d = day + ' ' + new Date(entry.date).toLocaleString().split(',')[0];
+                    if(index === 0){
+                        msg.channel.send(d);
+                    } 
                     var m = entry.comment;
-                    
-                    msg.channel.send(d + ': ' + m);
+                    if(m.indexOf('\n') > 0){
+                        m.split('\n').forEach(function(line){
+                            msg.channel.send(line);
+                        });
+                    } else {
+                        msg.channel.send(m);
+                    }
                    // return d + ': ' + m + '\n';
                 });
                 //message = JSON.stringify(messages);//.substring(0,100);
