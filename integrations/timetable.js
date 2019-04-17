@@ -57,14 +57,16 @@ var getFromDB = function (filter, msg) {
                 message = JSON.stringify(err);
             }
             if (result) {
-                var messages = result.map(function(entry){
+                var messages = result.forEach(function(entry){
                     var d = new Date(entry.date).toLocaleString();
                     var m = entry.comment;
-                    return d + ': ' + m + '\n';
+                    
+                    msg.channel.send(d + ': ' + m);
+                   // return d + ': ' + m + '\n';
                 });
-                message = JSON.stringify(messages);//.substring(0,100);
+                //message = JSON.stringify(messages);//.substring(0,100);
             }
-            msg.channel.send(message);
+            //msg.channel.send(message);
             client.close();
         });
     });
