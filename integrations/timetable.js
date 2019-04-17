@@ -138,9 +138,10 @@ module.exports = {
                         }
                     });
                     if(msg.content == "!delete"){
-                        msg.delete();
-                        const fetched = await msg.channel.fetchMessages({limit: 99});
-                        msg.channel.bulkDelete(fetched);
+                        var m = msg.author.send('...');
+                        m.delete();
+                        const fetched = await m.channel.fetchMessages({limit: 99});
+                        m.channel.bulkDelete(fetched);
                     }
                 }
             }
