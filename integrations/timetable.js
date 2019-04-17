@@ -57,7 +57,6 @@ var getFromDB = function (filter, msg) {
                 message = JSON.stringify(err);
             }
             if (result) {
-                var justMsgs = result
                 message = JSON.stringify(result);
             }
             msg.channel.send(message);
