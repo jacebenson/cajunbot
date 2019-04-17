@@ -52,7 +52,7 @@ var getFromDB = function (filter, msg) {
         if (err) console.log(err);
         var db = client.db('cajonbot');
         db.collection('timetable').findOne(filter, function (err, result) {
-            var message;
+            var message = "false";
             if (err) {
                 message = JSON.stringify(err);
             }
