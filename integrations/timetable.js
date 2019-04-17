@@ -88,12 +88,12 @@ module.exports = {
             if(msg.author.id === jace){
                 var now = new Date();
                 var date = {
-                    today: now.toISOString(),
-                    t: now.toISOString(),
-                    yesterday: now.setDate(now.getDate()-1).toISOString(),
-                    y: now.setDate(now.getDate()-1).toISOString(),
-                    thisweek: now.setDate(now.getDate()-7).toISOString(),
-                    tw: now.setDate(now.getDate()-7).toISOString(),
+                    today: now,
+                    t: now,
+                    yesterday: now.setDate(now.getDate()-1),
+                    y: now.setDate(now.getDate()-1),
+                    thisweek: now.setDate(now.getDate()-7),
+                    tw: now.setDate(now.getDate()-7),
                 }
                 var phrases = {
                     '!today':       {date:      {"$gt": date.today}},
@@ -120,7 +120,7 @@ module.exports = {
         });
         schedule.scheduleJob(props.cronString, function () {
             var d = new Date();
-            console.log(d.toISOString());
+            console.log(d);
             bot.fetchUser(jace).then(function (user) {
                 var d = new Date();
                 user.send('What\'s up?').then(function (message) {
@@ -135,7 +135,7 @@ module.exports = {
 
                     collector.on('end', collected => {
                         var e = new Date();
-                        console.log(`Collected ${collected.size} items ${e.toISOString()}`);
+                        console.log(`Collected ${collected.size} items ${e}`);
                         var messages = collected.map(function (message) {
                             return message.content;
                         });
