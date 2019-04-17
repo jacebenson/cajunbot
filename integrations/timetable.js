@@ -137,6 +137,11 @@ module.exports = {
                             }
                         }
                     });
+                    if(msg.content == "!delete"){
+                        msg.delete();
+                        const fetched = await msg.channel.fetchMessages({limit: 99});
+                        msg.channel.bulkDelete(fetched);
+                    }
                 }
             }
         });
