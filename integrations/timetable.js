@@ -94,6 +94,8 @@ module.exports = {
         bot.on("message", function(msg) {
             if(msg.author.id === jace){
                 var now = new Date();
+                now = now.setHours(0);
+                now = now.setMinutes(0);
                 var date = {
                     today:      now,
                     t:          now,
