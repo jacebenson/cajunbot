@@ -70,15 +70,15 @@ var getFromDB = function (filter, msg) {
                     var day = days[new Date(entry.date).getDay()+''];
                     var d = day + ' ' + new Date(entry.date).toLocaleString().split(',')[0];
                     if(index === 0){
-                        msg.channel.send(d);
+                        msg.channel.send('**' + d + '**');
                     } 
                     var m = entry.comment;
                     if(m.indexOf('\n') > 0){
                         m.split('\n').forEach(function(line){
-                            msg.channel.send('  ' + line);
+                            msg.channel.send(line);
                         });
                     } else {
-                        msg.channel.send('  ' + m);
+                        msg.channel.send(m);
                     }
                    // return d + ': ' + m + '\n';
                 });
