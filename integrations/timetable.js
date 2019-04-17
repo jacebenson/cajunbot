@@ -106,8 +106,8 @@ module.exports = {
                 var now = new Date();
                 now.setHours(0,0,0,0);
                 var date = {
-                    today:      now,
-                    t:          now,
+                    today:      new Date(now.setDate(now.getDate()-0)),
+                    t:          new Date(now.setDate(now.getDate()-0)),
                     yesterday:  new Date(now.setDate(now.getDate()-1)),
                     y:          new Date(now.setDate(now.getDate()-1)),
                     thisweek:   new Date(now.setDate(now.getDate()-7)),
