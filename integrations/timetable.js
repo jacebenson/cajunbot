@@ -72,7 +72,7 @@ var getFromDB = function (filter, msg) {
                     if(index === 0){
                         msg.channel.send('**' + d + '**');
                     } 
-                    var m = entry.comment.replace(/What\'s up\?/g,'').trim();
+                    var m = entry.comment.replace(/What\'s up\?\s+/g,'').trim();
                     if(m.length>0){
                         msg.channel.send(m);
                     }
