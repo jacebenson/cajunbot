@@ -72,15 +72,9 @@ var getFromDB = function (filter, msg) {
                     if(index === 0){
                         msg.channel.send('**' + d + '**');
                     } 
-                    var m = entry.comment;
-                    if(m.indexOf('\n') > 0){
-                        m.split('\n').forEach(function(line){
-                            msg.channel.send(line);
-                        });
-                    } else {
-                        if(m!='What\'s up?'){
+                    var m = entry.comment.replace(/What\'s up\?/g,'').trim();
+                    if(m.length>0){
                         msg.channel.send(m);
-                        }
                     }
                    // return d + ': ' + m + '\n';
                 });
