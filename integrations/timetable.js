@@ -117,9 +117,9 @@ module.exports = {
                     '!today':       {date:  {"$gt": date.today}},
                     '!t':           {date:  {"$gt": date.t}},
                     '!yesterday':   { "$and": [{"date": {"$gt": date.yesterday}},{"date": {"$lt": date.today}}]},
-                    '!y':           {date:  {"$gt": date.y}},
-                    '!thisweek':    {date:  {"$gt": date.thisweek}},
-                    '!tw':          {date:  {"$gt": date.tw}},
+                    '!y':           { "$and": [{"date": {"$gt": date.yesterday}},{"date": {"$lt": date.today}}]},
+                    '!thisweek':    { "$and": [{"date": {"$gt": date.thisweek}},{"date": {"$lt": date.today}}]},
+                    '!tw':          { "$and": [{"date": {"$gt": date.thisweek}},{"date": {"$lt": date.today}}]},
                     '!all':         {}
                 };
                 if (msg.author.bot === false) {
