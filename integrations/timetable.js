@@ -73,17 +73,13 @@ var getFromDB = function (filter, msg) {
                         var d = day + ' ' + new Date(entry.date).toLocaleString().split(',')[0];
                         var hour = new Date(entry.date).getHours();
                         if (hour < 13) {
-                            if (hour.length < 2) {
-                                hour = '0' + hour;
-                            }
                             hour = + hour + ' AM: ';
                         } else {
                             hour = (hour - 12);
-
-                            if (hour.length < 2) {
-                                hour = '0' + hour;
-                            }
                             hour = hour + ' PM: ';
+                        }
+                        if(hour.length == 5){
+                            hour = '0' + hour;
                         }
                         if (index === 0 || index%7 === 0) {
                             //msg.channel.send('**' + d + '**');
