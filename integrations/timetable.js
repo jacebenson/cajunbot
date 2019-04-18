@@ -95,7 +95,7 @@ var getFromDB = function (filter, msg) {
                     //message = JSON.stringify(messages);//.substring(0,100);
                     //if (index === result.length) {
                     output.push('```');
-                    msg.channel.send(output.join());
+                    msg.channel.send(output.join('\n'));
                     //}
                 }
                 //msg.channel.send(message);
