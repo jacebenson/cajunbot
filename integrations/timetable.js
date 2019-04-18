@@ -84,12 +84,16 @@ var getFromDB = function (filter, msg) {
                         }
                         if (index === 0 || day !== yesterday) {
                             //msg.channel.send('**' + d + '**');
-                            output.push(d + '['+day+']!=['+yesterday+']');
+                            output.push(d);
                         }
                         var m = entry.comment.replace(/What\'s up\?\s+/g, '').trim();
                         if (m.length > 0) {
                             //msg.channel.send(hour + ' ' + m);
-                            output.push(hour + ' ' + m);
+                            var mlEntry = m.split('\n');
+                            mlEntry.forEach(function(mm){                            
+                                output.push(hour + ' ' + mm);
+                            });
+                            //output.push(hour + ' ' + m);
                         }
                         // return d + ': ' + m + '\n';
                     });
