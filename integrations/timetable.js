@@ -66,15 +66,23 @@ var getFromDB = function (filter, msg) {
                     "5": "Fri",
                     "6": "Sat",
                 };
-                var output = ['```'];
+                var output = ['```', ''];
                 result.forEach(function (entry, index) {
                     var day = days[new Date(entry.date).getDay() + ''];
                     var d = day + ' ' + new Date(entry.date).toLocaleString().split(',')[0];
                     var hour = new Date(entry.date).getHours();
                     if (hour < 13) {
-                        hour = '0' + hour + ' AM: ';
+                        if (hour.length < 2) {
+                            hour = '0' + hour;
+                        }
+                        hour = + hour + ' AM: ';
                     } else {
-                        hour = (hour - 12) + ' PM: ';
+                        hour = (hour - 12);
+
+                        if (hour.length < 2) {
+                            hour = '0' + hour;
+                        }
+                        hour = hour + ' PM: ';
                     }
                     if (index === 0) {
                         //msg.channel.send('**' + d + '**');
@@ -89,8 +97,8 @@ var getFromDB = function (filter, msg) {
                 });
                 //message = JSON.stringify(messages);//.substring(0,100);
                 //if (index === result.length) {
-                    output.push('```');
-                    msg.channel.send(output.join('\n'));
+                output.push('```');
+                msg.channel.send(output.join('\n'));
                 //}
             }
             //msg.channel.send(message);
