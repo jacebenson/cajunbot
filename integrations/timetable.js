@@ -69,12 +69,13 @@ var getFromDB = function (filter, msg) {
                 result.forEach(function(entry, index){
                     var day = days[new Date(entry.date).getDay()+''];
                     var d = day + ' ' + new Date(entry.date).toLocaleString().split(',')[0];
+                    var hour = new Date(entry.date).getHours();
                     if(index === 0){
                         msg.channel.send('**' + d + '**');
                     } 
                     var m = entry.comment.replace(/What\'s up\?\s+/g,'').trim();
                     if(m.length>0){
-                        msg.channel.send(m);
+                        msg.channel.send(hour + ' ' + m);
                     }
                    // return d + ': ' + m + '\n';
                 });
@@ -141,10 +142,7 @@ module.exports = {
             }
         });
         schedule.scheduleJob(props.cronString, function () {
-            var d = new Date();
-            console.log(d);
             bot.fetchUser(jace).then(function (user) {
-                var d = new Date();
                 user.send('What\'s up?').then(function (message) {
                     //collection = new bot.MessageCollector(message.channel,function(){},{max:1});
                     var collector = message.channel.createMessageCollector(function () { return true }, { time: 50 * 20 * 1000 });
