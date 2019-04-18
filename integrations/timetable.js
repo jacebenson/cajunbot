@@ -66,7 +66,7 @@ var getFromDB = function (filter, msg) {
                     var output = ['```', '\n'];
                     result.forEach(function (entry, index) {
                         if(index > 0){
-                            yesterday = [new Date(result[index-1].date).getDay() + ''];
+                            yesterday = days[new Date(result[index-1].date).getDay() + ''];
                         } else {
                             yesterday = false
                         }
