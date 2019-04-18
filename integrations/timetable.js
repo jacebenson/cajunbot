@@ -70,7 +70,7 @@ var getFromDB = function (filter, msg) {
                     var day = days[new Date(entry.date).getDay()+''];
                     var d = day + ' ' + new Date(entry.date).toLocaleString().split(',')[0];
                     var hour = new Date(entry.date).getHours();
-                    if(hour>13){
+                    if(hour<13){
                         hour = hour + ' AM: ';
                     } else {
                         hour = (hour-12) + ' PM: ';
