@@ -53,10 +53,6 @@ var getFromDB = function (filter, msg) {
             if (err) console.log(err);
             var db = client.db('cajonbot');
             db.collection('timetable').find(filter).toArray(function (err, result) {
-                var message = "false";
-                if (err) {
-                    message = JSON.stringify(err);
-                }
                 if (result) {
                     var days = {
                         "0": "Sun",
@@ -88,7 +84,7 @@ var getFromDB = function (filter, msg) {
                         }
                         if (index === 0 || day !== yesterday) {
                             //msg.channel.send('**' + d + '**');
-                            output.push(d);
+                            output.push(d + '['+day+']!=['+yesterday+']');
                         }
                         var m = entry.comment.replace(/What\'s up\?\s+/g, '').trim();
                         if (m.length > 0) {
