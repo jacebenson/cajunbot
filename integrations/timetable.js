@@ -88,7 +88,7 @@ var getFromDB = function (filter, msg) {
                         var m = entry.comment.replace(/What\'s up\?\s+/g, '').trim();
                         if (m.length > 0) {
                             //msg.channel.send(hour + ' ' + m);
-                            output.push(hour + ' ' + m);
+                            output.push(hour + ' ['+hour.length+'] ' + m);
                         }
                         // return d + ': ' + m + '\n';
                     });
