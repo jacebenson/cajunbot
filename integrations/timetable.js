@@ -70,6 +70,7 @@ var getFromDB = function (filter, msg) {
                     var output = ['```', '\n'];
                     result.forEach(function (entry, index) {
                         var day = days[new Date(entry.date).getDay() + ''];
+                        var yesterday = [new Date(result[index-1].date).getDay() + ''];
                         var d = day + ' ' + new Date(entry.date).toLocaleString().split(',')[0];
                         var hour = new Date(entry.date).getHours();
                         if (hour < 13) {
@@ -81,7 +82,7 @@ var getFromDB = function (filter, msg) {
                         if(hour.length == 6){
                             hour = '0' + hour;
                         }
-                        if (index === 0 || index%7 === 0) {
+                        if (index === 0 || day !== yesterday) {
                             //msg.channel.send('**' + d + '**');
                             output.push(d);
                         }
