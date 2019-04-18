@@ -64,34 +64,34 @@ var getFromDB = function (filter, msg) {
                     "3": "Wed",
                     "4": "Thur",
                     "5": "Fri",
-                    "6": "Sat", 
+                    "6": "Sat",
                 };
                 var output = ['```'];
-                result.forEach(function(entry, index){
-                    var day = days[new Date(entry.date).getDay()+''];
+                result.forEach(function (entry, index) {
+                    var day = days[new Date(entry.date).getDay() + ''];
                     var d = day + ' ' + new Date(entry.date).toLocaleString().split(',')[0];
                     var hour = new Date(entry.date).getHours();
-                    if(hour<13){
-                        hour = hour + ' AM: ';
+                    if (hour < 13) {
+                        hour = '0' + hour + ' AM: ';
                     } else {
-                        hour = (hour-12) + ' PM: ';
+                        hour = (hour - 12) + ' PM: ';
                     }
-                    if(index === 0){
+                    if (index === 0) {
                         //msg.channel.send('**' + d + '**');
                         output.push(d);
-                    } 
-                    var m = entry.comment.replace(/What\'s up\?\s+/g,'').trim();
-                    if(m.length>0){
+                    }
+                    var m = entry.comment.replace(/What\'s up\?\s+/g, '').trim();
+                    if (m.length > 0) {
                         //msg.channel.send(hour + ' ' + m);
                         output.push(hour + ' ' + m);
                     }
-                   // return d + ': ' + m + '\n';
-                   if(index === result.length){
-                    output.push('```');
-                    msg.channel.send(output.join('\n'));    
-                   }
+                    // return d + ': ' + m + '\n';
                 });
                 //message = JSON.stringify(messages);//.substring(0,100);
+                if (index === result.length) {
+                    output.push('```');
+                    msg.channel.send(output.join('\n'));
+                }
             }
             //msg.channel.send(message);
             client.close();
@@ -118,31 +118,31 @@ var getFromDB = function (filter, msg) {
 var jace = '190324801821212672';
 module.exports = {
     start: function (bot) {
-        bot.on("message", function(msg) {
-            if(msg.author.id === jace){
+        bot.on("message", function (msg) {
+            if (msg.author.id === jace) {
                 var now = new Date();
-                now.setHours(0,0,0,0);
+                now.setHours(0, 0, 0, 0);
                 var date = {
-                    today:      new Date(now.setDate(now.getDate()-0)),
-                    t:          new Date(now.setDate(now.getDate()-0)),
-                    yesterday:  new Date(now.setDate(now.getDate()-1)),
-                    y:          new Date(now.setDate(now.getDate()-1)),
-                    thisweek:   new Date(now.setDate(now.getDate()-7)),
-                    tw:         new Date(now.setDate(now.getDate()-7)),
+                    today: new Date(now.setDate(now.getDate() - 0)),
+                    t: new Date(now.setDate(now.getDate() - 0)),
+                    yesterday: new Date(now.setDate(now.getDate() - 1)),
+                    y: new Date(now.setDate(now.getDate() - 1)),
+                    thisweek: new Date(now.setDate(now.getDate() - 7)),
+                    tw: new Date(now.setDate(now.getDate() - 7)),
                 }
                 var phrases = {
-                    '!today':       {date: {"$gt": date.today}},
-                    '!t':           {date: {"$gt": date.t}},
-                    '!yesterday':   {date: {"$gt": date.yesterday, "$lt": date.today}},
-                    '!y':           {date: {"$gt": date.yesterday, "$lt": date.today}},
-                    '!thisweek':    {date: {"$gt": date.thisweek, "$lt": date.today}},
-                    '!tw':          {date: {"$gt": date.thisweek, "$lt": date.today}},
-                    '!all':         {}
+                    '!today': { date: { "$gt": date.today } },
+                    '!t': { date: { "$gt": date.t } },
+                    '!yesterday': { date: { "$gt": date.yesterday, "$lt": date.today } },
+                    '!y': { date: { "$gt": date.yesterday, "$lt": date.today } },
+                    '!thisweek': { date: { "$gt": date.thisweek, "$lt": date.today } },
+                    '!tw': { date: { "$gt": date.thisweek, "$lt": date.today } },
+                    '!all': {}
                 };
                 if (msg.author.bot === false) {
                     var wordsArr = msg.content.split(' ');
-                    wordsArr.map(function(word, index) {
-                        for(var phrase in phrases){
+                    wordsArr.map(function (word, index) {
+                        for (var phrase in phrases) {
                             if (word.toLowerCase() === phrase) {
                                 //var message = JSON.stringify(phrases[phrase]);
                                 //msg.channel.send(message);
