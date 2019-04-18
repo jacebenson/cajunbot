@@ -66,6 +66,7 @@ var getFromDB = function (filter, msg) {
                     "5": "Fri",
                     "6": "Sat", 
                 };
+                var output = ['```'];
                 result.forEach(function(entry, index){
                     var day = days[new Date(entry.date).getDay()+''];
                     var d = day + ' ' + new Date(entry.date).toLocaleString().split(',')[0];
@@ -76,14 +77,18 @@ var getFromDB = function (filter, msg) {
                         hour = (hour-12) + ' PM: ';
                     }
                     if(index === 0){
-                        msg.channel.send('**' + d + '**');
+                        //msg.channel.send('**' + d + '**');
+                        output.push(d);
                     } 
                     var m = entry.comment.replace(/What\'s up\?\s+/g,'').trim();
                     if(m.length>0){
-                        msg.channel.send(hour + ' ' + m);
+                        //msg.channel.send(hour + ' ' + m);
+                        output.push(hour + ' ' + m);
                     }
                    // return d + ': ' + m + '\n';
                 });
+                output.push('```');
+                msg.channel.send(output.join('\n'));
                 //message = JSON.stringify(messages);//.substring(0,100);
             }
             //msg.channel.send(message);
