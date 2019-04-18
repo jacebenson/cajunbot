@@ -67,10 +67,9 @@ var getFromDB = function (filter, msg) {
                         "5": "Fri",
                         "6": "Sat",
                     };
-                    var output = ['```', ''];
+                    var output = ['```', '\n'];
                     result.forEach(function (entry, index) {
                         var day = days[new Date(entry.date).getDay() + ''];
-                        var d = day + ' ' + new Date(entry.date).toLocaleString().split(',')[0];
                         var hour = new Date(entry.date).getHours();
                         if (hour < 13) {
                             if (hour.length < 2) {
@@ -85,8 +84,9 @@ var getFromDB = function (filter, msg) {
                             }
                             hour = hour + ' PM: ';
                         }
-                        if (index === 0) {
+                        if (index === 0 || day != days[new Date(result[index-1]).getDay() + '']) {
                             //msg.channel.send('**' + d + '**');
+                            var d = day + ' ' + new Date(result[index]).toLocaleString().split(',')[0];
                             output.push(d);
                         }
                         var m = entry.comment.replace(/What\'s up\?\s+/g, '').trim();
