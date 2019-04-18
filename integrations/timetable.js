@@ -78,7 +78,7 @@ var getFromDB = function (filter, msg) {
                             hour = (hour - 12);
                             hour = hour + ' PM: ';
                         }
-                        if(hour.length == 5){
+                        if(hour.length == 6){
                             hour = '0' + hour;
                         }
                         if (index === 0 || index%7 === 0) {
@@ -88,7 +88,7 @@ var getFromDB = function (filter, msg) {
                         var m = entry.comment.replace(/What\'s up\?\s+/g, '').trim();
                         if (m.length > 0) {
                             //msg.channel.send(hour + ' ' + m);
-                            output.push(hour + ' ['+hour.length+'] ' + m);
+                            output.push(hour + ' ' + m);
                         }
                         // return d + ': ' + m + '\n';
                     });
