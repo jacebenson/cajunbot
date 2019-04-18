@@ -86,9 +86,11 @@ var getFromDB = function (filter, msg) {
                         output.push(hour + ' ' + m);
                     }
                    // return d + ': ' + m + '\n';
+                   if(index === result.length){
+                    output.push('```');
+                    msg.channel.send(output.join('\n'));    
+                   }
                 });
-                output.push('```');
-                msg.channel.send(output.join('\n'));
                 //message = JSON.stringify(messages);//.substring(0,100);
             }
             //msg.channel.send(message);
