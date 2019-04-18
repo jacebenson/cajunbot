@@ -91,7 +91,7 @@ var getFromDB = function (filter, msg) {
                             //msg.channel.send(hour + ' ' + m);
                             var mlEntry = m.split('\n');
                             mlEntry.forEach(function(mm){                            
-                                output.push(hour + ' ' + trim(mm));
+                                output.push(hour + ' ' + mm.trim());
                             });
                             //output.push(hour + ' ' + m);
                         }
