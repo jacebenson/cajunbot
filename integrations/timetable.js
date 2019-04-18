@@ -69,8 +69,12 @@ var getFromDB = function (filter, msg) {
                     };
                     var output = ['```', '\n'];
                     result.forEach(function (entry, index) {
+                        if(index > 0){
+                            yesterday = [new Date(result[index-1].date).getDay() + ''];
+                        } else {
+                            yesterday = false
+                        }
                         var day = days[new Date(entry.date).getDay() + ''];
-                        var yesterday = [new Date(result[index-1].date).getDay() + ''];
                         var d = day + ' ' + new Date(entry.date).toLocaleString().split(',')[0];
                         var hour = new Date(entry.date).getHours();
                         if (hour < 13) {
