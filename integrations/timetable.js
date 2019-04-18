@@ -46,65 +46,69 @@ var postToDB = function (content, user) {
     });
 }
 var getFromDB = function (filter, msg) {
-    MongoClient.connect(mongoURI, {
-        useNewUrlParser: true
-    }, function (err, client) {
-        if (err) console.log(err);
-        var db = client.db('cajonbot');
-        db.collection('timetable').find(filter).toArray(function (err, result) {
-            var message = "false";
-            if (err) {
-                message = JSON.stringify(err);
-            }
-            if (result) {
-                var days = {
-                    "0": "Sun",
-                    "1": "Mon",
-                    "2": "Tue",
-                    "3": "Wed",
-                    "4": "Thur",
-                    "5": "Fri",
-                    "6": "Sat",
-                };
-                var output = ['```', ''];
-                result.forEach(function (entry, index) {
-                    var day = days[new Date(entry.date).getDay() + ''];
-                    var d = day + ' ' + new Date(entry.date).toLocaleString().split(',')[0];
-                    var hour = new Date(entry.date).getHours();
-                    if (hour < 13) {
-                        if (hour.length < 2) {
-                            hour = '0' + hour;
-                        }
-                        hour = + hour + ' AM: ';
-                    } else {
-                        hour = (hour - 12);
+    try {
+        MongoClient.connect(mongoURI, {
+            useNewUrlParser: true
+        }, function (err, client) {
+            if (err) console.log(err);
+            var db = client.db('cajonbot');
+            db.collection('timetable').find(filter).toArray(function (err, result) {
+                var message = "false";
+                if (err) {
+                    message = JSON.stringify(err);
+                }
+                if (result) {
+                    var days = {
+                        "0": "Sun",
+                        "1": "Mon",
+                        "2": "Tue",
+                        "3": "Wed",
+                        "4": "Thur",
+                        "5": "Fri",
+                        "6": "Sat",
+                    };
+                    var output = ['```', ''];
+                    result.forEach(function (entry, index) {
+                        var day = days[new Date(entry.date).getDay() + ''];
+                        var d = day + ' ' + new Date(entry.date).toLocaleString().split(',')[0];
+                        var hour = new Date(entry.date).getHours();
+                        if (hour < 13) {
+                            if (hour.length < 2) {
+                                hour = '0' + hour;
+                            }
+                            hour = + hour + ' AM: ';
+                        } else {
+                            hour = (hour - 12);
 
-                        if (hour.length < 2) {
-                            hour = '0' + hour;
+                            if (hour.length < 2) {
+                                hour = '0' + hour;
+                            }
+                            hour = hour + ' PM: ';
                         }
-                        hour = hour + ' PM: ';
-                    }
-                    if (index === 0) {
-                        //msg.channel.send('**' + d + '**');
-                        output.push(d);
-                    }
-                    var m = entry.comment.replace(/What\'s up\?\s+/g, '').trim();
-                    if (m.length > 0) {
-                        //msg.channel.send(hour + ' ' + m);
-                        output.push(hour + ' ' + m);
-                    }
-                    // return d + ': ' + m + '\n';
-                });
-                //message = JSON.stringify(messages);//.substring(0,100);
-                //if (index === result.length) {
-                output.push('```');
-                msg.channel.send(output.join('\n'));
-                //}
-            }
-            //msg.channel.send(message);
-            client.close();
+                        if (index === 0) {
+                            //msg.channel.send('**' + d + '**');
+                            output.push(d);
+                        }
+                        var m = entry.comment.replace(/What\'s up\?\s+/g, '').trim();
+                        if (m.length > 0) {
+                            //msg.channel.send(hour + ' ' + m);
+                            output.push(hour + ' ' + m);
+                        }
+                        // return d + ': ' + m + '\n';
+                    });
+                    //message = JSON.stringify(messages);//.substring(0,100);
+                    //if (index === result.length) {
+                    output.push('```');
+                    msg.channel.send(output.join('\n'));
+                    //}
+                }
+                //msg.channel.send(message);
+                client.close();
+            });
         });
-    });
+    } catch (e) {
+        msg.channel.send('```' + JSON.stringify(e,'','  ') + '````');
+    }
 };
 /**
  * command: function(bot, msg) {
