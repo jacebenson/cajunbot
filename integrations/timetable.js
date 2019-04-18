@@ -88,10 +88,10 @@ var getFromDB = function (filter, msg) {
                     // return d + ': ' + m + '\n';
                 });
                 //message = JSON.stringify(messages);//.substring(0,100);
-                if (index === result.length) {
+                //if (index === result.length) {
                     output.push('```');
                     msg.channel.send(output.join('\n'));
-                }
+                //}
             }
             //msg.channel.send(message);
             client.close();
