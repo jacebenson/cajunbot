@@ -100,7 +100,16 @@ var getFromDB = function (filter, msg) {
                     //message = JSON.stringify(messages);//.substring(0,100);
                     //if (index === result.length) {
                     output.push('```');
-                    msg.channel.send(output.join('\n'));
+                    var outputStr = output.join('\n');
+                    if(outputStr.length>2000){
+                        var subString = outputStr.substring(0,1997) + '```'
+                        var secondSubString = '```' + outputStr.substring(1997, outputStr.length); 
+                        msg.channel.send(subString);
+                        msg.channel.send(secondSubString);
+                        
+                    }else {
+                        msg.channel.send(outputStr);
+                    }
                     //}
                 }
                 //msg.channel.send(message);
