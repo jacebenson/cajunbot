@@ -33,7 +33,7 @@ module.exports = {
                                 var obj = JSON.parse(data);
                                 obj.forEach(jokeEntry => {
                                     if(jokeEntry.joke && jokeEntry.punchline){
-                                        message += jokeEntry.joke + ' || ' + jokeEntry.punchline + '\n';
+                                        message += jokeEntry.joke + ' || ' + jokeEntry.punchline + ' || \n';
                                     } else {
                                         message += jokeEntry.joke + '\n';
                                     }
