@@ -29,13 +29,15 @@ module.exports = {
                             // The whole response has been received. Print out the result.
                             resp.on('end', () => {
                                 //console.log(JSON.parse(data).explanation);
-                                var message;
+                                var message = '';
                                 var obj = JSON.parse(data);
-                                if (obj.joke && obj.punchline !== null) {
-                                    message = obj.joke + ' || ' + obj.punchline + ' || ';
-                                } else {
-                                    message = obj.joke;
-                                }
+                                obj.forEach(jokeEntry => {
+                                    if(jokeEntry.joke && jokeEntry.punchline){
+                                        message += jokeEntry.joke + ' || ' + jokeEntry.punchline + '\n';
+                                    } else {
+                                        message += jokeEntry.joke + '\n';
+                                    }
+                                });
                                 msg.channel.send(message);
                             });
                         }).on("error", (err) => {
