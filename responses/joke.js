@@ -8,6 +8,8 @@ module.exports = {
             wordsArr.map(function(word, index) {
                 phrases.map(function(phrase) {
                     if (word.toLowerCase() === phrase){
+                        var n = wordsArr[index+1];
+                        console.log('in !joke with phrase "' + phrase + '" and where n = ' + n);
                         var url;
                         if (typeof parseInt(wordsArr[index+1]),10) === "number") {
                             url = 'https://wizardly-wing-66188a.netlify.com/.netlify/functions/server/many/' + wordsArr[index+1];
