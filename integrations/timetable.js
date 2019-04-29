@@ -84,6 +84,9 @@ var getFromDB = function (filter, msg) {
                         }
                         if (index === 0 || day !== yesterday) {
                             //msg.channel.send('**' + d + '**');
+                            if(day !== yesterday){
+                                msg.channel.send('a' + output.toString());
+                            }
                             output.push(d);
                         }
                         var m = entry.comment.replace(/What\'s up\?\s+/g, '').trim();
@@ -159,16 +162,20 @@ module.exports = {
                     '!y': { date: { "$gt": date.yesterday, "$lt": date.today } },
                     '!thisweek': { date: { "$gt": date.thisweek, "$lt": date.today } },
                     '!tw': { date: { "$gt": date.thisweek, "$lt": date.today } },
-                    '!all': {}
+                    '!log': null 
                 };
                 if (msg.author.bot === false) {
                     var wordsArr = msg.content.split(' ');
                     wordsArr.map(function (word, index) {
                         for (var phrase in phrases) {
                             if (word.toLowerCase() === phrase) {
-                                //var message = JSON.stringify(phrases[phrase]);
-                                //msg.channel.send(message);
-                                getFromDB(phrases[phrase], msg);
+                                if(phrase == '!log'){
+                                    postToDB(msg.content.replace('!log',''));
+                                } else {
+                                    //var message = JSON.stringify(phrases[phrase]);
+                                    //msg.channel.send(message);
+                                    getFromDB(phrases[phrase], msg);
+                                }
                             }
                         }
                     });
