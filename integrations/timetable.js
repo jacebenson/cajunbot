@@ -85,7 +85,7 @@ var getFromDB = function (filter, msg) {
                         if (index === 0 || day !== yesterday) {
                             //msg.channel.send('**' + d + '**');
                             if(day !== yesterday){
-                                msg.channel.send('a' + output.toString());
+                                //msg.channel.send('a' + output.toString());
                             }
                             output.push(d);
                         }
@@ -120,7 +120,7 @@ var getFromDB = function (filter, msg) {
             });
         });
     } catch (e) {
-        msg.channel.send('```' + JSON.stringify(e,'','  ') + '````');
+        msg.channel.send('```' + JSON.stringify(e,'','  ') + '```');
     }
 };
 /**
