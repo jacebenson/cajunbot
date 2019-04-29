@@ -7,17 +7,13 @@ module.exports = {
             var wordsArr = msg.content.split(' ');
             wordsArr.map(function(word, index) {
                 phrases.map(function(phrase) {
-                    if (word.toLowerCase() === phrase) {
-                        // curl -H "Accept: application/json" https://icanhazdadjoke.com/
-                        // {"joke": "..."}//look for ? if it exists, wrap with spoiler
-                        // https://official-joke-api.appspot.com/random_joke
-                        // {"setup":"...", "punchline": "..."}
-                        var url = rand([
-                            //'https://official-joke-api.appspot.com/random_joke',
-                            //'https://icanhazdadjoke.com/',
-                            'https://wizardly-wing-66188a.netlify.com/.netlify/functions/server'
-                        ]);
-                        console.log(url);
+                    if (word.toLowerCase() === phrase){
+                        var url;
+                        if (typeof parseInt(wordsArr[index+1]),10) === "number") {
+                            url = 'https://wizardly-wing-66188a.netlify.com/.netlify/functions/server/many/' + wordsArr[index+1];
+                        } else {
+                            url = 'https://wizardly-wing-66188a.netlify.com/.netlify/functions/server';
+                        }
                         url = new URL(url);
                         var options = {
                             timeout: 3000,
@@ -52,11 +48,5 @@ module.exports = {
             });
         }
     },
-    help: '`!joke` Will get a joke from one of two apis.'
+    help: '`!joke` or `joke id=1` or `!joke 10` Will get a joke from one of two apis.'
 };
-
-var rand = function(arr) {
-    //console.log('in random.');
-    var random_choice = Math.floor(Math.random() * arr.length);
-    return arr[random_choice];
-}
