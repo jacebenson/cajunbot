@@ -11,7 +11,7 @@ module.exports = {
                         var n = wordsArr[index + 1];
                         console.log('in !joke with phrase "' + phrase + '" and where n = ' + n);
                         var url;
-                        if (typeof parseInt(n, 10) === "number") {
+                        if (n!= "undefined") {
                             url = 'https://wizardly-wing-66188a.netlify.com/.netlify/functions/server/many/' + wordsArr[index + 1];
                         } else {
                             url = 'https://wizardly-wing-66188a.netlify.com/.netlify/functions/server';
