@@ -83,14 +83,15 @@ var getFromDB = function (filter, msg) {
                             hour = '0' + hour;
                         }
                         
-                        var msgSent = msg.channel.send('```'+d + ' - ' + hour+' '+ entry.comment+'```')
-                        msgSent.awaitReactions({},{max: 1, time: 60000, error: ['time']})
+                        msg.channel.send('```'+d + ' - ' + hour+' '+ entry.comment+'```')
+                        /*msgSent.awaitReactions({},{max: 1, time: 60000, error: ['time']})
                             .then(collected => {
                                 var reaction = collected.first();
                                 if(reaction.emoji.name === '☑' || reaction.emoji.name === '✔' || reaction.emoji.name === '✅'){
                                     msg.channel.send(entry.comment);
                                 }
                             });
+                            */
                         //output.push(hour + ' ' + entry.comment);
                           
                         // return d + ': ' + m + '\n';
