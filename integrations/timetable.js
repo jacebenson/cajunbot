@@ -17,12 +17,12 @@ var props = {
     devCronString: "* * * * 1-5"
 }
 
-var postToDB = function (content, user) {
+var postToDB = function (content, user, type) {
     var now = new Date();
     var timeTableObj = {
+        type: type,
         user: user,
         date: now,
-        lodaldate: now.toLocaleString(),
         comment: content.replace(/,/gm, '\n')
     };
     MongoClient.connect(mongoURI, {
@@ -123,22 +123,6 @@ var getFromDB = function (filter, msg) {
         msg.channel.send('```' + JSON.stringify(e,'','  ') + '```');
     }
 };
-/**
- * command: function(bot, msg) {
-        var phrase = '!jace';
-        if (msg.author.bot === false) {
-            var wordsArr = msg.content.split(' ');
-            wordsArr.map(function(word, index) {
-                if (word.toLowerCase() === phrase) {
-                    var term = wordsArr[index + 1];
-                    var message = 'https://blog.jacebenson.com/' + encodeURI(wordsArr.join(' ').replace(word, '').trim());
-                    msg.channel.send(message);
-                }
-            });
-        }
-    },
-    help: '`!jace string` Searchs jaces blog for the string provided.'
- */
 
 var jace = '190324801821212672';
 module.exports = {
@@ -149,31 +133,41 @@ module.exports = {
                 now.setHours(0, 0, 0, 0);
                 var date = {
                     today: new Date(now.setDate(now.getDate() - 0)),
-                    t: new Date(now.setDate(now.getDate() - 0)),
                     yesterday: new Date(now.setDate(now.getDate() - 1)),
-                    y: new Date(now.setDate(now.getDate() - 1)),
-                    thisweek: new Date(now.setDate(now.getDate() - 7)),
-                    tw: new Date(now.setDate(now.getDate() - 7)),
+                    thisweek: new Date(now.setDate(now.getDate() - 7))
                 }
                 var phrases = {
-                    '!today': { date: { "$gt": date.today } },
-                    '!t': { date: { "$gt": date.t } },
-                    '!yesterday': { date: { "$gt": date.yesterday, "$lt": date.today } },
-                    '!y': { date: { "$gt": date.yesterday, "$lt": date.today } },
-                    '!thisweek': { date: { "$gt": date.thisweek, "$lt": date.today } },
-                    '!tw': { date: { "$gt": date.thisweek, "$lt": date.today } },
+                    '!today':       {query: { date: { "$gt": date.today } }},
+                    '!t':           {query: { date: { "$gt": date.today } }},
+                    '!yesterday':   {query: { date: { "$gt": date.yesterday, "$lt": date.today } }},
+                    '!y':           {query: { date: { "$gt": date.yesterday, "$lt": date.today } }},
+                    '!thisweek':    {query: { date: { "$gt": date.thisweek, "$lte": date.today } }},
+                    '!tw':          {query: { date: { "$gt": date.thisweek, "$lte": date.today } }},
                     '!log': null 
                 };
                 if (msg.author.bot === false) {
                     var wordsArr = msg.content.split(' ');
                     wordsArr.map(function (word, index) {
+                        if(word[0] === '!log' || '-'){
+                        }
+                        switch (word[0]) {
+                            case '-':
+                                postToDB(msg.content.replace(word[0],jace, 'note'));
+                                msg.react('📓');
+                                break;
+                            case '.':
+                                postToDB(msg.content.replace(word[0],jace, 'task'));
+                                msg.react('☑️');
+                            case 'o':
+                                postToDB(msg.content.replace(word[0],jace, 'event'));
+                                msg.react('🎟️');
+                                break;
+                            default:
+                                //
+                        }
                         for (var phrase in phrases) {
                             if (word.toLowerCase() === phrase) {
-                                if(phrase == '!log'){
-                                    postToDB(msg.content.replace('!log',''));
-                                } else {
-                                    //var message = JSON.stringify(phrases[phrase]);
-                                    //msg.channel.send(message);
+                                if(phrases[phrase].query){
                                     getFromDB(phrases[phrase], msg);
                                 }
                             }
@@ -205,9 +199,9 @@ module.exports = {
                             /**
                              * Make connection to DB and post.
                              */
-                            postToDB(messages.toString());
+                            postToDB(messages.toString(), jace, 'note');
+                            user.send("Awesome, logged.");
                         }
-                        user.send("Awesome, logged.");
                     });
                 });
             });
