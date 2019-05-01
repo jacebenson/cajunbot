@@ -141,8 +141,8 @@ module.exports = {
                     '!t':           {query: { date: { "$gt": date.today } }},
                     '!yesterday':   {query: { date: { "$gt": date.yesterday, "$lt": date.today } }},
                     '!y':           {query: { date: { "$gt": date.yesterday, "$lt": date.today } }},
-                    '!thisweek':    {query: { date: { "$gt": date.thisweek, "$lte": date.today } }},
-                    '!tw':          {query: { date: { "$gt": date.thisweek, "$lt": date.today } }},
+                    '!thisweek':    {query: { date: { "$gt": date.thisweek}}},//, "$lte": date.today } }},
+                    '!tw':          {query: { date: { "$gt": date.thisweek}}},//, "$lt": date.today } }},
                     '!log': null 
                 };
                 if (msg.author.bot === false) {
