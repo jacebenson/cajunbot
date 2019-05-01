@@ -148,7 +148,7 @@ module.exports = {
                 if (msg.author.bot === false) {
                     var wordsArr = msg.content.split(' ');
                     msg.channel.send(wordsArr[0]);
-                        switch (word[0]) {
+                        switch (wordsArr[0]) {
                             case '-':
                                 postToDB(msg.content.replace(wordsArr[0],jace, 'note'));
                                 msg.react('📓');
