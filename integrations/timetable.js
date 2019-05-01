@@ -19,8 +19,18 @@ var props = {
 
 var postToDB = function (content, user, logType) {
     var now = new Date();
+    if(user){
+        console.log('user is truthy: '+ user);
+    } else {
+        console.log('user is falsy: '+ user);
+    }
+    if(logType){
+        console.log('logType is truthy: '+ logType);
+    } else {
+        console.log('logType is falsy: '+ logType);
+    }
     var timeTableObj = {
-        logType: logType,
+        type: logType,
         user: user,
         date: now,
         comment: content.replace(/,/gm, '\n')
