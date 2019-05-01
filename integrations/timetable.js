@@ -88,9 +88,11 @@ var getFromDB = function (filter, msg) {
                             if(day !== yesterday){
                                 //msg.channel.send('a' + output.toString());
                             }
-                            output.push(d);
+                            msg.channel.send('```'+d+'```');
+                            //output.push(d);
                         }
-                        output.push(hour + ' ' + entry.comment);
+                        msg.channel.send('```'+hour+' '+ entry.comment+'```')
+                        //output.push(hour + ' ' + entry.comment);
                           
                         // return d + ': ' + m + '\n';
                     });
