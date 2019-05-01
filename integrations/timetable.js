@@ -17,10 +17,10 @@ var props = {
     devCronString: "* * * * 1-5"
 }
 
-var postToDB = function (content, user, type) {
+var postToDB = function (content, user, logType) {
     var now = new Date();
     var timeTableObj = {
-        type: type,
+        logType: logType,
         user: user,
         date: now,
         comment: content.replace(/,/gm, '\n')
