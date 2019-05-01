@@ -89,7 +89,6 @@ var getFromDB = function (filter, msg) {
                             }
                             output.push(d);
                         }
-                        var m = entry.comment.replace(/What\'s up\?\s+/g, '').trim();
                         if (m.length > 0) {
                             //msg.channel.send(hour + ' ' + m);
                             var mlEntry = m.split('\n');
@@ -145,6 +144,8 @@ module.exports = {
                     '!tw':          {query: { date: { "$gt": date.thisweek}}},//, "$lt": date.today } }},
                     '!log': null 
                 };
+                //https://www.petitemelanie.com/en/the-bullet-journal-method-how-it-works/
+                //https://bulletjournal.com/pages/book
                 if (msg.author.bot === false) {
                     var wordsArr = msg.content.split(' ');
                         switch (wordsArr[0]) {
