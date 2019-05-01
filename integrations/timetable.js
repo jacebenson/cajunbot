@@ -83,7 +83,8 @@ var getFromDB = function (filter, msg) {
                             hour = '0' + hour;
                         }
                         
-                        msg.channel.send('```'+d + ' - ' + hour+' '+ entry.comment+'```').awaitReactions({},{max: 1, time: 60000, error: ['time']})
+                        var msgSent = msg.channel.send('```'+d + ' - ' + hour+' '+ entry.comment+'```')
+                        msgSent.awaitReactions({},{max: 1, time: 60000, error: ['time']})
                             .then(collected => {
                                 var reaction = collected.first();
                                 if(reaction.emoji.name === '☑' || reaction.emoji.name === '✔' || reaction.emoji.name === '✅'){
