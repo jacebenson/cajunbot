@@ -156,10 +156,10 @@ module.exports = {
                             case '.':
                                 postToDB(msg.content.replace(wordsArr[0],jace, 'task'));
                                 try {msg.react('☑');}catch(e){console.error(e);}
-                                try {msg.react('✅');}catch(e){console.error(e);}
+                                //try {msg.react('✅');}catch(e){console.error(e);}
                             case 'o':
                                 postToDB(msg.content.replace(wordsArr[0],jace, 'event'));
-                                try {msg.react('🎟️');}catch(e){console.error(e);}
+                                //try {msg.react('🎟️');}catch(e){console.error(e);}
                                 try {msg.react('🎫');}catch(e){console.error(e);}
                                 break;
                             default:
