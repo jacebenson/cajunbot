@@ -160,15 +160,15 @@ module.exports = {
                     //msg.channel.send(wordsArr[0]);
                         switch (wordsArr[0]) {
                             case '-':
-                                postToDB(msg.content.replace(wordsArr[0],jace, 'note'));
+                                postToDB(msg.content.replace(wordsArr[0],''),jace, 'note');
                                 msg.react('📓');
                                 break;
                             case '.':
-                                postToDB(msg.content.replace(wordsArr[0],jace, 'task'));
+                                postToDB(msg.content.replace(wordsArr[0],''),jace, 'task');
                                 try {msg.react('☑');}catch(e){console.error(e);}
                                 break;
                             case 'o':
-                                postToDB(msg.content.replace(wordsArr[0],jace, 'event'));
+                                postToDB(msg.content.replace(wordsArr[0],''),jace, 'event');
                                 try {msg.react('🎫');}catch(e){console.error(e);}
                                 break;
                             default:
