@@ -89,14 +89,6 @@ var getFromDB = function (filter, msg) {
                             }
                             output.push(d);
                         }
-                        if (m.length > 0) {
-                            //msg.channel.send(hour + ' ' + m);
-                            var mlEntry = m.split('\n');
-                            mlEntry.forEach(function(mm){                            
-                                output.push(hour + ' ' + mm.trim());
-                            });
-                            //output.push(hour + ' ' + m);
-                        }
                         // return d + ': ' + m + '\n';
                     });
                     //message = JSON.stringify(messages);//.substring(0,100);
