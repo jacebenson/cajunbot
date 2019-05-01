@@ -131,21 +131,21 @@ module.exports = {
                     thisweek: new Date(now.setDate(now.getDate() - 7))
                 }
                 var phrases = {
-                    '!today':       {query: { date: { "$gt": date.today } }},
-                    '!t':           {query: { date: { "$gt": date.today } }},
-                    '!t-tasks' :           {query: { "$and":[{date: { "$gt": date.today } }, {type: "task"}]}},
-                    '!t-notes' :           {query: { "$and":[{date: { "$gt": date.today } }, {type: "note"}]}},
-                    '!t-events':           {query: { "$and":[{date: { "$gt": date.today } }, {type: "event"}]}},
-                    '!yesterday':   {query: { date: { "$gt": date.yesterday, "$lt": date.today } }},
-                    '!y':           {query: { date: { "$gt": date.yesterday, "$lt": date.today } }},
-                    '!y-tasks' :           {query: { "$and":[{date: { "$gt": date.yesterday } }, {type: "task"}]}},
-                    '!y-notes' :           {query: { "$and":[{date: { "$gt": date.yesterday } }, {type: "note"}]}},
-                    '!y-events':           {query: { "$and":[{date: { "$gt": date.yesterday } }, {type: "event"}]}},
-                    '!thisweek':    {query: { date: { "$gt": date.thisweek}}},//, "$lte": date.today } }},
-                    '!tw':          {query: { date: { "$gt": date.thisweek}}},//, "$lt": date.today } }}
-                    '!tw-tasks' :           {query: { "$and":[{date: { "$gt": date.thisweek } }, {type: "task"}]}},
-                    '!tw-notes' :           {query: { "$and":[{date: { "$gt": date.thisweek } }, {type: "note"}]}},
-                    '!tw-events':           {query: { "$and":[{date: { "$gt": date.thisweek } }, {type: "event"}]}},
+                    '!today':              {query:           { date: { "$gt": date.today                        } }                         },
+                    '!t':                  {query:           { date: { "$gt": date.today                        } }                         },
+                    '!t-tasks' :           {query: { "$and":[{ date: { "$gt": date.today                        } }, { type: "task"}    ] } },
+                    '!t-notes' :           {query: { "$and":[{ date: { "$gt": date.today                        } }, { type: "note"}    ] } },
+                    '!t-events':           {query: { "$and":[{ date: { "$gt": date.today                        } }, { type: "event"}   ] } },
+                    '!yesterday':          {query:           { date: { "$gt": date.yesterday, "$lt": date.today } }                         },
+                    '!y':                  {query:           { date: { "$gt": date.yesterday, "$lt": date.today } }                         },
+                    '!y-tasks' :           {query: { "$and":[{ date: { "$gt": date.yesterday, "$lt": date.today } }, { type: "task"}    ] } },
+                    '!y-notes' :           {query: { "$and":[{ date: { "$gt": date.yesterday, "$lt": date.today } }, { type: "note"}    ] } },
+                    '!y-events':           {query: { "$and":[{ date: { "$gt": date.yesterday, "$lt": date.today } }, { type: "event"}   ] } },
+                    '!thisweek':           {query:           { date: { "$gt": date.thisweek                     } }                         },
+                    '!tw':                 {query:           { date: { "$gt": date.thisweek                     } }                         },
+                    '!tw-tasks' :          {query: { "$and":[{ date: { "$gt": date.thisweek                     } }, { type: "task"}    ] } },
+                    '!tw-notes' :          {query: { "$and":[{ date: { "$gt": date.thisweek                     } }, { type: "note"}    ] } },
+                    '!tw-events':          {query: { "$and":[{ date: { "$gt": date.thisweek                     } }, { type: "event"}   ] } },
                 };
                 //https://www.petitemelanie.com/en/the-bullet-journal-method-how-it-works/
                 //https://bulletjournal.com/pages/book
