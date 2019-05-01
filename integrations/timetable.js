@@ -142,12 +142,12 @@ module.exports = {
                     '!yesterday':   {query: { date: { "$gt": date.yesterday, "$lt": date.today } }},
                     '!y':           {query: { date: { "$gt": date.yesterday, "$lt": date.today } }},
                     '!thisweek':    {query: { date: { "$gt": date.thisweek, "$lte": date.today } }},
-                    '!tw':          {query: { date: { "$gt": date.thisweek, "$lte": date.today } }},
+                    '!tw':          {query: { date: { "$gt": date.thisweek, "$lt": date.today } }},
                     '!log': null 
                 };
                 if (msg.author.bot === false) {
                     var wordsArr = msg.content.split(' ');
-                    msg.channel.send(wordsArr[0]);
+                    //msg.channel.send(wordsArr[0]);
                         switch (wordsArr[0]) {
                             case '-':
                                 postToDB(msg.content.replace(wordsArr[0],jace, 'note'));
