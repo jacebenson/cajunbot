@@ -88,7 +88,9 @@ var getFromDB = function (filter, msg) {
                                 //msg.channel.send('a' + output.toString());
                             }
                             output.push(d);
-                        }
+                        }               
+                        output.push(hour + ' ' + entry.comment);
+                          
                         // return d + ': ' + m + '\n';
                     });
                     //message = JSON.stringify(messages);//.substring(0,100);
