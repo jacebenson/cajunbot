@@ -134,11 +134,11 @@ var getFromDB = function (filter, msg) {
     }
 };
 
-var jace = '190324801821212672';
+var user = '190324801821212672';//jace
 module.exports = {
     start: function (bot) {
         bot.on("message", function (msg) {
-            if (msg.author.id === jace) {
+            if (msg.author.id === user) {
                 var now = new Date();
                 now.setHours(0, 0, 0, 0);
                 var date = {
@@ -157,18 +157,17 @@ module.exports = {
                 };
                 if (msg.author.bot === false) {
                     var wordsArr = msg.content.split(' ');
-                    //msg.channel.send(wordsArr[0]);
                         switch (wordsArr[0]) {
                             case '-':
-                                postToDB(msg.content.replace(wordsArr[0],''),jace, 'note');
+                                postToDB(msg.content, user, 'note');
                                 msg.react('📓');
                                 break;
                             case '.':
-                                postToDB(msg.content.replace(wordsArr[0],''),jace, 'task');
+                                postToDB(msg.content, user, 'task');
                                 try {msg.react('☑');}catch(e){console.error(e);}
                                 break;
                             case 'o':
-                                postToDB(msg.content.replace(wordsArr[0],''),jace, 'event');
+                                postToDB(msg.content, user, 'event');
                                 try {msg.react('🎫');}catch(e){console.error(e);}
                                 break;
                             default:
@@ -187,12 +186,12 @@ module.exports = {
             }
         });
         schedule.scheduleJob(props.cronString, function () {
-            bot.fetchUser(jace).then(function (user) {
+            bot.fetchUser(user).then(function (user) {
                 user.send('What\'s up?').then(function (message) {
                     //collection = new bot.MessageCollector(message.channel,function(){},{max:1});
                     var collector = message.channel.createMessageCollector(function () { return true }, { time: 50 * 20 * 1000 });
                     collector.on('collect', m => {
-                        if (m.author.id === jace) {
+                        if (m.author.id === user) {
                             console.log(`Collected ${m.content}`);
                             collector.stop();
                         }
@@ -209,7 +208,7 @@ module.exports = {
                             /**
                              * Make connection to DB and post.
                              */
-                            postToDB(messages.toString(), jace, 'note');
+                            postToDB(messages.toString(), user, 'note');
                             user.send("Awesome, logged.");
                         }
                     });
