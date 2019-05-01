@@ -168,7 +168,7 @@ module.exports = {
                         for (var phrase in phrases) {
                             if (word.toLowerCase() === phrase) {
                                 if(phrases[phrase].query){
-                                    getFromDB(phrases[phrase], msg);
+                                    getFromDB(phrases[phrase].query, msg);
                                 }
                             }
                         }
