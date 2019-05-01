@@ -133,7 +133,7 @@ module.exports = {
                 var phrases = {
                     '!today':       {query: { date: { "$gt": date.today } }},
                     '!t':           {query: { date: { "$gt": date.today } }},
-                    '!t tasks' :           {query: { $and:[{date: { "$gt": date.today } }, {type: "task"}]},
+                    '!t tasks' :           {query: { $and:[{date: { "$gt": date.today } }, {type: "task"}]}},
                     '!t notes' :           {query: { date: { "$gt": date.today } }},
                     '!t events':           {query: { date: { "$gt": date.today } }},
                     '!yesterday':   {query: { date: { "$gt": date.yesterday, "$lt": date.today } }},
