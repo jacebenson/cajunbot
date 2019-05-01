@@ -21,7 +21,7 @@ var postToDB = function (content, user, logType) {
     var now = new Date();
     var timeTableObj = {
         logType: logType,
-        user: user,
+        user: user.toString(),
         date: now,
         comment: content.replace(/,/gm, '\n')
     };
