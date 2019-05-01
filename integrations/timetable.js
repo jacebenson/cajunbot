@@ -65,7 +65,7 @@ var getFromDB = function (filter, msg) {
                     };
                     var output = ['```', '\n'];
                     result.forEach(function (entry, index) {
-                        console.log(entry);
+                        //console.log(entry);
                         if(index > 0){
                             yesterday = days[new Date(result[index-1].date).getDay() + ''];
                         } else {
@@ -133,11 +133,13 @@ module.exports = {
                 var phrases = {
                     '!today':       {query: { date: { "$gt": date.today } }},
                     '!t':           {query: { date: { "$gt": date.today } }},
+                    '!t tasks' :           {query: { $and:[{date: { "$gt": date.today } }, {type: "task"}]},
+                    '!t notes' :           {query: { date: { "$gt": date.today } }},
+                    '!t events':           {query: { date: { "$gt": date.today } }},
                     '!yesterday':   {query: { date: { "$gt": date.yesterday, "$lt": date.today } }},
                     '!y':           {query: { date: { "$gt": date.yesterday, "$lt": date.today } }},
                     '!thisweek':    {query: { date: { "$gt": date.thisweek}}},//, "$lte": date.today } }},
-                    '!tw':          {query: { date: { "$gt": date.thisweek}}},//, "$lt": date.today } }},
-                    '!log': null 
+                    '!tw':          {query: { date: { "$gt": date.thisweek}}}//, "$lt": date.today } }}
                 };
                 //https://www.petitemelanie.com/en/the-bullet-journal-method-how-it-works/
                 //https://bulletjournal.com/pages/book
@@ -173,32 +175,7 @@ module.exports = {
         });
         schedule.scheduleJob(props.cronString, function () {
             bot.fetchUser(user).then(function (user) {
-                user.send('What\'s up?').then(function (message) {
-                    //collection = new bot.MessageCollector(message.channel,function(){},{max:1});
-                    var collector = message.channel.createMessageCollector(function () { return true }, { time: 50 * 20 * 1000 });
-                    collector.on('collect', m => {
-                        if (m.author.id === user) {
-                            console.log(`Collected ${m.content}`);
-                            collector.stop();
-                        }
-                    });
-
-                    collector.on('end', collected => {
-                        var e = new Date();
-                        console.log(`Collected ${collected.size} items ${e}`);
-                        var messages = collected.map(function (message) {
-                            return message.content;
-                        });
-                        if (messages.length > 0) {
-                            console.log(messages.toString());
-                            /**
-                             * Make connection to DB and post.
-                             */
-                            postToDB(messages.toString(), user, 'note');
-                            user.send("Awesome, logged.");
-                        }
-                    });
-                });
+                user.send('What\'s up?');
             });
         });
     }
