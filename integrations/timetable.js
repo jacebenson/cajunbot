@@ -63,7 +63,6 @@ var getFromDB = function (filter, msg) {
                         "5": "Fri",
                         "6": "Sat",
                     };
-                    var output = ['```', '\n'];
                     result.forEach(function (entry, index) {
                         //console.log(entry);
                         if(index > 0){
@@ -83,33 +82,12 @@ var getFromDB = function (filter, msg) {
                         if(hour.length == 6){
                             hour = '0' + hour;
                         }
-                        if (index === 0 || day !== yesterday) {
-                            //msg.channel.send('**' + d + '**');
-                            if(day !== yesterday){
-                                //msg.channel.send('a' + output.toString());
-                            }
-                            msg.channel.send('```'+d+'```');
-                            //output.push(d);
-                        }
-                        msg.channel.send('```'+hour+' '+ entry.comment+'```')
+                        
+                        msg.channel.send('```'+d + ' - ' + hour+' '+ entry.comment+'```')
                         //output.push(hour + ' ' + entry.comment);
                           
                         // return d + ': ' + m + '\n';
                     });
-                    //message = JSON.stringify(messages);//.substring(0,100);
-                    //if (index === result.length) {
-                    output.push('```');
-                    var outputStr = output.join('\n');
-                    if(outputStr.length>2000){
-                        var subString = outputStr.substring(0,1997) + '```'
-                        var secondSubString = '```' + outputStr.substring(1997, outputStr.length); 
-                        msg.channel.send(subString);
-                        msg.channel.send(secondSubString);
-                        
-                    }else {
-                        msg.channel.send(outputStr);
-                    }
-                    //}
                 }
                 //msg.channel.send(message);
                 client.close();
