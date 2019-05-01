@@ -150,6 +150,8 @@ module.exports = {
                     wordsArr.map(function (word, index) {
                         if(word[0] === '!log' || '-'){
                         }
+                        
+                        msg.channel.send(word[0]);
                         switch (word[0]) {
                             case '-':
                                 postToDB(msg.content.replace(word[0],jace, 'note'));
