@@ -19,21 +19,11 @@ var props = {
 
 var postToDB = function (content, user, logType) {
     var now = new Date();
-    if(user){
-        console.log('user is truthy: '+ user);
-    } else {
-        console.log('user is falsy: '+ user);
-    }
-    if(logType){
-        console.log('logType is truthy: '+ logType);
-    } else {
-        console.log('logType is falsy: '+ logType);
-    }
     var timeTableObj = {
         type: logType,
         user: user,
         date: now,
-        comment: content.replace(/,/gm, '\n')
+        comment: content
     };
     MongoClient.connect(mongoURI, {
         useNewUrlParser: true
@@ -159,15 +149,15 @@ module.exports = {
                     var wordsArr = msg.content.split(' ');
                         switch (wordsArr[0]) {
                             case '-':
-                                postToDB(msg.content, user, 'note');
+                                postToDB(msg.content, msg.author.id, 'note');
                                 msg.react('📓');
                                 break;
                             case '.':
-                                postToDB(msg.content, user, 'task');
+                                postToDB(msg.content, msg.author.id, 'task');
                                 try {msg.react('☑');}catch(e){console.error(e);}
                                 break;
                             case 'o':
-                                postToDB(msg.content, user, 'event');
+                                postToDB(msg.content, msg.author.id, 'event');
                                 try {msg.react('🎫');}catch(e){console.error(e);}
                                 break;
                             default:
