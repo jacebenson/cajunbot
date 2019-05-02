@@ -166,7 +166,7 @@ module.exports = {
                             if (word.toLowerCase() === phrase) {
                                 if(phrase == '!s'){
                                     phrases[phrase] = {query: { "$and":[{ comment : '/.*' +wordsArr[index+1]+ '.*/i'}]}};;
-                                    console.log(phrases[phrase]);
+                                    console.log(JSON.stringify(phrases[phrase],'','  '));
                                 }
                                 if(phrases[phrase].query){
                                     console.log('in query');
