@@ -64,7 +64,7 @@ var getFromDB = function (filter, msg) {
                         "5": "Fri",
                         "6": "Sat",
                     };
-                    var returnArr = [];
+                    var returnObj = {};
                     result.forEach(function (entry, index) {
                         if(index > 0){
                             yesterday = days[new Date(result[index-1].date).getDay() + ''];
@@ -74,23 +74,34 @@ var getFromDB = function (filter, msg) {
                         var day = days[new Date(entry.date).getDay() + ''];
                         var d = day + ' ' + new Date(entry.date).toLocaleString().split(',')[0];
                         if(yesterday != day){
-                            returnArr.push(d);
+                            returnObj[d] = [];
                         }
                         var hour = new Date(entry.date).getHours();
-                        if (hour < 13) {
+                        if (hour < 12) {
                             hour = + hour + ' AM: ';
                         } else {
-                            hour = (hour - 12);
+                            if (hour !==12) {
+                                hour = (hour - 12);
+                           }
                             hour = hour + ' PM: ';
                         }
                         if(hour.length == 6){
                             hour = '0' + hour;
                         }
                         //msg.channel.send('```'+d + ' - ' + hour+' '+ entry.comment+'```');
-                        returnArr.push(day + ': ' + yesterday + '| ' + hour + ' ' + entry.comment);
+                        //returnArr.push(day + ': ' + yesterday + '| ' + hour + ' ' + entry.comment);
+                        returnObj[d].push(hour + ' ' + entry.comment)
                     });
                 }
-                msg.channel.send('```' + returnArr.join('\n') + '```');
+                for(var prop in returnObj){
+                    var outputArr = [];
+                    outputArr.push(prop);
+                    returnObj[prop].forEach(function(thing){
+                        outputArr.push(thing);
+                    });
+                    msg.channel.send('```' + outputArr.join('\n') + '```');
+                }
+                //msg.channel.send('```' + returnArr.join('\n') + '```');
                 //msg.channel.send(message);
                 client.close();
             });
