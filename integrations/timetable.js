@@ -140,7 +140,7 @@ module.exports = {
                     '!tw-notes' :          {query: { "$and":[{ date: { "$gt": date.thisweek                     } }, { type: "note"}    ] } },
                     '!tw-events':          {query: { "$and":[{ date: { "$gt": date.thisweek                     } }, { type: "event"}   ] } },
                 };
-                pharses['!s'] = (function(){
+                phrases['!s'] = (function(){
                     return {
                         query: {query: { "$and":[{ comment : '/.*' +wordsArr[index+1]+ '.*/i'}]}}
                     }
