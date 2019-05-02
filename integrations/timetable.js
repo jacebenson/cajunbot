@@ -164,6 +164,9 @@ module.exports = {
                     wordsArr.map(function (word, index) {
                         for (var phrase in phrases) {
                             if (word.toLowerCase() === phrase) {
+                                if(phrase = '!s'){
+                                    phrases[phrase] = {query: { "$and":[{ comment : '/.*' +wordsArr[index+1]+ '.*/i'}]}};;
+                                }
                                 if(phrases[phrase].query){
                                     getFromDB(phrases[phrase].query, msg);
                                 }
