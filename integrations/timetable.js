@@ -83,15 +83,16 @@ var getFromDB = function (filter, msg) {
                             hour = '0' + hour;
                         }
                         
+                        //msg.channel.send('```'+d + ' - ' + hour+' '+ entry.comment+'```')
                         msg.channel.send('```'+d + ' - ' + hour+' '+ entry.comment+'```')
                         .then(message => {
-                            message.awaitReactions({},{max: 1, time: 60000, error: ['time']})
+                           /* message.awaitReactions({},{max: 1, time: 60000, error: ['time']})
                             .then(collected => {
                                 var reaction = collected.first();
                                 if(reaction.emoji.name === '☑' || reaction.emoji.name === '✔' || reaction.emoji.name === '✅'){
                                     msg.channel.send('completing');
                                 }
-                            });
+                            });*/
                         });
                         /*msgSent.awaitReactions({},{max: 1, time: 60000, error: ['time']})
                             .then(collected => {
