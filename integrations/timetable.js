@@ -166,8 +166,10 @@ module.exports = {
                             if (word.toLowerCase() === phrase) {
                                 if(phrase == '!s'){
                                     phrases[phrase] = {query: { "$and":[{ comment : '/.*' +wordsArr[index+1]+ '.*/i'}]}};;
+                                    console.log(phrases[phrase]);
                                 }
                                 if(phrases[phrase].query){
+                                    console.log('in query');
                                     getFromDB(phrases[phrase].query, msg);
                                 }
                             }
