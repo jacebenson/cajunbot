@@ -47,7 +47,7 @@ var postToDB = function (content, user, logType) {
 }
 var getFromDB = function (filter, msg) {
     try {
-        var returnArr = [];
+        
         MongoClient.connect(mongoURI, {
             useNewUrlParser: true
         }, function (err, client) {
@@ -64,6 +64,7 @@ var getFromDB = function (filter, msg) {
                         "5": "Fri",
                         "6": "Sat",
                     };
+                    var returnArr = [];
                     result.forEach(function (entry, index) {
                         //console.log(entry);
                         if(index > 0){
@@ -83,36 +84,15 @@ var getFromDB = function (filter, msg) {
                         if(hour.length == 6){
                             hour = '0' + hour;
                         }
-                        returnArr.push(d + ' - ' + hour + ' ' + entry.comment);
-                        //msg.channel.send('```'+d + ' - ' + hour+' '+ entry.comment+'```')
-                        msg.channel.send('```'+d + ' - ' + hour+' '+ entry.comment+'```')
-                        .then(message => {
-                           /* message.awaitReactions({},{max: 1, time: 60000, error: ['time']})
-                            .then(collected => {
-                                var reaction = collected.first();
-                                if(reaction.emoji.name === '☑' || reaction.emoji.name === '✔' || reaction.emoji.name === '✅'){
-                                    msg.channel.send('completing');
-                                }
-                            });*/
-                        });
-                        /*msgSent.awaitReactions({},{max: 1, time: 60000, error: ['time']})
-                            .then(collected => {
-                                var reaction = collected.first();
-                                if(reaction.emoji.name === '☑' || reaction.emoji.name === '✔' || reaction.emoji.name === '✅'){
-                                    msg.channel.send(entry.comment);
-                                }
-                            });
-                            */
-                        //output.push(hour + ' ' + entry.comment);
-                          
-                        // return d + ': ' + m + '\n';
+                        //msg.channel.send('```'+d + ' - ' + hour+' '+ entry.comment+'```');
+                        returnArr.push(hour + ' ' + entry.comment);
                     });
                 }
+                msg.channel.send('```' + returnArr.join('\n') + '```');
                 //msg.channel.send(message);
                 client.close();
             });
         });
-        return returnArr;
     } catch (e) {
         msg.channel.send('```' + JSON.stringify(e,'','  ') + '```');
     }
@@ -171,9 +151,7 @@ module.exports = {
                         for (var phrase in phrases) {
                             if (word.toLowerCase() === phrase) {
                                 if(phrases[phrase].query){
-                                    var arr = getFromDB(phrases[phrase].query, msg);
-                                    arr.join('\n');
-                                    msg.channel.send('test```' + arr.join('\n') + '```');
+                                    getFromDB(phrases[phrase].query, msg);
                                 }
                             }
                         }
