@@ -66,7 +66,6 @@ var getFromDB = function (filter, msg) {
                     };
                     var returnArr = [];
                     result.forEach(function (entry, index) {
-                        //console.log(entry);
                         if(index > 0){
                             yesterday = days[new Date(result[index-1].date).getDay() + ''];
                         } else {
@@ -74,8 +73,11 @@ var getFromDB = function (filter, msg) {
                         }
                         var day = days[new Date(entry.date).getDay() + ''];
                         var d = day + ' ' + new Date(entry.date).toLocaleString().split(',')[0];
+                        if(yesterday != day){
+                            returnArr.push(d);
+                        }
                         var hour = new Date(entry.date).getHours();
-                        if (hour < 13) {
+                        if (hour < 12) {
                             hour = + hour + ' AM: ';
                         } else {
                             hour = (hour - 12);
