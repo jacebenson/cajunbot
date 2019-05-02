@@ -47,6 +47,7 @@ var postToDB = function (content, user, logType) {
 }
 var getFromDB = function (filter, msg) {
     try {
+        var returnArr = [];
         MongoClient.connect(mongoURI, {
             useNewUrlParser: true
         }, function (err, client) {
@@ -82,7 +83,7 @@ var getFromDB = function (filter, msg) {
                         if(hour.length == 6){
                             hour = '0' + hour;
                         }
-                        
+                        returnArr.push(d + ' - ' + hour + ' ' + entry.comment);
                         //msg.channel.send('```'+d + ' - ' + hour+' '+ entry.comment+'```')
                         msg.channel.send('```'+d + ' - ' + hour+' '+ entry.comment+'```')
                         .then(message => {
@@ -111,6 +112,7 @@ var getFromDB = function (filter, msg) {
                 client.close();
             });
         });
+        return returnArr;
     } catch (e) {
         msg.channel.send('```' + JSON.stringify(e,'','  ') + '```');
     }
@@ -169,7 +171,9 @@ module.exports = {
                         for (var phrase in phrases) {
                             if (word.toLowerCase() === phrase) {
                                 if(phrases[phrase].query){
-                                    getFromDB(phrases[phrase].query, msg);
+                                    var arr = getFromDB(phrases[phrase].query, msg);
+                                    arr.join('\n');
+                                    msg.channel.send('test```' + arr.join('\n') + '```');
                                 }
                             }
                         }
