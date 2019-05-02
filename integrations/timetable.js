@@ -77,7 +77,7 @@ var getFromDB = function (filter, msg) {
                             returnArr.push(d);
                         }
                         var hour = new Date(entry.date).getHours();
-                        if (hour < 12) {
+                        if (hour < 13) {
                             hour = + hour + ' AM: ';
                         } else {
                             hour = (hour - 12);
@@ -87,7 +87,7 @@ var getFromDB = function (filter, msg) {
                             hour = '0' + hour;
                         }
                         //msg.channel.send('```'+d + ' - ' + hour+' '+ entry.comment+'```');
-                        returnArr.push(hour + ' ' + entry.comment);
+                        returnArr.push(day + ': ' + yesterday + '| ' + hour + ' ' + entry.comment);
                     });
                 }
                 msg.channel.send('```' + returnArr.join('\n') + '```');
