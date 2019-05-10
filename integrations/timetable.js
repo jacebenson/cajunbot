@@ -99,7 +99,14 @@ var getFromDB = function (filter, msg) {
                     returnObj[prop].forEach(function(thing){
                         outputArr.push(thing);
                     });
-                    msg.channel.send('```' + outputArr.join('\n') + '```');
+                    var message = outputArr.join('\n');
+                    if(message.length>1900){
+                        var n = str.lastIndexOf("\n", 1900);
+                        msg.channel.send('```' + message.substring(0,n) + '```');
+                        msg.channel.send('```' + message.substring(n, message.length) + '```');
+                    }else {
+                        msg.channel.send('```' + outputArr.join('\n') + '```');
+                    }
                 }
                 //msg.channel.send('```' + returnArr.join('\n') + '```');
                 //msg.channel.send(message);
@@ -165,6 +172,7 @@ module.exports = {
                         for (var phrase in phrases) {
                             if (word.toLowerCase() === phrase) {
                                 if(phrase == '!s'){
+                                    var regex = /.*.*/i
                                     phrases[phrase] = {query: { "$and":[{ comment : '/.*' +wordsArr[index+1]+ '.*/i'}]}};;
                                     console.log(JSON.stringify(phrases[phrase],'','  '));
                                 }
