@@ -101,7 +101,7 @@ var getFromDB = function (filter, msg) {
                     });
                     var message = outputArr.join('\n');
                     if(message.length>1900){
-                        var n = str.lastIndexOf("\n", 1900);
+                        var n = message.lastIndexOf("\n", 1900);
                         msg.channel.send('```' + message.substring(0,n) + '```');
                         msg.channel.send('```' + message.substring(n, message.length) + '```');
                     }else {
