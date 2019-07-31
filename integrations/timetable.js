@@ -164,7 +164,7 @@ module.exports = {
                                 break;
                             case 'x':
                                 postToDB(msg.content, msg.author.id, 'task');
-                                try {msg.react('☑️');}catch(e){console.error(e);}
+                                try {msg.react('✅');}catch(e){console.error(e);}
                                 break;
                             case 'o':
                                 postToDB(msg.content, msg.author.id, 'event');
