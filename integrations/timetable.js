@@ -13,7 +13,8 @@ var schedule = require('node-schedule');
  */
 var props = {
     minutesToWait: 5,
-    cronString: "0 7-16 * * 1-5",
+    //cronString: "0 7-16 * * 1-5",//at min 0 past hour from 7 to 16
+    cronString: "0 7-16/4 * * *",//at min 0 past every 4th hour from 7 to 16
     devCronString: "* * * * 1-5"
 }
 
