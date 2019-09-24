@@ -1,5 +1,6 @@
 module.exports = {
     command: function(bot, msg) {
+        var acromyn = require('acronym');
         var phrases = ['!ac', '!acroymn'];
         if (msg.author.bot === false) {
             var wordsArr = msg.content.split(' ');
