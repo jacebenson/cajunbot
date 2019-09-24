@@ -4,6 +4,7 @@
   "description": "> A Discord bot for handling messages",
   "main": "server.js",
   "dependencies": {
+    "acronym": "^1.0.0",
     "chance": "^1.0.18",
     "discord.js": "^11.4.2",
     "dotenv": "^7.0.0",
