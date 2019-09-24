@@ -1,4 +1,4 @@
-var acroynm = require('acronym')
+var acroynm = require('acronym');
 module.exports = {
     command: function(bot, msg) {
         var phrases = ['!acronym', '!ac'];
