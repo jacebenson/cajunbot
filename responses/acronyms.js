@@ -1,7 +1,7 @@
 module.exports = {
     command: function(bot, msg) {
         var acronym = require('acronym');
-        var phrases = ['!ac', '!acroymn'];
+        var phrases = ['!ac', '!acronym', '!acromyn'];
         if (msg.author.bot === false) {
             var wordsArr = msg.content.split(' ');
             wordsArr.map(function(word, index) {
@@ -14,5 +14,5 @@ module.exports = {
             });
         }
     },
-    help: '`!ac` test'
+    help: '`!acronym` test or `!ac` test'
 };
