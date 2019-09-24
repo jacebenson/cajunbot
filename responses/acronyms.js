@@ -1,19 +1,17 @@
-var acroynm = require('acronym');
 module.exports = {
     command: function(bot, msg) {
-        var phrases = ['!acronym', '!ac'];
+        var phrases = ['!ac', '!acroymn'];
         if (msg.author.bot === false) {
             var wordsArr = msg.content.split(' ');
             wordsArr.map(function(word, index) {
                 phrases.map(function(phrase) {
                     if (word.toLowerCase() === phrase) {
-                        var search = wordsArr.join('').replace(word, '');
-                        msg.channel.send(acroynm(search));
-                        console.log(entries[0].example)
+                        var message = acromyn(word[index + 1]);
+                        msg.channel.send(message);
                     }
                 });
             });
         }
     },
-    help: '`!acroynm` letters'
+    help: '`!ac` test'
 };
