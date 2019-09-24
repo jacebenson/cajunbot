@@ -7,7 +7,8 @@ module.exports = {
             wordsArr.map(function(word, index) {
                 phrases.map(function(phrase) {
                     if (word.toLowerCase() === phrase) {
-                        var message = acronym(wordsArr[index + 1]);
+                        var ac = wordsArr.toString.replace(phrase,'');
+                        var message = acronym(ac);
                         msg.channel.send(message);
                     }
                 });
