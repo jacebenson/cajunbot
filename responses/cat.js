@@ -1,11 +1,11 @@
 module.exports = {
     command: function(bot, msg) {
-console.log('in cat command');
+//console.log('in cat command');
         var phrase = '!cat';
-console.log('msg.author.bot', msg.author.bot);
+//console.log('msg.author.bot', msg.author.bot);
         if (msg.author.bot === false) {
             var wordsArr = msg.content.split(' ');
-console.log('wordsArr',wordsArr);
+//console.log('wordsArr',wordsArr);
             wordsArr.map(function(word, index) {
                 if (word.toLowerCase() === phrase) {
                     var http = require("https");

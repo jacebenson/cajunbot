@@ -36,7 +36,6 @@ This is the help
 1. Commit your changes (git commit -am 'Add some fooBar')
 1. To Test, run `node chat` 
    - Open http://localhost:3000
-   - Open another http://localhost:3000 incognito
    - Enter your commands to test
 1. Push to the branch (git push origin feature/fooBar)
 1. Create a new Pull Request
