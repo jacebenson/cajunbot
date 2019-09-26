@@ -61,7 +61,8 @@ io.on('connection', function (socket) {
                                             username: 'CajunBot',
                                             message: dataString
                                     }
-                                    socket.broadcast.emit('new message', message);
+                                    //socket.broadcast.emit('new message', message);
+                                    io.emit('new message', message);
                             }
                     },
                     content: data
