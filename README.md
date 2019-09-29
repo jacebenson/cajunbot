@@ -14,6 +14,7 @@ outputs
 
 ```
 This is the help
+!acronym word makes an acronym for word given
 !bang @person Supportive text for an overworked employee.
 !clap some sentence Caps lock and clap backs.
 !docs string Searchs the ServiceNow docs for the string provided.
