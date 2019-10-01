@@ -3,12 +3,12 @@ module.exports = {
     var acronym = require('acronym');
     var phrases = ['!ac', '!acronym', '!acromyn'];
     var specialEndingLetter = {
-      "a": ["Administration","Admin",],
-      "b": ["Business"],
+      "a": ["Administration","Admin","Appeal","Approval"],
+      "b": ["Business","Brand"],
       "c": ["Container", "Control", "Command", "Catalog"],
       "d": ["Direction", "Docket"],
-      "e": ["Error"],
-      "f": ["Field"],
+      "e": ["Error","Employee","Endpoint"],
+      "f": ["Field", "Failure"],
       "g": ["Governance", "Guidance"],
       "h": ["Hook", "Handling", "Harrassement"],
       "i": ["Integration"],
@@ -41,17 +41,12 @@ module.exports = {
             if(firstWord == "snow"){
               message = "Snow is not an acroynm.  It's a word and it's a product, but it isn't ServiceNow."
             } else {
-              var amISpecial = 'acdghmors'.indexOf(lastLetter)>=0;
-              if(amISpecial) {
                 var letter = firstWord.charAt(firstWord.length-1);
                 var businessWords = specialEndingLetter[letter];
                 var businessWord = businessWords[Math.floor(Math.random()*businessWords.length)];
                 firstWord = firstWord.substr(0,firstWord.length-1);
                 message = acronym(firstWord) + ' ' + businessWord;
-              } else {
-                message = acronym(firstWord);
               }
-            }
             msg.channel.send(message);
           }
         });
