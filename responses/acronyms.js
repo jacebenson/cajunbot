@@ -23,9 +23,7 @@ module.exports = {
             if(firstWord == "snow"){
               message = "Snow is not an acroynm.  It's a word and it's a product, but it isn't ServiceNow."
             } else {
-              if(typeof specialEndingLetter[firstWord.charAt(firstWord.length-1)]==undefined) {
-                message = acronym(firstWord);
-              } else {
+              var amISpecial = typeof specialEndingLetter[firstWord.charAt(firstWord.length-1)];
                 console.log(firstWord.charAt(firstWord.length-1));
                 console.log(specialEndingLetter[firstWord.charAt(firstWord.length-1)]);
                 var letter = firstWord.charAt(firstWord.length-1);
@@ -33,6 +31,9 @@ module.exports = {
                 var businessWord = businessWords[Math.floor(Math.random()*businessWords.length)];
                 firstWord = firstWord.substr(0,firstWord.length-1);
                 message = acronym(firstWord) + ' ' + businessWord;
+              if(amISpecial) {
+              } else {
+                message = acronym(firstWord);
               }
             }
             msg.channel.send(message);
