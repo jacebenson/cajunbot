@@ -24,11 +24,8 @@ module.exports = {
             if(firstWord == "snow"){
               message = "Snow is not an acroynm.  It's a word and it's a product, but it isn't ServiceNow."
             } else {
-              var amISpecial = 'acdghmors'.split().indexOf(lastLetter)>=0;
-              console.log('amISpecial', amISpecial);
+              var amISpecial = 'acdghmors'.indexOf(lastLetter)>=0;
               if(amISpecial) {
-                console.log();
-                console.log(specialEndingLetter[firstWord.charAt(firstWord.length-1)]);
                 var letter = firstWord.charAt(firstWord.length-1);
                 var businessWords = specialEndingLetter[letter];
                 var businessWord = businessWords[Math.floor(Math.random()*businessWords.length)];
