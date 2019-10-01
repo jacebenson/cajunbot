@@ -12,7 +12,7 @@ module.exports = {
                         if(firstWord == "snow"){
                             message = "Snow is not an acroynm.  It's a word and it's a product, but it isn't ServiceNow."
                         }
-                        if(firstWord.endsWith("m"){
+                        if(firstWord.endsWith("m")){
                            firstWord = firstWord.substr(0,firstWord.length-1);
                            message = acronym(firstWord) + " management";
                         } else {
