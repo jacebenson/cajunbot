@@ -3,15 +3,32 @@ module.exports = {
     var acronym = require('acronym');
     var phrases = ['!ac', '!acronym', '!acromyn'];
     var specialEndingLetter = {
-      "a": ["Administration"],
-      "c": ["Care", "Control", "Charge", "Command", "Conduct"],
-      "d": ["Direction"],
-      "g": ["Governance", "Government", "Guidance"],
-      "h": ["Handling"],
-      "m": ["Manipulation"],
-      "o": ["Operation", "Oversight"],
-      "r": ["Rule"],
-      "s": ["Supervision"]
+      "a": ["Administration","Admin",],
+      "b": ["Business"],
+      "c": ["Container", "Control", "Command", "Catalog"],
+      "d": ["Direction", "Docket"],
+      "e": ["Error"],
+      "f": ["Field"],
+      "g": ["Governance", "Guidance"],
+      "h": ["Hook", "Handling", "Harrassement"],
+      "i": ["Integration"],
+      "j": ["Jurisdiction"],
+      "k": ["Kanban", "Keyword"],
+      "l": ["Label","Labor"],
+      "m": ["Manipulation","Management", "Meetings"],
+      "n": ["Newsletter", "Need"],
+      "o": ["Operation", "Oversight", "Order"],
+      "p": ["Process", "Pattern", "Policy"],
+      "q": ["Qualification","Quality",],
+      "r": ["Rule","Routine"],
+      "s": ["Supervision", "System"],
+      "t": ["Technique", "Task","Ticket"],
+      "u": ["Undertaking"],
+      "v": ["Variable", "Validation", "Visit","Version","Value"],
+      "w": ["Website","Work"],
+      "x": ["Xenium"],
+      "y": ["Yield"],
+      "z": ["Zoning"],
     };
     if (msg.author.bot === false) {
       var wordsArr = msg.content.split(' ');
