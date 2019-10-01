@@ -18,12 +18,12 @@ module.exports = {
       wordsArr.map(function(word, index) {
         phrases.map(function(phrase) {
           if (word.toLowerCase() === phrase) {
-            var firstWord = wordsArr[index+1];
+            var firstWord = wordsArr[index+1].toLowerCase();
             var message = "";
             if(firstWord == "snow"){
               message = "Snow is not an acroynm.  It's a word and it's a product, but it isn't ServiceNow."
             } else {
-              if(typeof specialEndingLetter[firstWord.charAt(firstWord.length-1)]===undefined) {
+              if(typeof specialEndingLetter[firstWord.charAt(firstWord.length-1)]==undefined) {
                 message = acronym(firstWord);
               } else {
                 console.log(firstWord.charAt(firstWord.length-1));
