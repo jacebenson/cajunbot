@@ -25,6 +25,7 @@ module.exports = {
               message = "Snow is not an acroynm.  It's a word and it's a product, but it isn't ServiceNow."
             } else {
               var amISpecial = 'acdghmors'.split().indexOf(lastLetter)>=0;
+              console.log('amISpecial', amISpecial);
               if(amISpecial) {
                 console.log();
                 console.log(specialEndingLetter[firstWord.charAt(firstWord.length-1)]);
