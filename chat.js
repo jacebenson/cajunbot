@@ -15,12 +15,12 @@ fs.readdir(responsesDirectory, function(err, files) {
   try {
     responses[file] = require(responsesDirectory + file);
   } catch (e) {
-    console.log(e);
+//     console.log(e);
   }
   });
 });   
 server.listen(port, function () {
-  console.log('Server listening at port %d', port);
+//   console.log('Server listening at port %d', port);
 });
 
 // Routing
@@ -43,7 +43,7 @@ io.on('connection', function (socket) {
       username: socket.username,
       message: data
     });
-    console.log(data);
+//     console.log(data);
     for(var response in responses){
             var msg = {
                     author: {
@@ -57,7 +57,7 @@ io.on('connection', function (socket) {
                     },
                     channel: {
                             send: function(dataString){
-                                    console.log('trying to send message back...', dataString);
+//                                     console.log('trying to send message back...', dataString);
                                     var message = {
                                             username: 'CajunBot',
                                             message: dataString
