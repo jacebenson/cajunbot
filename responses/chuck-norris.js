@@ -25,13 +25,11 @@ module.exports = {
                             var template = chuckNorrisTemplates[Math.floor(Math.random()*chuckNorrisTemplates.length)];
                             var body = Buffer.concat(chuckChunks);
                             var chuckObj = JSON.parse(body.toString());
-                            console.log('chuckObj', chuckObj);
                             var path = "/caption_image?";
                             path += "username=" + process.env.imgflipUSER + "&";
                             path += "password=" + process.env.imgflipPASS + "&";
                             path += "template_id=" + template + "&";
                             path += "text1=" +  encodeURIComponent(chuckObj.value);
-                            console.log(path);
                             var imgFlip = http.request({
                                 "method": "POST",
                                 "hostname": "api.imgflip.com",
@@ -48,7 +46,6 @@ module.exports = {
                                 imgFlipRes.on("end", function () {
                                     var imgFlipBody = Buffer.concat(imgChunks);
                                     var imgFlipObj = JSON.parse(imgFlipBody.toString());
-                                    console.log(imgFlipObj);
                                     msg.channel.send(imgFlipObj.data.url);
                                 });
                             });

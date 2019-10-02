@@ -1,7 +1,6 @@
 var MongoClient = require('mongodb').MongoClient;
 var mongoURI = process.env.MONGODB_URI;
 var rand = function (arr) {
-    //console.log('in random.');
     var random_choice = Math.floor(Math.random() * arr.length);
     return arr[random_choice];
 }
@@ -206,7 +205,7 @@ var compliments = function (user, points) {
         });
         return responses;
     } catch (e) {
-        console.log(e);
+        console.error(e);
     }
 }
 
@@ -233,19 +232,16 @@ module.exports = {
                                 var subst = `$2`;
                                 thingName = thingName.replace(userregex, subst);
                                 msg.mentions.members.forEach(function (member) {
-                                    console.log('member', member.user.username)
                                     if (thingName == member.user.id) {
                                         thingName = member.user.username;
                                     }
                                 });
                             }
-                            // console.log(`Found match, group ${groupIndex}: ${match}`);
                             
                           MongoClient.connect(mongoURI, {
                                 useNewUrlParser: true
                             }, function (err, client) {
-                                //console.log('connected to mongo');
-                                if (err) console.log(err);
+                                if (err) console.error(err);
                                 var db = client.db('cajonbot');
                                 // look for user in db
                                 //var queryObj = {'thing': thing};
@@ -260,24 +256,19 @@ module.exports = {
 
                                 db.collection('points').findOne(queryObj, function (err, result) {
                                     if (result) {
-                                        //console.log(result);
-                                        //console.log(result.thing + ': ' + result.points);
                                         if (result.thing != '<@' + msg.author.id + '>') {
                                             result.points = parseInt(result.points, 10) + 1;
                                             result.name = thingName.toLowerCase();
                                             result.display = thingName;
-                                            console.log(result.thing + ': ' + result.points);
                                             db.collection('points').updateOne(queryObj, {
                                                 $set: result
                                             },
                                                 function (err, writeResult) {
                                                     if (err) {
-                                                        console.log(err);
+                                                        console.error(err);
                                                     }
                                                     client.close();
-                                                    // console.log('Updating points: ' + thing);
                                                     var message = rand(compliments(thing, result.points));
-                                                    // console.log(message);
                                                     msg.channel.send(message);
                                                     msg.react('💯');
                                                 });
@@ -294,9 +285,8 @@ module.exports = {
                                         };
                                         db.collection('points').insertOne(myObj, function (err, res) {
                                             if (err) {
-                                                console.log(err);
+                                                console.error(err);
                                             }
-                                            // console.log('Inserting points: ' + thing);
                                             var message = rand(compliments(thing, 1));
                                             msg.channel.send(message);
                                             msg.react('💯');

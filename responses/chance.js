@@ -38,7 +38,7 @@ module.exports = {
                 });
             }
         } catch (e) {
-            console.log(e);
+            console.error(e);
         }
     },
     help: '`#d#` rolls dice'
