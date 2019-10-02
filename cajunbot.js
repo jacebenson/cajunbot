@@ -24,7 +24,7 @@ fs.readdir(responsesDirectory, function(err, files) {
   try {
     responses[file] = require(responsesDirectory + file);
   } catch (e) {
-    console.log(e);
+//     console.log(e);
   }
   });
 });
@@ -49,9 +49,9 @@ bot.on("message", function(msg) {
         msg.content
       ];
     }
-    console.log(messageLog.join(' '));
+//     console.log(messageLog.join(' '));
   }catch(error){
-    console.log(error);
+//     console.log(error);
   }
   for(var response in responses){
     responses[response].command(bot, msg, responses);
@@ -59,7 +59,7 @@ bot.on("message", function(msg) {
 });
 
 bot.on('ready', () => { // When the bot is ready
-    console.log('CajonBot Ready!'); // Log "Ready!"
+//     console.log('CajonBot Ready!'); // Log "Ready!"
     require('./integrations/timetable').start(bot);//disabled after token was revoked
 });
 //bot.on("presenceUpdate", function(msg) {
