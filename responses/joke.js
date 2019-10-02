@@ -13,9 +13,7 @@ module.exports = {
                             n = 20;
                             msg.channel.send("That's too many.  Here's 20.");
                         }
-                        console.log('in !joke with phrase "' + phrase + '" and where n = ' + n);
                         var url = 'https://wizardly-wing-66188a.netlify.com/.netlify/functions/server/many/' + n;
-                        console.log(url);
                         url = new URL(url);
                         var options = {
                             timeout: 3000,
@@ -32,7 +30,6 @@ module.exports = {
                             });
                             // The whole response has been received. Print out the result.
                             resp.on('end', () => {
-                                //console.log(JSON.parse(data).explanation);
                                 var obj = JSON.parse(data);
                                 obj.forEach(jokeEntry => {
                                     var message = '';

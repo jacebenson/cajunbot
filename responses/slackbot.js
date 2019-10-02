@@ -28,14 +28,13 @@ module.exports = {
             }
         }
     }catch(e){
-        console.log(e);
+        console.error(e);
     }
     },
     help: 'Some strings have custom responses (try `facepalm`)'
 };
 
 var rand = function(arr) {
-    //console.log('in random.');
     var random_choice = Math.floor(Math.random() * arr.length);
     return arr[random_choice];
 }
