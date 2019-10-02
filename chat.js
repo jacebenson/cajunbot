@@ -1,3 +1,4 @@
+require('dotenv').config();
 // Setup basic express server
 var fs = require('fs');
 var express = require('express');
