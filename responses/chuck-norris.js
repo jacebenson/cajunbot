@@ -21,6 +21,10 @@ module.exports = {
                                 '38579871',//Chuck-Norris-Guns
                                 '16321730',//Chuck-Norris-Finger
                                 '3411280',//Chuck-Norris-Flex
+                                '126120154',//Chuck-Norris-Jean-Claude-VanDamme
+                                '241304',//Chuck-Norris-Approves
+                                '16483127',//Chuck-Norris-Hat-Tip
+                                '40373861',//Chuck-Norris-Plane-Splits
                             ];
                             var template = chuckNorrisTemplates[Math.floor(Math.random()*chuckNorrisTemplates.length)];
                             var body = Buffer.concat(chuckChunks);
