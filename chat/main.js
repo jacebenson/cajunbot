@@ -89,8 +89,19 @@ $(function() {
     var $usernameDiv = $('<span class="username"/>')
       .text(data.username)
       .css('color', getUsernameColor(data.username));
+    if(data.username === "CajunBot"){
+      if(data.message.indexOf('.jpg')>=0){
+        data.message = '<img src="' + data.message + '" />';
+        var $messageBodyDiv = $('<span class="messageBody">')
+        .html(data.message);        
+      } else {
+        var $messageBodyDiv = $('<span class="messageBody">')
+        .text(data.message);
+      }
+    } else {
     var $messageBodyDiv = $('<span class="messageBody">')
       .text(data.message);
+    }
 
     var typingClass = data.typing ? 'typing' : '';
     var $messageDiv = $('<li class="message"/>')
@@ -240,6 +251,10 @@ $(function() {
 
   // Whenever the server emits 'new message', update the chat body
   socket.on('new message', function (data) {
+    if(data.message.indexOf('.jpg')>=0){
+      console.log('can i render a image?');
+    }
+    console.log(data);
     addChatMessage(data);
   });
 
