@@ -10,10 +10,7 @@ module.exports = {
                         var search = wordsArr.join('').replace(word, '');
                         ud.term(search).then((result) => {
                             var entries = result.entries
-                            console.log(entries[0].word)
-                            console.log(entries[0].definition)
                             msg.channel.send(entries[0].definition);    
-                            console.log(entries[0].example)
                           }).catch((error) => {
                             console.error(error.message)
                           })
@@ -26,7 +23,6 @@ module.exports = {
 };
 
 var rand = function (arr) {
-    //console.log('in random.');
     var random_choice = Math.floor(Math.random() * arr.length);
     return arr[random_choice];
 }

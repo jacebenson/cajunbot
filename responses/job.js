@@ -209,7 +209,7 @@ module.exports = {
             });
         }
         } catch(e){
-        console.log(e);
+        console.error(e);
         }
     },
     help: '`!job` Creates a random message a SN Dev may receive from a recruiter.'

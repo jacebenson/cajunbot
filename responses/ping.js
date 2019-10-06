@@ -30,7 +30,6 @@ module.exports = {
                         });
                         // The whole response has been received. Print out the result.
                         resp.on('end', () => {
-                            //console.log(JSON.parse(data).explanation);
                             var message = "`" + url + "` has a status of " + resp.statusCode;
                             if(resp.statusCode === 200){
                                 message = "`" + url + "` is up with a status of " + resp.statusCode;

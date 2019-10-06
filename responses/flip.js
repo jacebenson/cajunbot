@@ -99,7 +99,6 @@ module.exports = {
 };
 
 var rand = function(arr) {
-    //console.log('in random.');
     var random_choice = Math.floor(Math.random() * arr.length);
     return arr[random_choice];
 }
