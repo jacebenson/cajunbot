@@ -10,15 +10,15 @@ var port = process.env.PORT || 3000;
 var responses = {};
 var responsesDirectory = './responses/';
 
-fs.readdir(responsesDirectory, function(err, files) {
- files.forEach(function(file) {
-  try {
-    responses[file] = require(responsesDirectory + file);
-  } catch (e) {
-    console.log(e);
-  }
+fs.readdir(responsesDirectory, function (err, files) {
+  files.forEach(function (file) {
+    try {
+      responses[file] = require(responsesDirectory + file);
+    } catch (e) {
+      console.log(e);
+    }
   });
-});   
+});
 server.listen(port, function () {
   console.log('Server listening at port %d', port);
 });
@@ -44,32 +44,32 @@ io.on('connection', function (socket) {
       message: data
     });
     console.log(data);
-    for(var response in responses){
-            var msg = {
-                    author: {
-                            bot: (function(){
-                                    var returnBool = false;
-                                    if(socket.username === 'CajunBot'){
-                                            returnBool = true;
-                                    }
-                                    return returnBool;
-                            })()
-                    },
-                    channel: {
-                            send: function(dataString){
-                                    console.log('trying to send message back...', dataString);
-                                    var message = {
-                                            username: 'CajunBot',
-                                            message: dataString
-                                    }
-                                    //socket.broadcast.emit('new message', message);
-                                    io.emit('new message', message);
-                            }
-                    },
-                    content: data
-            };
-     responses[response].command(bot,msg , responses);
-   }
+    for (var response in responses) {
+      var msg = {
+        author: {
+          bot: (function () {
+            var returnBool = false;
+            if (socket.username === 'CajunBot') {
+              returnBool = true;
+            }
+            return returnBool;
+          })()
+        },
+        channel: {
+          send: function (dataString) {
+            //console.log('trying to send message back...', dataString);
+            var message = {
+              username: 'CajunBot',
+              message: dataString
+            }
+            //socket.broadcast.emit('new message', message);
+            io.emit('new message', message);
+          }
+        },
+        content: data
+      };
+      responses[response].command(bot, msg, responses);
+    }
   });
 
   // when the client emits 'add user', this listens and executes
