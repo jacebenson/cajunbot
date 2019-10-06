@@ -91,7 +91,7 @@ $(function() {
       .css('color', getUsernameColor(data.username));
     if(data.username === "CajunBot"){
       if(data.message.indexOf('.jpg')>=0){
-        data.message = '<img src="' + data.message + '" />';
+        data.message += '<img src="' + data.message + '" />';
         var $messageBodyDiv = $('<span class="messageBody">')
         .html(data.message);        
       } else {
@@ -252,9 +252,9 @@ $(function() {
   // Whenever the server emits 'new message', update the chat body
   socket.on('new message', function (data) {
     if(data.message.indexOf('.jpg')>=0){
-      console.log('can i render a image?');
+      //console.log('can i render a image?');
     }
-    console.log(data);
+    //console.log(data);
     addChatMessage(data);
   });
 
