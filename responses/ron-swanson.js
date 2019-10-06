@@ -15,16 +15,52 @@ module.exports = {
                     };
 
                     var req = http.request(options, function (res) {
-                        var chunks = [];
+                        var ronChunks = [];
 
                         res.on("data", function (chunk) {
-                            chunks.push(chunk);
+                            ronChunks.push(chunk);
                         });
 
                         res.on("end", function () {
-                            var body = Buffer.concat(chunks);
-                            var responseObj = JSON.parse(body.toString());
-                            msg.channel.send(responseObj[0]);
+                            var ronSwansonTemplates = [
+                                '358280',//Ron-Swanson
+                                '11906590',//Being served food
+                                '117119699',//BBQ
+                                '71724294',//Flag
+                                '11906883',//Furrowed Brow
+                                '122336292',//At fireplace
+                                '43357204',//Happy
+                            ];
+                            var template = ronSwansonTemplates[Math.floor(Math.random()*ronSwansonTemplates.length)];
+                            var body = Buffer.concat(ronChunks);
+                            var ronObj = JSON.parse(body.toString())[0];
+                            var path = "/caption_image?";
+                            path += "username=" + process.env.imgflipUSER + "&";
+                            path += "password=" + process.env.imgflipPASS + "&";
+                            path += "template_id=" + template + "&";
+                            path += "text1=" +  encodeURIComponent(ronObj);
+                            var imgFlip = http.request({
+                                "method": "POST",
+                                "hostname": "api.imgflip.com",
+                                "port": null,
+                                "path": path, 
+                                "headers": {
+                                    "Content-Type": "application/x-www-form-urlencoded"
+                                }
+                            }, function (imgFlipRes) {
+                                var imgChunks = [];
+                                imgFlipRes.on("data", function (chunk) {
+                                    imgChunks.push(chunk);
+                                });
+                                imgFlipRes.on("end", function () {
+                                    var imgFlipBody = Buffer.concat(imgChunks);
+                                    var imgFlipObj = JSON.parse(imgFlipBody.toString());
+                                    msg.channel.send(imgFlipObj.data.url);
+                                });
+                            });
+                            imgFlip.write(JSON.stringify({}));
+                            imgFlip.end();
+                            
                         });
                     });
 
