@@ -7,20 +7,44 @@ const client = new Wit({
 module.exports = {
     command: function(bot, msg, responses) {
         if (msg.author.bot === false) {
+            if(msg.content.charAt(0) != '!'){
             client.message(msg.content, {})
             .then((data)=>{
                 console.log('yay, got wit.ai response: ', JSON.stringify(data));
+
                 for(var prop in data.entities){
-                    console.log(prop, data.entities[prop]);
-                    if(prop === "joke" && data.entities[prop][0].confidence > 0.75){
-                        //console.log(responses);
-                        responses['joke.js']._command(msg, 1);
+                    if(prop === "intent"){
+                        data.entities[prop].forEach(function(intent){
+                            console.log(intent);
+                            if(intent.value === 'dad-joke' && intent.confidence > 0.9){
+                                responses['joke.js']._command(msg, 1);
+                            }
+                            if(intent.value === 'quote' && intent.confidence >0.9){
+                                if(data.entities.contact){
+                                    console.log(data.entities.contact[0]);
+                                    if(data.entities.contact[0].value.toLowerCase().indexOf('chuck')>=0){
+                                        console.log('chuck meme incoming');
+                                        responses['chuck-norris.js']._command(msg);
+                                    } else if(data.entities.contact[0].value.toLowerCase().indexOf('ron')>=0){
+                                        console.log('ron meme incoming');
+                                        responses['ron-swanson.js']._command(msg);
+                                    } else {
+                                        console.log('quote about who? ', data.entities.contact[0].value);
+                                    }
+
+                                } else {
+                                    var randomPerson = [
+                                        'chuck',
+                                        'ron'
+                                    ]
+                                    console.log('tell me a quote...', JSON.stringify(data,'',' '));
+                                }
+                            }
+                        }); 
                     }
-                    //if(prop === "contact" && data.entities[prop][0].confidence > 0.75){
-                    //    msg.channel.send("This is about... " + data.entities[prop][0].value);
-                    //}
                 }
             })
         }
+    }
     }
 };
