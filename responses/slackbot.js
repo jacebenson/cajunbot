@@ -1,7 +1,22 @@
 module.exports = {
     command: function (bot, msg) {
         try{
-        var disappointed = ["(－‸ლ)","ಠ_ಠ","(╥﹏╥)","(◞‸◟；)", "òó", "┗[© ♒ ©]┛ ︵ ┻━┻"];
+        var disappointed = [
+            "(－‸ლ)",
+            "ಠ_ಠ",
+            "(╥﹏╥)",
+            "(◞‸◟；)",
+            "òó",
+            "┗[© ♒ ©]┛ ︵ ┻━┻",
+            "https://cdn.pixabay.com/photo/2017/07/17/22/00/furious-2514031_960_720.jpg",//robin higgins furious
+            "https://cdn.pixabay.com/photo/2018/02/02/21/41/crazy-3126441_960_720.jpg",//robin higgins angry
+            "https://cdn.pixabay.com/photo/2017/06/09/05/21/sad-2385795_960_720.jpg",//robin higgins sad
+            "https://cdn.pixabay.com/photo/2018/02/02/21/42/bored-3126445_960_720.jpg",//robin higgins eyeroll
+            "https://cdn.pixabay.com/photo/2018/02/02/21/41/angry-3126438_960_720.jpg",//robin higgins upset
+            "https://cdn.pixabay.com/photo/2017/08/25/21/43/upset-2681482_960_720.jpg",//robin higgins upset with hands
+            "https://cdn.pixabay.com/photo/2018/02/02/21/40/angry-3126437_960_720.jpg",//robin higgins furious
+            "https://cdn.pixabay.com/photo/2017/07/17/22/01/eye-roll-2514034_960_720.jpg"//robin higgins annoyed
+        ];
         var phrases = {
             'dom manipulation':     disappointed,
             'global business rule': disappointed,
