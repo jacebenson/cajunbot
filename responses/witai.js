@@ -28,7 +28,7 @@ module.exports = {
                         }
                     });
                     console.log(mentionsCajunBot);
-                    if(mentionsCajunBot.length >= 1){
+                    if(mentionsCajunBot.length >= 1 || msg.channel.type === 'dm'){
 
 
                         for(var prop in data.entities){
