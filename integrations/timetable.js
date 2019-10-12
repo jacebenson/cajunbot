@@ -119,7 +119,7 @@ var getFromDB = function (filter, msg) {
     }
 };
 
-var user = '190324801821212672';//jace
+var user = process.env.DISCORD_USER;
 module.exports = {
     start: function (bot) {
         bot.on("message", function (msg) {
