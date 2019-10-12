@@ -20,8 +20,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node cajunbot.js"
+    "start": "node cajunbot.js",
+    "test": "node chat.js"
   },
   "repository": {
     "type": "git",

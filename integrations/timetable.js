@@ -121,80 +121,88 @@ var getFromDB = function (filter, msg) {
 
 var user = process.env.DISCORD_USER;
 module.exports = {
-    start: function (bot) {
-        bot.on("message", function (msg) {
-            if (msg.author.id === user) {
-                var now = new Date();
-                now.setHours(0, 0, 0, 0);
-                var date = {
-                    today: new Date(now.setDate(now.getDate() - 0)),
-                    yesterday: new Date(now.setDate(now.getDate() - 1)),
-                    thisweek: new Date(now.setDate(now.getDate() - 7))
-                }
-                var phrases = {
-                    '!today':              {query:           { date: { "$gt": date.today                        } }                         },
-                    '!t':                  {query:           { date: { "$gt": date.today                        } }                         },
-                    '!t-tasks' :           {query: { "$and":[{ date: { "$gt": date.today                        } }, { type: "task"}    ] } },
-                    '!t-notes' :           {query: { "$and":[{ date: { "$gt": date.today                        } }, { type: "note"}    ] } },
-                    '!t-events':           {query: { "$and":[{ date: { "$gt": date.today                        } }, { type: "event"}   ] } },
-                    '!yesterday':          {query:           { date: { "$gt": date.yesterday, "$lt": date.today } }                         },
-                    '!y':                  {query:           { date: { "$gt": date.yesterday, "$lt": date.today } }                         },
-                    '!y-tasks' :           {query: { "$and":[{ date: { "$gt": date.yesterday, "$lt": date.today } }, { type: "task"}    ] } },
-                    '!y-notes' :           {query: { "$and":[{ date: { "$gt": date.yesterday, "$lt": date.today } }, { type: "note"}    ] } },
-                    '!y-events':           {query: { "$and":[{ date: { "$gt": date.yesterday, "$lt": date.today } }, { type: "event"}   ] } },
-                    '!thisweek':           {query:           { date: { "$gt": date.thisweek                     } }                         },
-                    '!tw':                 {query:           { date: { "$gt": date.thisweek                     } }                         },
-                    '!tw-tasks' :          {query: { "$and":[{ date: { "$gt": date.thisweek                     } }, { type: "task"}    ] } },
-                    '!tw-notes' :          {query: { "$and":[{ date: { "$gt": date.thisweek                     } }, { type: "note"}    ] } },
-                    '!tw-events':          {query: { "$and":[{ date: { "$gt": date.thisweek                     } }, { type: "event"}   ] } },
-                };
-                phrases['!s'] = true;
-                //https://www.petitemelanie.com/en/the-bullet-journal-method-how-it-works/
-                //https://bulletjournal.com/pages/book
-                if (msg.author.bot === false) {
-                    var wordsArr = msg.content.split(' ');
-                        switch (wordsArr[0]) {
-                            case '-':
-                                postToDB(msg.content, msg.author.id, 'note');
-                                msg.react('📓');
-                                break;
-                            case '.':
-                                postToDB(msg.content, msg.author.id, 'task');
-                                try {msg.react('✅');}catch(e){console.error(e);}
-                                break;
-                            case 'x':
-                                postToDB(msg.content, msg.author.id, 'task');
-                                try {msg.react('✅');}catch(e){console.error(e);}
-                                break;
-                            case 'o':
-                                postToDB(msg.content, msg.author.id, 'event');
-                                try {msg.react('🎫');}catch(e){console.error(e);}
-                                break;
-                            default:
-                                //
-                        }
-                    wordsArr.map(function (word, index) {
-                        for (var phrase in phrases) {
-                            if (word.toLowerCase() === phrase) {
-                                if(phrase == '!s'){
-                                    var regex = /.*.*/i
-                                    phrases[phrase] = {query: { "$and":[{ comment : '/.*' +wordsArr[index+1]+ '.*/i'}]}};;
-                                    console.log(JSON.stringify(phrases[phrase],'','  '));
-                                }
-                                if(phrases[phrase].query){
-                                    console.log('in query');
-                                    getFromDB(phrases[phrase].query, msg);
-                                }
-                            }
-                        }
-                    });
-                }
-            }
-        });
+    agenda: function(){
         schedule.scheduleJob(props.cronString, function () {
             bot.fetchUser(user).then(function (user) {
                 user.send('What\'s up?');
             });
+        });
+    },
+    command: function(bot, msg) {
+        console.log('in timetable as ', user, msg.author.id);
+        if (msg.author.id === user) {
+            var now = new Date();
+            now.setHours(0, 0, 0, 0);
+            var date = {
+                today:     new Date( now.setDate(now.getDate() - 0) ),
+                yesterday: new Date( now.setDate(now.getDate() - 1) ),
+                thisweek:  new Date( now.setDate(now.getDate() - 7) )
+            }
+            var phrases = {
+                '!today':              {query:           { date: { "$gt": date.today                        } }                         },
+                '!t':                  {query:           { date: { "$gt": date.today                        } }                         },
+                '!t-tasks' :           {query: { "$and":[{ date: { "$gt": date.today                        } }, { type: "task"}    ] } },
+                '!t-notes' :           {query: { "$and":[{ date: { "$gt": date.today                        } }, { type: "note"}    ] } },
+                '!t-events':           {query: { "$and":[{ date: { "$gt": date.today                        } }, { type: "event"}   ] } },
+                '!yesterday':          {query:           { date: { "$gt": date.yesterday, "$lt": date.today } }                         },
+                '!y':                  {query:           { date: { "$gt": date.yesterday, "$lt": date.today } }                         },
+                '!y-tasks' :           {query: { "$and":[{ date: { "$gt": date.yesterday, "$lt": date.today } }, { type: "task"}    ] } },
+                '!y-notes' :           {query: { "$and":[{ date: { "$gt": date.yesterday, "$lt": date.today } }, { type: "note"}    ] } },
+                '!y-events':           {query: { "$and":[{ date: { "$gt": date.yesterday, "$lt": date.today } }, { type: "event"}   ] } },
+                '!thisweek':           {query:           { date: { "$gt": date.thisweek                     } }                         },
+                '!tw':                 {query:           { date: { "$gt": date.thisweek                     } }                         },
+                '!tw-tasks' :          {query: { "$and":[{ date: { "$gt": date.thisweek                     } }, { type: "task"}    ] } },
+                '!tw-notes' :          {query: { "$and":[{ date: { "$gt": date.thisweek                     } }, { type: "note"}    ] } },
+                '!tw-events':          {query: { "$and":[{ date: { "$gt": date.thisweek                     } }, { type: "event"}   ] } },
+            };
+            phrases['!s'] = true;
+            //https://www.petitemelanie.com/en/the-bullet-journal-method-how-it-works/
+            //https://bulletjournal.com/pages/book
+            if (msg.author.bot === false) {
+                var wordsArr = msg.content.split(' ');
+                    switch (wordsArr[0]) {
+                        case '-':
+                            postToDB(msg.content, msg.author.id, 'note');
+                            msg.react('📓');
+                            break;
+                        case '.':
+                            postToDB(msg.content, msg.author.id, 'task');
+                            try {msg.react('✅');}catch(e){console.error(e);}
+                            break;
+                        case 'x':
+                            postToDB(msg.content, msg.author.id, 'task');
+                            try {msg.react('✅');}catch(e){console.error(e);}
+                            break;
+                        case 'o':
+                            postToDB(msg.content, msg.author.id, 'event');
+                            try {msg.react('🎫');}catch(e){console.error(e);}
+                            break;
+                        default:
+                            //
+                    }
+                wordsArr.map(function (word, index) {
+                    for (var phrase in phrases) {
+                        if (word.toLowerCase() === phrase) {
+                            if(phrase == '!s'){
+                                var regex = /.*.*/i
+                                phrases[phrase] = {query: { "$and":[{ comment : '/.*' +wordsArr[index+1]+ '.*/i'}]}};;
+                                console.log(JSON.stringify(phrases[phrase],'','  '));
+                            }
+                            if(phrases[phrase].query){
+                                console.log('in query');
+                                getFromDB(phrases[phrase].query, msg);
+                            }
+                        }
+                    }
+                });
+            }
+        } else {
+            console.log('not jace')
+        }
+    },
+    start: function (bot) {
+        bot.on("message", function (msg) {
+            
         });
     }
 };
