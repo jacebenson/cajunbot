@@ -60,7 +60,7 @@ bot.on("message", function(msg) {
 
 bot.on('ready', () => { // When the bot is ready
 //     console.log('CajonBot Ready!'); // Log "Ready!"
-    require('./integrations/timetable').start(bot);//disabled after token was revoked
+    require('./integrations/timetable').start(bot).command();//disabled after token was revoked
 });
 //bot.on("presenceUpdate", function(msg) {
   //console.log(msg.guild.name + ': ' + msg.username + ': ' + msg.status);
