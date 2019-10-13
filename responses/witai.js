@@ -68,6 +68,7 @@ module.exports = {
                           responses['ron-swanson.js']._command(msg);
                         } else {
                           console.log('quote about who? ', data.entities.contact[0].value);
+                          msg.channel.send("Whose " + data.entities.contact[0].value);
                         }
 
                       } else {
