@@ -121,6 +121,13 @@ var getFromDB = function (filter, msg) {
 
 var user = process.env.DISCORD_USER;
 module.exports = {
+    agenda: function(){
+        schedule.scheduleJob(props.cronString, function () {
+            bot.fetchUser(user).then(function (user) {
+                user.send('What\'s up?');
+            });
+        });
+    },
     command: function(bot, msg) {
         console.log('in timetable as ', user, msg.author.id);
         if (msg.author.id === user) {
@@ -195,11 +202,7 @@ module.exports = {
     },
     start: function (bot) {
         bot.on("message", function (msg) {
-            schedule.scheduleJob(props.cronString, function () {
-                bot.fetchUser(user).then(function (user) {
-                    user.send('What\'s up?');
-                });
-            });
+            
         });
     }
 };
