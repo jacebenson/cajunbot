@@ -4,6 +4,11 @@ const client = new Wit({
   accessToken: process.env.witAIToken || clientToken,
   logger: new log.Logger(log.INFO)
 });
+function titleCase(str) {
+  return str.toLowerCase().split(' ').map(function(word) {
+    return word.replace(word[0], word[0].toUpperCase());
+  }).join(' ');
+}
 module.exports = {
   command: function (bot, msg, responses) {
     if (msg.author.bot === false) {
@@ -68,7 +73,7 @@ module.exports = {
                           responses['ron-swanson.js']._command(msg);
                         } else {
                           console.log('quote about who? ', data.entities.contact[0].value);
-                          msg.channel.send("Whose " + data.entities.contact[0].value);
+                          msg.channel.send("Whose " + titleCase(data.entities.contact[0].value));
                         }
 
                       } else {
