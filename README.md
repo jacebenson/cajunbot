@@ -1,5 +1,5 @@
 # CajonBot 
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors)
 
 > A Discord bot for handling messages
 
@@ -68,6 +68,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/MBahrSNC"><img src="https://avatars2.githubusercontent.com/u/9096072?v=4" width="100px;" alt="MBahrSNC"/><br /><sub><b>MBahrSNC</b></sub></a><br /><a href="https://github.com/jacebenson/cajunbot/commits?author=MBahrSNC" title="Code">💻</a></td>
     <td align="center"><a href="https://blog.jace.pro"><img src="https://avatars3.githubusercontent.com/u/638764?v=4" width="100px;" alt="Jace"/><br /><sub><b>Jace</b></sub></a><br /><a href="https://github.com/jacebenson/cajunbot/commits?author=jacebenson" title="Code">💻</a> <a href="#ideas-jacebenson" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/earlduque"><img src="https://avatars1.githubusercontent.com/u/31702109?v=4" width="100px;" alt="Earl Duque"/><br /><sub><b>Earl Duque</b></sub></a><br /><a href="https://github.com/jacebenson/cajunbot/commits?author=earlduque" title="Code">💻</a> <a href="#ideas-earlduque" title="Ideas, Planning, & Feedback">🤔</a></td>
   </tr>
 </table>
 
