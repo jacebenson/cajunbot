@@ -13,6 +13,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "jacebenson",
+      "name": "Jace",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/638764?v=4",
+      "profile": "https://blog.jace.pro",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
