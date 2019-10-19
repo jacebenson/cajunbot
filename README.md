@@ -55,9 +55,6 @@ Use [this](https://discordapp.com/oauth2/authorize?&client_id=490235035627028511
 
 Thanks [@earlduque](https://github.com/earlduque) for the inspiring repo for you're slacker bot (now private)
 
-## See Also
-- [`abalabahaha/eris`](https://github.com/abalabahaha/eris)
-
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
