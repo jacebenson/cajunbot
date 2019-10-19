@@ -90,7 +90,7 @@ $(function() {
       .text(data.username)
       .css('color', getUsernameColor(data.username));
     if(data.username === "CajunBot"){
-      if(data.message.indexOf('.jpg')>=0){
+      if(data.message.indexOf('.jpg')>=0 || data.message.indexOf('.png')>=0){
         data.message += '<img src="' + data.message + '" />';
         var $messageBodyDiv = $('<span class="messageBody">')
         .html(data.message);        
