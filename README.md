@@ -1,4 +1,5 @@
 # CajonBot 
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 
 > A Discord bot for handling messages
 
@@ -56,3 +57,19 @@ Thanks [@earlduque](https://github.com/earlduque) for the inspiring repo for you
 
 ## See Also
 - [`abalabahaha/eris`](https://github.com/abalabahaha/eris)
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/MBahrSNC"><img src="https://avatars2.githubusercontent.com/u/9096072?v=4" width="100px;" alt="MBahrSNC"/><br /><sub><b>MBahrSNC</b></sub></a><br /><a href="https://github.com/jacebenson/cajunbot/commits?author=MBahrSNC" title="Code">💻</a></td>
+  </tr>
+</table>
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
