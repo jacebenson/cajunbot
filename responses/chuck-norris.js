@@ -1,11 +1,33 @@
+var Chance = require('chance');
+// Instantiate Chance so it can be used
+var chance = new Chance();
 module.exports = {
-    _command: function(msg,n){
+    _command: function(msg){
         var http = require("https");
+        var category = chance.pickone( 
+        [
+            "animal",
+            "career",
+            "celebrity",
+            "dev",
+            //"explicit",
+            "fashion",
+            "food",
+            "history",
+            "money",
+            "movie",
+            "music",
+            //"political",
+            //"religion",
+            "science",
+            "sport",
+            "travel"
+        ]);
         var req = http.request({
             "method": "GET",
             "hostname": "api.chucknorris.io",
             "port": null,
-            "path": "/jokes/random"
+            "path": "/jokes/random?category=" + category
         }, function (chuckRes) {
             var chuckChunks = [];
             chuckRes.on("data", function (chunk) {
@@ -60,7 +82,7 @@ module.exports = {
         var phrase = '!chuck';
         if (msg.author.bot === false) {
             var wordsArr = msg.content.split(' ');
-            wordsArr.map(function (word, index) {
+            wordsArr.map(function (word) {
                 if (word.toLowerCase() === phrase) {
                     module.exports._command(msg);
                 }
