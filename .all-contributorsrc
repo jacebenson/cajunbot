@@ -1,0 +1,23 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "MBahrSNC",
+      "name": "MBahrSNC",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/9096072?v=4",
+      "profile": "https://github.com/MBahrSNC",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "cajunbot",
+  "projectOwner": "jacebenson",
+  "repoType": "github",
+  "repoHost": "https://github.com"
+}
