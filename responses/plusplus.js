@@ -256,7 +256,7 @@ module.exports = {
 
                                 db.collection('points').findOne(queryObj, function (err, result) {
                                     if (result) {
-                                        if (result.thing != '<@' + msg.author.id + '>') {
+                                        if (result.thing != '<@!' + msg.author.id + '>') {
                                             result.points = parseInt(result.points, 10) + 1;
                                             result.name = thingName.toLowerCase();
                                             result.display = thingName;
