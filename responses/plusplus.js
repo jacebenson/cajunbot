@@ -228,7 +228,7 @@ module.exports = {
                             var thing = match.replace(/(\+)+/gmi, '').trim();
                             var thingName = thing;
                             if (thing.indexOf('<@') >= 0) {
-                                var userregex = /(\<\@)(\d+)(\>)/gm;
+                                var userregex = /(\<\@\!)(\d+)(\>)/gm;
                                 var subst = `$2`;
                                 thingName = thingName.replace(userregex, subst);
                                 msg.mentions.members.forEach(function (member) {
