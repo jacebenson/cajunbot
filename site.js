@@ -1,8 +1,11 @@
 module.exports = (function () {
+  require('dotenv').config();
+  var production = true;
   var port = process.env.PORT || 80;
   var translate = require('moji-translate');
   var MongoClient = require('mongodb').MongoClient;
-  var mongoURI = process.env.MONGODB_URI; // || require('./.env').uri;
+  //var mongoURI = process.env.MONGODB_URI; // || require('./.env').uri;
+  var mongoURI = process.env.MONGODB_URI;
   var express = require("express");
   var app = express();
   app.use(express.static('public')); //use static files in ROOT/public folder
@@ -20,18 +23,25 @@ module.exports = (function () {
   });
   app.get("/discord/scores", function (request, response) {
     MongoClient.connect(mongoURI, function (err, client) {
-//       console.log('connected to mongo');
+       console.log('connected to mongo');
       if (err) console.log(err);
+      try{
       var db = client.db('cajonbot');
       // look for user in db
       db.collection('points').find({}).toArray(function (err, result) {
         response.send(result);
         client.close();
       });
+      }catch(e){
+        console.log(e);
+      }
     });
   });
-  //var listener = app.listen(port, function () {
-  //  console.log('Your app is listening on port ' + listener.address().port);
-  //});
-  return app;
+  if(production){
+    return app;
+  } else {
+    var listener = app.listen(port, function () {
+      console.log('Your app is listening on port ' + listener.address().port);
+    });
+  }
 })();

@@ -14,9 +14,9 @@ $(function () {
   }
   window.page = 0;
   window.scores = [];
-  window.getScores = function(){
+  window.getScores = function () {
     window.html = [];
-  
+
     $.getJSON(
       "./discord/scores",
       function (data) {
@@ -25,24 +25,18 @@ $(function () {
         console.log(data);
         var pagesize = 5;
         data.forEach(function (thing, index) {
-          //console.log(index + '/' + pagesize);
-          if(parseInt(index+pagesize,10)<parseInt(window.page,10)){
-          window.html.push('<li>');
-          window.html.push('<mark>' + thing.display + '</mark>');
-          window.html.push('<small>' + thing.points + '</small>');
-          window.html.push('</li>');
-        }
-        if(index === pagesize ){
-          window.html.push('<button onclick="window.getScores()" >next</button>')
-        }
+            window.html.push('<li>');
+            window.html.push('<mark>' + thing.display + '</mark>');
+            window.html.push('<small>' + thing.points + '</small>');
+            window.html.push('</li>');
         });
       }
-    ).then(function(){
+    ).then(function () {
       window.page += 5;
       $("#list").html(window.html.join('\n'));
     });
   }
-  
+
   window.getScores(page);
   var backgrounds = [
     'https://media.giphy.com/media/vvbGMpbhZMcHSsD50w/giphy.gif', //napoleon dynomite
