@@ -1,21 +1,11 @@
 require('dotenv').config();
 var fs = require('fs');
-//var Eris = require('eris');
-//var bot = new Eris(process.env.DISCORD_BOT_TOKEN);
+
 var Discord = require('discord.js');
 var bot = new Discord.Client();
 var token = process.env.DISCORD_BOT_TOKEN
 bot.login(token);
-require('greenlock-express').create({
-  email: 'jace.benson@protonmail.com',     // The email address of the ACME user / hosting provider
-  agreeTos: true,                          // You must accept the ToS as the host which handles the certs
-  configDir: '~/.config/acme/',            // Writable directory where certs will be saved
-  communityMember: true,                   // Join the community to get notified of important updates
-  telemetry: true,                         // Contribute telemetry data to the project
-  app: require('./site.js')                // Include sites you want to run here
-  //, debug: true
-}).listen(80, 443);
-
+var site = require('./site');
 var responses = {};
 var responsesDirectory = './responses/';
 

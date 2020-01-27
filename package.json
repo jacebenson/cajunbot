@@ -22,7 +22,8 @@
   "devDependencies": {},
   "scripts": {
     "start": "node cajunbot.js",
-    "test": "node chat.js"
+    "test": "node chat.js",
+    "test-site": "node site.js"
   },
   "repository": {
     "type": "git",

@@ -7,6 +7,7 @@ var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var port = process.env.PORT || 3000;
 
+var site = require('./site');
 var responses = {};
 var responsesDirectory = './responses/';
 console.log(responsesDirectory);

@@ -9,8 +9,11 @@ module.exports = (function () {
   var express = require("express");
   var app = express();
   app.use(express.static('public')); //use static files in ROOT/public folder
+  app.get("/", function (request, response) {
+    response.sendFile(__dirname + '/public/index.html');
+  });
   app.get("/discord", function (request, response) {
-    response.sendFile(__dirname + '/public/discord/index.html');
+    response.sendFile(__dirname + '/public/index.html');
   });
   app.get("/discord/install", function (request, response) {
     response.redirect('https://discordapp.com/oauth2/authorize?&client_id=' + process.env.DISCORD_CLIENT_ID + '&scope=bot&permissions=0');
@@ -38,10 +41,14 @@ module.exports = (function () {
     });
   });
   if(production){
-    return app;
+    //return app;
+    var listener = app.listen(port, function () {
+      console.log('Prod Your app is listening on port ' + listener.address().port);
+    });
   } else {
     var listener = app.listen(port, function () {
-      console.log('Your app is listening on port ' + listener.address().port);
+      console.log('NonProd Your app is listening on port ' + listener.address().port);
     });
   }
+  //app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 })();
