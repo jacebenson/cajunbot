@@ -44,4 +44,5 @@ module.exports = (function () {
       console.log('Your app is listening on port ' + listener.address().port);
     });
   }
+  app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 })();
