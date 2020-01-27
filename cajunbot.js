@@ -6,7 +6,6 @@ var bot = new Discord.Client();
 var token = process.env.DISCORD_BOT_TOKEN
 bot.login(token);
 var site = require('./site');
-
 var responses = {};
 var responsesDirectory = './responses/';
 

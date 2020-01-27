@@ -38,11 +38,14 @@ module.exports = (function () {
     });
   });
   if(production){
-    return app;
+    //return app;
+    var listener = app.listen(port, function () {
+      console.log('Prod Your app is listening on port ' + listener.address().port);
+    });
   } else {
     var listener = app.listen(port, function () {
-      console.log('Your app is listening on port ' + listener.address().port);
+      console.log('NonProd Your app is listening on port ' + listener.address().port);
     });
   }
-  app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+  //app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 })();
