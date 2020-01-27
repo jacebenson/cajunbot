@@ -45,6 +45,8 @@ $(function () {
     'https://media.giphy.com/media/Is1O1TWV0LEJi/giphy.gif', //the office raise the roof
     'https://media.giphy.com/media/t3Mzdx0SA3Eis/giphy.gif', //the office yes w/pen
   ]; $('body').css({
-    'background-image': 'url(' + backgrounds[Math.floor(Math.random() * backgrounds.length)] + ')'
+    'background-image': 'url(' + backgrounds[Math.floor(Math.random() * backgrounds.length)] + ')',
+    'background-repeat' : 'no-repeat',
+    'background-attachment': 'fixed'
   });
 });
