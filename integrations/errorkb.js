@@ -73,7 +73,6 @@ var pullArticles = function (url) {
 //a notification is sent to discord (provided articleNotificationEnabled is true)
 var parseArticles = function (articles)
 {
-  console.log('in parseArticles');
     const client = new MongoClient(mongoUrl);
     client.connect(function (err)
     {
@@ -82,7 +81,6 @@ var parseArticles = function (articles)
         var count = 0;
         articles.forEach(function (article)
         {
-          console.log('in articles.forEach', article.article);
             //Search for existing articles with the same article-number
             db.collection(mongoCollection).findOne({ "article": article.article }, function (err, result)
             {
@@ -142,6 +140,7 @@ var postArticle = function (article) {
       "Article: " + article.article + " Problem: " + article.problem + " Category: " + article.category + " \n" +
       "Description: " + article.short_description + " \n" +
       baseUrl + article.url;
+    console.log('trying to post message to', channelId, message);
     bot.channels.get(channelId).send(message);
   }
 }
