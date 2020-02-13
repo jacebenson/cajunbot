@@ -109,7 +109,7 @@ var parseArticles = function (articles) {
           client.close();
         }
       }
-    });
+    },3000);
     });
   });
 }
