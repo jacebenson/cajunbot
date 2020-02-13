@@ -78,19 +78,21 @@ var parseArticles = function (articles) {
   }, function (err, client) {
     var db = client.db(mongoDb);
     var count = 0;
-    if(err){
+    console.log('in MongoClient callback funciton ln81')
+    if (err) {
       console.error(err);
     }
-    //Search for existing articles with the same article-number
-    db.collection(mongoCollection).findOne({ "article": article.article }, function (err, result) {
-      console.log("result", result);
-      if (err) {
-        console.error("Error in known-error integration: " + err);
-      }
-      //If no results found then this is a new article and a notification should be broadcasted
-      //else if (result === null) {
-      if (true) {
-        articles.forEach(function (article) {
+
+    if (true) {
+      articles.forEach(function (article) {
+        //Search for existing articles with the same article-number
+        db.collection(mongoCollection).findOne({ "article": article.article }, function (err, result) {
+          console.log("result", result);
+          if (err) {
+            console.error("Error in known-error integration: " + err);
+          }
+          //If no results found then this is a new article and a notification should be broadcasted
+          //else if (result === null) {
           console.log('inserting article', article.article);
           db.collection(mongoCollection).insertOne(article, function (err, res) {
             if (err) {
@@ -111,8 +113,8 @@ var parseArticles = function (articles) {
           }
         });
       }
-    });
-  });
+      )};
+});
 }
 
 //Pulls specific fields from an article's HTML
