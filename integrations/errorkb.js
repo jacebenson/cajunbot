@@ -71,50 +71,54 @@ var pullArticles = function (url) {
 
 //Parses each article and checks if they already exists in mongodb. If not they're added and
 //a notification is sent to discord (provided articleNotificationEnabled is true)
-var parseArticles = function (articles) {
-  console.log('Starting to parseArticles');
-  MongoClient(mongoUrl, {
-    useNewUrlParser: true
-  }, function (err, client) {
-    var db = client.db(mongoDb);
-    var count = 0;
-    console.log('in MongoClient callback funciton ln81')
-    if (err) {
-      console.error(err);
-    }
+var parseArticles = function (articles)
+{
+  console.log('in parseArticles');
+    const client = new MongoClient(mongoUrl);
+    client.connect(function (err)
+    {
+      console.log('in client.connect')
+        var db = client.db(mongoDb);
+        var count = 0;
+        articles.forEach(function (article)
+        {
+          console.log('in articles.forEach', article.article);
+            //Search for existing articles with the same article-number
+            db.collection(mongoCollection).findOne({ "article": article.article }, function (err, result)
+            {
+                if (err)
+                {
+                    console.error("Error in known-error integration: " + err);
+                }
+                //If no results found then this is a new article and a notification should be broadcasted
+                else if (result === null)
+                {
+                    db.collection(mongoCollection).insertOne(article, function (err, res)
+                    {
+                        if (err)
+                        {
+                            console.error("Error in known-error integration: " + err);
+                        }
+                        else
+                        {
+                            console.log("New article found, inserted article " + article.article + "!");
+                            if (articleNotificationEnabled)
+                            {
+                                postArticle(article);
+                            }
+                        }
+                    });
+                }
+                //Check if all articles have been processed and close mongodb-connection if so
+                count++;
+                if (count == articles.length)
+                {
+                    client.close();
+                }
+            });
 
-    if (true) {
-      articles.forEach(function (article) {
-        //Search for existing articles with the same article-number
-        db.collection(mongoCollection).findOne({ "article": article.article }, function (err, result) {
-          console.log("result", result);
-          if (err) {
-            console.error("Error in known-error integration: " + err);
-          }
-          //If no results found then this is a new article and a notification should be broadcasted
-          //else if (result === null) {
-          console.log('inserting article', article.article);
-          db.collection(mongoCollection).insertOne(article, function (err, res) {
-            if (err) {
-              console.error("Error in known-error integration: " + err);
-            }
-            else {
-              console.log("New article found, inserted article " + article.article + "!");
-              if (articleNotificationEnabled) {
-                postArticle(article);
-              }
-            }
-          });
-
-          //Check if all articles have been processed and close mongodb-connection if so
-          count++;
-          if (count == articles.length) {
-            client.close();
-          }
         });
-      }
-      )};
-});
+    });
 }
 
 //Pulls specific fields from an article's HTML
