@@ -24,17 +24,13 @@ var channelId = "677591036448473097"; //Channel-id which controls where the noti
 
 //Pulls all relevant ServiceNow families / versions along with URL's for their respective known-error KB-articles 
 //and passes the versions to pullArticles()
-var pullVersions = function ()
-{
+var pullVersions = function () {
   console.log("Starting check for ServiceNow versions");
   rp(baseUrl + kbUrl)
-    .then(function (html)
-    {
+    .then(function (html) {
       var kbHtml = $('li > a', html);
-      for (var i = 0; i < kbHtml.length; i++)
-      {
-        if (kbHtml[i].attribs.title && kbHtml[i].attribs.href)
-        {
+      for (var i = 0; i < kbHtml.length; i++) {
+        if (kbHtml[i].attribs.title && kbHtml[i].attribs.href) {
           var version = {
             title: kbHtml[i].attribs.title,
             href: kbHtml[i].attribs.href
@@ -44,37 +40,31 @@ var pullVersions = function ()
         }
       }
     })
-    .catch(function (err)
-    {
+    .catch(function (err) {
       console.log("Error in known-error integration: " + err);
     });
 }
 
 //Pulls all kb-articles from a version/family page and passes each article to parseArticle()
-var pullArticles = function (url)
-{
+var pullArticles = function (url) {
   var articles = [];
   rp(baseUrl + url)
-    .then(function (html)
-    {
+    .then(function (html) {
       var errors = $('table.scroll', html);
       var sevOne = errors[0];
       var sevTwo = errors[1];
       var sevOneArticles = $("tr", sevOne);
-      for (var i = 1; i < sevOneArticles.length; i++)
-      {
+      for (var i = 1; i < sevOneArticles.length; i++) {
         articles.push(pullArticle(sevOneArticles[i], 1));
       }
       var sevTwoArticles = $("tr", sevTwo);
-      for (var i = 1; i < sevTwoArticles.length; i++)
-      {
+      for (var i = 1; i < sevTwoArticles.length; i++) {
         articles.push(pullArticle(sevTwoArticles[i], 2));
       }
       //getExistingArticles(articles);
       parseArticles(articles);
     })
-    .catch(function (err)
-    {
+    .catch(function (err) {
       console.log("Error in known-error integration: " + err);
     });
 }
@@ -82,74 +72,62 @@ var pullArticles = function (url)
 
 //Parses each article and checks if they already exists in mongodb. If not they're added and
 //a notification is sent to discord (provided articleNotificationEnabled is true)
-var parseArticles = function (articles)
-{
+var parseArticles = function (articles) {
   var MongoClient = require('mongodb').MongoClient;
   MongoClient.connect(mongoUrl, {
     useNewUrlParser: true
-  }, function (err, client)
-  {
+  }, function (err, client) {
     var db = client.db(mongoDb);
     var count = 0;
-    articles.forEach(function (article)
-    {
-      if (existingArticles.indexOf(article.article) == -1)
-      {
+    articles.forEach(function (article) {
+      setTimeout(function() {
+        
+      if (existingArticles.indexOf(article.article) == -1) {
         existingArticles.push(article.article);
-        db.collection(mongoCollection).insertOne(article, function (err, res)
-        {
-          if (err)
-          {
+        db.collection(mongoCollection).insertOne(article, function (err, res) {
+          if (err) {
             console.error("Error in known-error integration: " + err);
           }
-          else
-          {
+          else {
             console.log("New article found, inserted article " + article.article + "!");
-            if (articleNotificationEnabled)
-            {
+            if (articleNotificationEnabled) {
               postArticle(article);
             }
           }
           //Check if all articles have been processed and close mongodb-connection if so
           count++;
-          if (count == articles.length)
-          {
+          if (count == articles.length) {
             client.close();
           }
         });
       }
-      else
-      {
+      else {
         //Check if all articles have been processed and close mongodb-connection if so
         //Duplicate because the final article can either be one that needs to be imported or skipped
         count++;
-        if (count == articles.length)
-        {
+        if (count == articles.length) {
           client.close();
         }
       }
+    });
     });
   });
 }
 
 
-var getExistingArticles = function (articles)
-{
+var getExistingArticles = function (articles) {
   console.log("Checking Mongodb for existing kb-articles");
   existingArticles = [];
   var MongoClient = require('mongodb').MongoClient;
   MongoClient.connect(mongoUrl, {
     useNewUrlParser: true
-  }, function (err, client)
-  {
+  }, function (err, client) {
     var db = client.db(mongoDb);
     var count = 0;
     //Search for existing articles 
-    db.collection(mongoCollection).find({}, { projection: { article: 1 } }).toArray(function (err, result)
-    {
+    db.collection(mongoCollection).find({}, { projection: { article: 1 } }).toArray(function (err, result) {
       console.log("Found " + result.length + " existing articles");
-      result.forEach(function (article)
-      {
+      result.forEach(function (article) {
         existingArticles.push(article.article);
       });
       client.close();
@@ -159,8 +137,7 @@ var getExistingArticles = function (articles)
 }
 
 //Pulls specific fields from an article's HTML
-var pullArticle = function (html, severity)
-{
+var pullArticle = function (html, severity) {
   var article = {}
   var articleHtml = $("td", html);
   article.article = $("a", articleHtml[0]).text();
@@ -175,10 +152,8 @@ var pullArticle = function (html, severity)
 
 
 //Posts notification to discord
-var postArticle = function (article)
-{
-  if (article != undefined)
-  {
+var postArticle = function (article) {
+  if (article != undefined) {
     var message = "A new severity " + article.severity + " known error has been created. \n" +
       "Article: " + article.article + " Problem: " + article.problem + " Category: " + article.category + " \n" +
       "Description: " + article.short_description + " \n" +
@@ -189,23 +164,20 @@ var postArticle = function (article)
 
 
 module.exports = {
-  start: function (inBot, inCheckEnabled, inNotificationEnabled, inSchedule, inChannel)
-  {
+  start: function (inBot, inCheckEnabled, inNotificationEnabled, inSchedule, inChannel) {
     bot = inBot;
     articleCheckEnabled = inCheckEnabled === undefined ? articleCheckEnabled : inCheckEnabled;
     articleNotificationEnabled = inNotificationEnabled === undefined ? articleNotificationEnabled : inNotificationEnabled;
     schedulePlan = inSchedule === undefined ? schedulePlan : inSchedule;
     channelId = inChannel === undefined ? channelId : inChannel;
-    if (articleCheckEnabled)
-    {
+    if (articleCheckEnabled) {
       console.log("Activating check for articles");
       scheduleJob = schedule.scheduleJob(schedulePlan, getExistingArticles);
       //getExistingArticles();
       //pullVersions();
     }
   },
-  stop: function ()
-  {
+  stop: function () {
     console.log("Stopping check for articles");
     scheduleJob.cancel();
   }
