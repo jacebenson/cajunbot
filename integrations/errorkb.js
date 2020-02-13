@@ -80,7 +80,7 @@ var parseArticles = function (articles) {
     var db = client.db(mongoDb);
     var count = 0;
     articles.forEach(function (article) {
-      setTimeout(function() {
+      //setTimeout(function() {
         
       if (existingArticles.indexOf(article.article) == -1) {
         existingArticles.push(article.article);
@@ -109,7 +109,7 @@ var parseArticles = function (articles) {
           client.close();
         }
       }
-    },3000);
+    //},3000);
     });
   });
 }
