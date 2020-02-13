@@ -18,7 +18,7 @@ var mongoCollection = "KBArticles"; //Mongodb collection-id
 var articleCheckEnabled = true; //If true then the scheduled job will check SN/HI for new known error articles
 var articleNotificationEnabled = true; //If true then notifications will be posted to discord when a new article is found
 var schedulePlan = "*/1 * * * *"; //Time-settings for scheduled-job, see https://openbase.io/js/node-schedule for details
-var channelId = "563567455675351041"; //Channel-id which controls where the notification-messages are posted
+var channelId = "677591036448473097"; //Channel-id which controls where the notification-messages are posted
 
 
 //Pulls all relevant ServiceNow families / versions along with URL's for their respective known-error KB-articles 
