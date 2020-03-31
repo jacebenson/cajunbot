@@ -23,7 +23,7 @@ module.exports = {
             'global br':            disappointed,
             'current.update':       disappointed,
             'global ui script':     disappointed,
-            'window.':              disappointed,
+            //'window.':              disappointed,//people don't like this...
             'top.':                 disappointed,
             'document.':            disappointed,
             'facepalm':             ["(－‸ლ)"],
