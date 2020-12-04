@@ -40,6 +40,22 @@ module.exports = (function () {
       }
     });
   });
+  app.get("/discord/errorkb", function (request, response) {
+    MongoClient.connect(mongoURI, function (err, client) {
+       console.log('connected to mongo');
+      if (err) console.log(err);
+      try{
+      var db = client.db('cajonbot');
+      // look for user in db
+      db.collection('KBArticles').find({}).toArray(function (err, result) {
+        response.send(result);
+        client.close();
+      });
+      }catch(e){
+        console.log(e);
+      }
+    });
+  });
   if(production){
     //return app;
     var listener = app.listen(port, function () {
