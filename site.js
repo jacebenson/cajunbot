@@ -24,6 +24,23 @@ module.exports = (function () {
     response.send(JSON.stringify({text:translate.translate(request.query.text)}));
     //response.redirect('https://discordapp.com/oauth2/authorize?&client_id=' + process.env.DISCORD_CLIENT_ID + '&scope=bot&permissions=0');
   });
+  
+  app.get("/discord/errorkb", function (request, response) {
+    MongoClient.connect(mongoURI, function (err, client) {
+      console.log('connected to mongo');
+     if (err) console.log(err);
+     try{
+     var db = client.db('cajonbot');
+     // look for user in db
+     db.collection("KBArticles").find({}).toArray(function (err, result) {
+       response.send(result);
+       client.close();
+     });
+     }catch(e){
+       console.log(e);
+     }
+   });
+  });
   app.get("/discord/scores", function (request, response) {
     MongoClient.connect(mongoURI, function (err, client) {
        console.log('connected to mongo');
@@ -32,22 +49,6 @@ module.exports = (function () {
       var db = client.db('cajonbot');
       // look for user in db
       db.collection('points').find({}).toArray(function (err, result) {
-        response.send(result);
-        client.close();
-      });
-      }catch(e){
-        console.log(e);
-      }
-    });
-  });
-  app.get("/discord/errorkb", function (request, response) {
-    MongoClient.connect(mongoURI, function (err, client) {
-       console.log('connected to mongo');
-      if (err) console.log(err);
-      try{
-      var db = client.db('cajonbot');
-      // look for user in db
-      db.collection('KBArticles').find({}).toArray(function (err, result) {
         response.send(result);
         client.close();
       });
