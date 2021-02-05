@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config()
 var fs = require('fs');
 
 var Discord = require('discord.js');
@@ -75,6 +75,7 @@ bot.on('ready', () => { // When the bot is ready
 //bot.connect(); // Get the bot to connect to Discord
 
 bot.on("messageReactionAdd", async (reaction, user) => {
+  console.log(reaction);
   // When we receive a reaction we check if the reaction is partial or not
   if (reaction.partial) {
     // If the message this reaction belongs to was removed the fetching might result in an API error, which we need to handle
@@ -85,9 +86,9 @@ bot.on("messageReactionAdd", async (reaction, user) => {
       // Return as `reaction.message.author` may be undefined/null
       return;
     }
-    for (var reactionE in reactions) {
-      reactions[reactionE].react(reaction);
-    }
+  }
+  for (var reactionE in reactions) {
+    reactions[reactionE].react(reaction);
   }
 
 
