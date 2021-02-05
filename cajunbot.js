@@ -1,6 +1,6 @@
 require('dotenv').config()
 var fs = require('fs');
-
+//jace was here 02.05.2021
 var Discord = require('discord.js');
 var bot = new Discord.Client();
 var token = process.env.DISCORD_BOT_TOKEN
