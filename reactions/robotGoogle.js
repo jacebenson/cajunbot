@@ -3,6 +3,9 @@ module.exports = {
     var watchingEmoji = "🤖";
 
     if (reaction._emoji == watchingEmoji) {
+		var regex = /<(?:[^\d>]+|:[A-Za-z0-9]+:)\w+>/gm;
+		var messageContent = reaction.message.content;
+		var replacedContent = messageContent.replace(regex, '');
       reaction.message.reply(
         "Here\'s your solution! \n" +
         "https://lmddgtfy.net/?q=" +
