@@ -1,8 +1,8 @@
 module.exports = {
-    command: function(bot, msg) {
+    command: function(commandObj) {
         var phrase = '!insult';
-        if (msg.author.bot === false) {
-            var wordsArr = msg.content.split(' ');
+        if (commandObj.msg.author.bot === false) {
+            var wordsArr = commandObj.msg.content.split(' ');
             wordsArr.map(function(word, index) {
                 if (word.toLowerCase() === phrase) {
                     var insults = [
@@ -25,7 +25,7 @@ module.exports = {
                     ];
                     var random = Math.floor(Math.random() * insults.length);
                     var message = insults[random];
-                    msg.channel.send(message);
+                    commandObj.msg.channel.send(message);
                 }
             });
         }

@@ -1,22 +1,22 @@
 module.exports = {
-    _command: function(msg){
-        var wordsArr = msg.content.split(' ');
+    _command: function(commandObj){
+        var wordsArr = commandObj.msg.content.split(' ');
         var terms = wordsArr.filter(function(word) {
             if(word!='!jace'){
                 return true;
             }
         });
         var message = 'https://jace.pro/?q=' + encodeURI(terms.join(' ').trim());
-        msg.channel.send(message);
+        commandObj.msg.channel.send(message);
     },
-    command: function(bot, msg) {
+    command: function(commandObj) {
         var phrase = '!jace';
-        if (msg.author.bot === false) {
-            var wordsArr = msg.content.split(' ');
+        if (commandObj.msg.author.bot === false) {
+            var wordsArr = commandObj.msg.content.split(' ');
             wordsArr.map(function(word, index) {
                 if (word.toLowerCase() === phrase) {
                     
-                    module.exports._command(msg);
+                    module.exports._command(commandObj.msg);
                 }
             });
         }

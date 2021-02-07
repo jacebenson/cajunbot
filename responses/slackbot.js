@@ -1,5 +1,5 @@
 module.exports = {
-    command: function (bot, msg) {
+    command: function (commandObj) {
         try{
         var disappointed = [
             "(－‸ლ)",
@@ -34,11 +34,11 @@ module.exports = {
             '!xplore':              ["https://github.com/thewhitespace/Xplore/tree/master/dist"],
             'well it works':        ["http://i.imgur.com/vSaxB.jpg"],
         };
-        if (msg.author.bot === false) {
+        if (commandObj.msg.author.bot === false) {
             for(var phrase in phrases){
-                if(msg.content.toLowerCase().indexOf(phrase)>-1){
+                if(commandObj.msg.content.toLowerCase().indexOf(phrase)>-1){
                     var message = rand(phrases[phrase]);
-                    msg.channel.send(message);
+                    commandObj.msg.channel.send(message);
                 }
             }
         }

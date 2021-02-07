@@ -1,22 +1,21 @@
 module.exports = {
-    command: function(bot, msg) {
+    command: function(commandObj) {
         var phrase = '!ping';
-        if (msg.author.bot === false) {
-            var wordsArr = msg.content.split(' ');
+        if (commandObj.msg.author.bot === false) {
+            var wordsArr = commandObj.msg.content.split(' ');
             wordsArr.map(function(word, index) {
                 if (word.toLowerCase() === phrase) {
-                    var url = msg.content.replace(phrase, '').trim();
+                    var url = commandObj.msg.content.replace(phrase, '').trim();
                     var https;
-                    if(url.indexOf('https')>=0){
+                    if(url.indexOf('http')>=0){
                         https = require('https');
                     } else if(url.indexOf('http')>=0){
                         https = require('http');        
                     } else {
                         https = require('https');
-                        url = 'https://' + url;
+                        url = `https://${url}`;
                     }
                     var URL = require('url').URL;
-                    //var myURL = new URL('http://www.example.com/foo?bar=1#main');
                     var url = new URL(url);
                     var options = {
                         timeout: 3000,
@@ -30,14 +29,15 @@ module.exports = {
                         });
                         // The whole response has been received. Print out the result.
                         resp.on('end', () => {
-                            var message = "`" + url + "` has a status of " + resp.statusCode;
+                            var message = `${url} has a status of ${resp.statusCode}`;
                             if(resp.statusCode === 200){
-                                message = "`" + url + "` is up with a status of " + resp.statusCode;
+                                message = `${url} is ⬆⬆⬆⬆`;
                             }
-                            msg.channel.send(message);
+                            
+                            commandObj.msg.channel.send(message);
                         });
                     }).on("error", (err) => {
-                        msg.channel.send("Error: `" + err.message + "`");
+                        commandObj.msg.channel.send(`Error: \`${err.message}\``);
                     });
                 }
             });

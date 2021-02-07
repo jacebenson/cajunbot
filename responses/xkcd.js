@@ -1,5 +1,5 @@
 module.exports = {
-    _command: function (msg, term) {
+    _command: function (commandObj, term) {
         var http = require("https");
 
         var options = {
@@ -29,23 +29,23 @@ module.exports = {
                 } else {
                     message = 'https://imgs.xkcd.com/comics/not_available.png';
                 }
-                msg.channel.send(message);
+                commandObj.msg.channel.send(message);
             });
         });
 
         req.write("search=" + term);
         req.end();
     },
-    command: function (bot, msg) {
+    command: function (commandObj) {
         var phrases = ['!xkcd', '!xd', '!xckd'];
-        if (msg.author.bot === false) {
-            var wordsArr = msg.content.split(' ');
+        if (commandObj.msg.author.bot === false) {
+            var wordsArr = commandObj.msg.content.split(' ');
             wordsArr.map(function (word, index) {
                 phrases.map(function (phrase) {
                     if (word.toLowerCase() === phrase) {
                         console.log('in xkcd.js');
                         var n = wordsArr[index + 1] || 1;
-                        module.exports._command(msg, n);
+                        module.exports._command(commandObj, n);
                     }
                 });
             });

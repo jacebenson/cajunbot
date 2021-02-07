@@ -1,13 +1,13 @@
 module.exports = {
-    command: function(bot, msg) {
+    command: function(commandObj) {
         var phrases = ['!snprotips', '!prof', '!tips'];
-        if (msg.author.bot === false) {
-            var wordsArr = msg.content.split(' ');
+        if (commandObj.msg.author.bot === false) {
+            var wordsArr = commandObj.msg.content.split(' ');
             wordsArr.map(function(word, index) {
                 phrases.map(function(phrase) {
                     if (word.toLowerCase() === phrase) {
                         var message = 'https://snprotips.com/search?q=' + encodeURI(wordsArr.join(' ').replace(word, '').trim());
-                        msg.channel.send(message);
+                        commandObj.msg.channel.send(message);
                     }
                 });
             });

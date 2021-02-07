@@ -2,7 +2,7 @@ var Chance = require('chance');
 // Instantiate Chance so it can be used
 var chance = new Chance();
 module.exports = {
-    _command: function(msg){
+    _command: function(commandObj){
         var http = require("https");
         var category = chance.pickone( 
         [
@@ -67,7 +67,7 @@ module.exports = {
                     imgFlipRes.on("end", function () {
                         var imgFlipBody = Buffer.concat(imgChunks);
                         var imgFlipObj = JSON.parse(imgFlipBody.toString());
-                        msg.channel.send(imgFlipObj.data.url);
+                        commandObj.msg.channel.send(imgFlipObj.data.url);
                     });
                 });
                 imgFlip.write(JSON.stringify({}));
@@ -78,13 +78,13 @@ module.exports = {
 
         req.end();
     },
-    command: function (bot, msg) {
+    command: function (commandObj) {
         var phrase = '!chuck';
-        if (msg.author.bot === false) {
-            var wordsArr = msg.content.split(' ');
+        if (commandObj.msg.author.bot === false) {
+            var wordsArr = commandObj.msg.content.split(' ');
             wordsArr.map(function (word) {
                 if (word.toLowerCase() === phrase) {
-                    module.exports._command(msg);
+                    module.exports._command(commandObj);
                 }
             });
         }

@@ -201,7 +201,7 @@ var compliments = function (user, points) {
             'You are the rare catalyst to my volatile compound.'
         ];
         responses = responses.map(function (compliment) {
-            return compliment + ' ' + user + ' (' + points + ' points)';
+            return `${compliment} ${user} (${points} points)`;
         });
         return responses;
     } catch (e) {
@@ -211,13 +211,13 @@ var compliments = function (user, points) {
 
 
 module.exports = {
-    command: function (bot, msg) {
+    command: function (commandObj) {
         var phrase = '++';
-        if (msg.author.bot === false) {
+        if (commandObj.msg.author.bot === false) {
             var regex = /(([^\s])+|([^\s])+(\s)+)((\+){2})/gmi;
             var m;
-            while ((m = regex.exec(msg.content)) !== null) {
-                if (msg.channel.name) {
+            while ((m = regex.exec(commandObj.msg.content)) !== null) {
+                if (commandObj.msg.channel.name) {
                     // This is necessary to avoid infinite loops with zero-width matches
                     if (m.index === regex.lastIndex) {
                         regex.lastIndex++;
@@ -231,7 +231,7 @@ module.exports = {
                                 var userregex = /(\<\@\!)(\d+)(\>)/gm;
                                 var subst = `$2`;
                                 thingName = thingName.replace(userregex, subst);
-                                msg.mentions.members.forEach(function (member) {
+                                commandObj.msg.mentions.members.forEach(function (member) {
                                     if (thingName == member.user.id) {
                                         thingName = member.user.username;
                                     }
@@ -256,7 +256,7 @@ module.exports = {
 
                                 db.collection('points').findOne(queryObj, function (err, result) {
                                     if (result) {
-                                        if (result.thing != '<@!' + msg.author.id + '>') {
+                                        if (result.thing != '<@!' + commandObj.msg.author.id + '>') {
                                             result.points = parseInt(result.points, 10) + 1;
                                             result.name = thingName.toLowerCase();
                                             result.display = thingName;
@@ -269,12 +269,12 @@ module.exports = {
                                                     }
                                                     client.close();
                                                     var message = rand(compliments(thing, result.points));
-                                                    msg.channel.send(message);
-                                                    msg.react('💯');
+                                                    commandObj.msg.channel.send(message);
+                                                    commandObj.msg.react('💯');
                                                 });
                                         } else {
                                             var message = 'You cant give points to yourself';
-                                            msg.channel.send(message);
+                                            commandObj.msg.channel.send(message);
                                         }
                                     } else {
                                         var myObj = {
@@ -288,8 +288,8 @@ module.exports = {
                                                 console.error(err);
                                             }
                                             var message = rand(compliments(thing, 1));
-                                            msg.channel.send(message);
-                                            msg.react('💯');
+                                            commandObj.msg.channel.send(message);
+                                            commandObj.msg.react('💯');
                                             client.close();
                                         });
                                     }
@@ -298,8 +298,8 @@ module.exports = {
                         }
                     });
                 }
-                if (!msg.channel.name) {
-                    msg.channel.send('I can\'t give points in PMs');
+                if (!commandObj.msg.channel.name) {
+                    commandObj.msg.channel.send('I can\'t give points in PMs');
                 }
             }
         }

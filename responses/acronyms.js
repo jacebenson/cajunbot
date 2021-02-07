@@ -1,5 +1,5 @@
 module.exports = {
-  command: function(bot, msg) {
+  command: function(commandObj) {
     var acronym = require('acronym');
     var phrases = ['!ac', '!acronym', '!acromyn'];
     var specialEndingLetter = {
@@ -30,13 +30,12 @@ module.exports = {
       "y": ["Yield"],
       "z": ["Zoning"],
     };
-    if (msg.author.bot === false) {
-      var wordsArr = msg.content.split(' ');
+    if (commandObj.msg.author.bot === false) {
+      var wordsArr = commandObj.msg.content.split(' ');
       wordsArr.map(function(word, index) {
         phrases.map(function(phrase) {
           if (word.toLowerCase() === phrase) {
             var firstWord = wordsArr[index+1].toLowerCase();
-            var lastLetter = firstWord.charAt(firstWord.length-1);
             var message = "";
             if(firstWord == "snow"){
               message = "Snow is not an acroynm.  It's a word and it's a product, but it isn't ServiceNow."

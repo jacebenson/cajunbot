@@ -1,13 +1,9 @@
 var https = require('https');
 var URL = require('url').URL;
 module.exports = {
-    _command: function(msg,n){
+    _command: function(commandObj){
         console.log('in global joke fx');
-        if(n>20){
-            n = 20;
-            msg.channel.send("That's too many.  Here's 20.");
-        }
-        var url = 'https://wizardly-wing-66188a.netlify.com/.netlify/functions/server/many/' + n;
+        var url = 'https://joke.jace.pro/.netlify/functions/server/many/1';
         url = new URL(url);
         var options = {
             timeout: 3000,
@@ -24,6 +20,7 @@ module.exports = {
             });
             // The whole response has been received. Print out the result.
             resp.on('end', () => {
+                console.log(`data: ${data}`)
                 //console.log(JSON.parse(data).explanation);
                 var obj = JSON.parse(data);
                 obj.forEach(jokeEntry => {
@@ -33,23 +30,22 @@ module.exports = {
                     } else {
                         message += jokeEntry.joke + '\n';
                     }
-                msg.channel.send(message);
+                commandObj.msg.channel.send(message);
                 });
             });
         }).on("error", (err) => {
-            msg.channel.send("Error: `" + err.message + "`");
+            commandObj.msg.channel.send("Error: `" + err.message + "`");
         });
     },
-    command: function (bot, msg) {
+    command: function (commandObj) {
         var phrases = ['!joke', '!laugh', '!funny'];
-        if (msg.author.bot === false) {
-            var wordsArr = msg.content.split(' ');
+        if (commandObj.msg.author.bot === false) {
+            var wordsArr = commandObj.msg.content.split(' ');
             wordsArr.map(function (word, index) {
                 phrases.map(function (phrase) {
                     if (word.toLowerCase() === phrase) {
                         console.log('in joke.js');
-                        var n = wordsArr[index + 1] || 1;
-                        module.exports._command(msg,n);
+                        module.exports._command(commandObj);
                     }
                 });
             });

@@ -2,7 +2,7 @@ var Chance = require('chance');
 // Instantiate Chance so it can be used
 var chance = new Chance();
 module.exports = {
-    _command: function (msg) {
+    _command: function (commandObj) {
         var quote = chance.pickone([
             "Life isn’t about getting and having, it’s about giving and being. - Kevin Kruse",
             "Whatever the mind of man can conceive and believe, it can achieve. - Napoleon Hill",
@@ -107,16 +107,16 @@ module.exports = {
             "The only way to do great work is to love what you do. - Steve Jobs",
             "If you can dream it, you can achieve it. - Zig Ziglar"
         ]);
-        msg.channel.send(quote);
+        commandObj.msg.channel.send(quote);
     },
-    command: function (bot, msg) {
+    command: function (commandObj) {
         var phrases = ['!quote'];
-        if (msg.author.bot === false) {
-            var wordsArr = msg.content.split(' ');
+        if (commandObj.msg.author.bot === false) {
+            var wordsArr = commandObj.msg.content.split(' ');
             wordsArr.map(function (word, index) {
                 phrases.map(function (phrase) {
                     if (word.toLowerCase() === phrase) {
-                        module.exports._command(msg);
+                        module.exports._command(commandObj);
                     }
                 });
             });

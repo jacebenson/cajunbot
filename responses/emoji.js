@@ -1,14 +1,14 @@
 module.exports = {
-    command: function(bot, msg) {
+    command: function(commandObj) {
         var phrase = '!emoji';
-        if (msg.author.bot === false) {
+        if (commandObj.msg.author.bot === false) {
             var translate = require('moji-translate');
-            var wordsArr = msg.content.split(' ');
+            var wordsArr = commandObj.msg.content.split(' ');
             wordsArr.map(function(word, index) {
-                if (word.toLowerCase() === '!emoji') { //this.phrase){
+                if (word.toLowerCase() === phrase) { //this.phrase){
                     var term = wordsArr[index + 1];
                     var message = translate.translate(wordsArr.join(' ').replace(word, '').trim());
-                    msg.channel.send(message);
+                    commandObj.msg.channel.send(message);
                 }
             });
         }

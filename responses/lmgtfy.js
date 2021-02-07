@@ -1,12 +1,12 @@
 module.exports = {
-    command: function(bot, msg) {
+    command: function(commandObj) {
         var phrase = '!lmgtfy';
-        if (msg.author.bot === false) {
-            var wordsArr = msg.content.split(' ');
+        if (commandObj.msg.author.bot === false) {
+            var wordsArr = commandObj.msg.content.split(' ');
             wordsArr.map(function(word, index) {
                 if (word.toLowerCase() === phrase) {
-                    var message = 'http://lmgtfy.com/?s=d&q=' + encodeURI(wordsArr.join(' ').replace(word, '').trim());
-                    msg.channel.send(message);
+                    var message = 'https://lmddgtfy.net/?q=' + encodeURI(wordsArr.join(' ').replace(word, '').trim());
+                    commandObj.msg.channel.send(message);
                 }
             });
         }

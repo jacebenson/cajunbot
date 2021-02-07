@@ -5,7 +5,7 @@ const $ = require('cheerio'); //Used for HTML-parsing
 var schedule = require('node-schedule');
 
 //Global variables
-const baseUrl = 'https://hi.service-now.com'; //Base-url for HI
+const baseUrl = 'https://support.servicenow.com'; //Base-url for HI
 const kbUrl = "/kb_view.do?sysparm_article=KB0597477" //URL for known-errors family/versions article
 var bot = new Discord.Client();
 var scheduleJob;
@@ -28,6 +28,7 @@ var pullVersions = function () {
   console.log("Starting check for ServiceNow versions");
   rp(baseUrl + kbUrl)
     .then(function (html) {
+      console.log(html)
       var kbHtml = $('li > a', html);
       for (var i = 0; i < kbHtml.length; i++) {
         if (kbHtml[i].attribs.title && kbHtml[i].attribs.href) {

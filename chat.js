@@ -22,7 +22,6 @@ fs.readdir(responsesDirectory, function (err, files) {
       console.log(err);
     }
   });
-  //responses['./integrations/timetable.js'] = require('./integrations/timetable');
 });
 
 server.listen(port, function () {

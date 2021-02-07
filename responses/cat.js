@@ -1,40 +1,37 @@
 module.exports = {
-    command: function(bot, msg) {
-        var phrase = '!cat';
-        if (msg.author.bot === false) {
-            var wordsArr = msg.content.split(' ');
-            wordsArr.map(function(word, index) {
-                if (word.toLowerCase() === phrase) {
-                    var http = require("https");
+  command: function (commandObj) {
+    var phrase = '!cat';
+    if (commandObj.msg.author.bot === false) {
+      var wordsArr = commandObj.msg.content.split(' ');
+      wordsArr.map(function (word, index) {
+        if (word.toLowerCase() === phrase) {
+          var http = require("https");
+          var req = http.request({
+            "method": "GET",
+            "hostname": "catfact.ninja",
+            "port": null,
+            "path": "/fact",
+            "headers": {
+              "content-length": "0"
+            }
+          }, function (res) {
+            var chunks = [];
 
-                    var options = {
-                      "method": "GET",
-                      "hostname": "catfact.ninja",
-                      "port": null,
-                      "path": "/fact",
-                      "headers": {
-                        "content-length": "0"
-                      }
-                    };
-                    
-                    var req = http.request(options, function (res) {
-                      var chunks = [];
-                    
-                      res.on("data", function (chunk) {
-                        chunks.push(chunk);
-                      });
-                    
-                      res.on("end", function () {
-                        var body = Buffer.concat(chunks);
-                        var responseObj = JSON.parse(body.toString());
-                        msg.channel.send(responseObj.fact);
-                      });
-                    });
-                    
-                    req.end();
-                }
+            res.on("data", function (chunk) {
+              chunks.push(chunk);
             });
+
+            res.on("end", function () {
+              var body = Buffer.concat(chunks);
+              var responseObj = JSON.parse(body.toString());
+              commandObj.msg.channel.send(responseObj.fact);
+            });
+          });
+
+          req.end();
         }
-    },
-    help: '`!cat` gets a cat fact'
+      });
+    }
+  },
+  help: '`!cat` gets a cat fact'
 };

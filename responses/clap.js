@@ -1,8 +1,8 @@
 module.exports = {
-    command: function(bot, msg) {
+    command: function(commandObj) {
         var phrase = '!clap';
-        if (msg.author.bot === false) {
-            var wordsArr = msg.content.split(' ');
+        if (commandObj.msg.author.bot === false) {
+            var wordsArr = commandObj.msg.content.split(' ');
             wordsArr.map(function(word, index) {
                 if (word.toLowerCase() === phrase) {
                     if(wordsArr.length>2){
@@ -11,9 +11,9 @@ module.exports = {
                         });
                         var message = upperCaseArr.join(' :clap: ').replace(word.toUpperCase() + ' :clap: ', '');
                         message = message.replace(phrase, '');
-                        msg.channel.send(message);
+                        commandObj.msg.channel.send(message);
                     } else {
-                        msg.react('👏');
+                        commandObj.msg.react('👏');
                     }
                 }
             });

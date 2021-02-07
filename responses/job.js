@@ -2,11 +2,11 @@ var Chance = require('chance');
 // Instantiate Chance so it can be used
 var chance = new Chance();
 module.exports = {
-    command: function(bot, msg) {
+    command: function(commandObj) {
         try{
         var phrase = '!job';
-        if (msg.author.bot === false) {
-            var wordsArr = msg.content.split(' ');
+        if (commandObj.msg.author.bot === false) {
+            var wordsArr = commandObj.msg.content.split(' ');
             wordsArr.map(function(word, index) {
                 if (word.toLowerCase() === phrase) {
 
@@ -169,7 +169,7 @@ module.exports = {
                     parts.signature = chance.pickone([
                         'Regards,\n',
                         'Thanks! I look forward to hearing from you.\n',
-                        'Let me know what you think, Thanks ' + msg.author,
+                        'Let me know what you think, Thanks ' + commandObj.msg.author,
                         'If interested, please reply back with an updated resume, and the best time for us to speak – I look forward to your reply!',
                         'I look forward to hearing from you. Have a great day!',
                         'Any help would be greatly appreciated. Have a great day!',
@@ -204,7 +204,7 @@ module.exports = {
                     //message.push(chance.first({ nationality: 'us' }));
                     message.push(chance.first());
                     var message = message.join(' ').replace(/(\n)(\ +)/gm,'\n');
-                    msg.channel.send(message);
+                    commandObj.msg.channel.send(message);
                 }
             });
         }

@@ -1,8 +1,8 @@
 module.exports = {
-    command: function(bot, msg) {
+    command: function(commandObj) {
         var phrases = ['!flip', '!invert'];
-        if (msg.author.bot === false) {
-            var wordsArr = msg.content.split(' ');
+        if (commandObj.msg.author.bot === false) {
+            var wordsArr = commandObj.msg.content.split(' ');
             wordsArr.map(function(word, index) {
                 phrases.map(function(phrase) {
                     if (word.toLowerCase() === phrase) {
@@ -78,7 +78,7 @@ module.exports = {
                             ' ': ' ',
                             '`': '`',
                         };
-                        var arrOfThings = msg.content.replace('!flip', '').split('');
+                        var arrOfThings = commandObj.msg.content.replace('!flip', '').split('');
                         var flipped = arrOfThings.map(function(char) {
                             return flipTable[char/*.toLowerCase()*/];
                         });
@@ -88,7 +88,7 @@ module.exports = {
                             flippedText = '┻━┻';
                         }
                         var message = rand(flipper) + '︵ ' + flippedText;
-                        msg.channel.send(message);
+                        commandObj.msg.channel.send(message);
                     }
 
                 });
