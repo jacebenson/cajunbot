@@ -49,7 +49,7 @@ In those you'll have a `modules.exports` that has a `command`, and `help`.  Thos
 
 ## Installing on a Discord server;
 
-Use [this](https://discordapp.com/oauth2/authorize?&client_id=490235035627028511&scope=applications.commands&permissions=0) link to install this on your workspace.
+Use [this](https://discordapp.com/oauth2/authorize?&client_id=490235035627028511&scope=bot&permissions=0) link to install this on your workspace.
 
 ## Acknowledgments
 
