@@ -41,7 +41,7 @@ This is the help
    - Enter your commands to test
 1. Push to the branch (git push origin feature/fooBar)
 1. Create a new Pull Request
-
+ 
 ### To add your new commands
 I'd copy `./responses/snprotips.js` if you need multiple phrases to look for, otherwise, I'd copy `./responses/docs.js`
 
