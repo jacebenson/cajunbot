@@ -43,7 +43,7 @@ client.on("message", function (msg) {
 client.on('ready', () => { // When the bot is ready
   console.log('CajonBot Ready!'); // Log "Ready!"
   //require('./integrations/timetable').start(bot).command();//disabled after token was revoked
-  require('./integrations/errorkb').start(client, true, true); //disabled after token was revoked
+  //require('./integrations/errorkb').start(client, true, true); //disabled after hi moved to support
 });
 
 client.on("messageReactionAdd", async (reaction, user) => {

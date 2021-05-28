@@ -11,6 +11,7 @@ function titleCase(str) {
 }
 module.exports = {
   command: function (commandObj) {
+    /*
     if (commandObj.msg.author.bot === false) {
       if (commandObj.msg.content.charAt(0) != '!') {
         var mentionsCajunBot = (function () {
@@ -92,5 +93,6 @@ module.exports = {
         console.log('predefined commaned detected (starts with !)');
       }
     }
+    */
   }
 };

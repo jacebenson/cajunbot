@@ -7,7 +7,7 @@
     "acronym": "^1.0.0",
     "chance": "^1.1.4",
     "cheerio": "^1.0.0-rc.3",
-    "discord.js": "^11.5.1",
+    "discord.js": "^12.5.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "greenlock": "^3.1.5",
