@@ -39,6 +39,7 @@ module.exports = {
                 if(commandObj.msg.content.toLowerCase().indexOf(phrase)>-1){
                     var message = rand(phrases[phrase]);
                     commandObj.msg.channel.send(message);
+                    break;
                 }
             }
         }
